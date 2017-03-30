@@ -24,6 +24,18 @@ public class User {
     private int type;
 	
 	
+	public User() {
+
+	}
+	public User(String email, String firstname, String lastname, String password, String unit, int type) {
+		super();
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
+		this.unit = unit;
+		this.type = type;
+	}
 	public String getPassword() {
 		return password;
 	}
