@@ -17,7 +17,7 @@ public class ApartmentController {
 	
 	private ApartmentService available_apartmentService;
 
-	/*This is just a test*/
+	/*This is just a test2*/
 	
 	@Autowired(required=true)
 	@Qualifier(value = "apartmentService")
