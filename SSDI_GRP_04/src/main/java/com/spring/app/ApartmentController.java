@@ -27,6 +27,7 @@ public class ApartmentController {
 	
 	@RequestMapping(value = "/apartment", method = RequestMethod.GET)
 	public String listApartments(Model model) {
+		System.out.println("he");
 		model.addAttribute("apartment", new Available_apartment());
 		model.addAttribute("listApartments", this.available_apartmentService.listApartments());
 		return "apartment";
