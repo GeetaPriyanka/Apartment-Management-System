@@ -50,8 +50,9 @@ public class UserServiceImpl implements UserService {
 				userinfo.setEmail(u.getEmail());
 				userinfo.setName(u.getFirstname()+" " + u.getLastname());
 				userinfo.setUnit(u.getUnit());
+				return userinfo;
 			}
 		}
-		return userinfo;
+		return null;
 	}
 }

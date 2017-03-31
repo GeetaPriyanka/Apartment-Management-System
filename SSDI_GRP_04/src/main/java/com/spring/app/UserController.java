@@ -58,11 +58,13 @@ public class UserController {
 		try
 		{
 			UserDetailsBean userinfo = this.userService.validate(loginBean);
-			userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
-			userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
-			model = new ModelAndView("welcome");
-			model.addObject("user",userinfo);
-			return model;
+			if(userinfo!=null){
+				userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
+				userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
+				model = new ModelAndView("welcome");
+				model.addObject("user",userinfo);
+				return model;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

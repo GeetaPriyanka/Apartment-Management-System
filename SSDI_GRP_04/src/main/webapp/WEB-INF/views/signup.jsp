@@ -197,6 +197,40 @@ textarea {
 </style>
 	
 <title>Login</title>
+<script type="text/javascript">
+	  function validate(){
+		  var x = document.forms["SignupForm"]["firstname"].value;
+		    if (x == "") {
+		    	alert("FirstName Blank");
+		    	return false;
+		    }
+		    var y = document.forms["SignupForm"]["lastname"].value;
+		    if (y == "") {
+		    	alert("password Blank");
+		    	return false;
+		    }
+		    var a = document.forms["SignupForm"]["email"].value;
+		    var atpos = a.indexOf("@");
+	        var dotpos = a.lastIndexOf(".");
+		    if (a == "") {
+		    	alert("email Blank");
+		    	return false;
+		    }else if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){  
+		            alert("Not a valid e-mail address");
+		            return false;
+		    }
+		    var z = document.forms["SignupForm"]["password"].value;
+		    if (z == "") {
+		    	alert("password Blank");
+		    	return false;
+		    }
+		    var o = document.forms["SignupForm"]["otp"].value;
+		    if (o == "") {
+		    	alert("OTP Blank");
+		    	return false;
+		    }
+	  }
+	  </script>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
   data-offset="50">
@@ -229,7 +263,7 @@ textarea {
 <div class="container text-center">
 		<p id="test"> </p>
 		<div id="Signup" class="login-box animated fadeInUp">
-			<form:form name="SignupForm" method="post" onsubmit="validate(this);" action="signup.submit" modelAttribute="signupBean">
+			<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
 				<div class="box-header">
 					<h2>Sign In</h2>
 				</div>
@@ -262,7 +296,7 @@ textarea {
 		  document.getElementById('test').innerHTML=" verifying!!";
 		</script>
 	<script type="text/javascript">
-	  function validate(form){
+	  function validate11(form){
 		  var firstname = form.firstname.value;
 		  var lastname = form.lastname.value;
 		  var email = form.email.value;
