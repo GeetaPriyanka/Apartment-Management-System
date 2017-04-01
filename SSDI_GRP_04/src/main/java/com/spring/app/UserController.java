@@ -72,7 +72,7 @@ public class UserController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/complaint", method = RequestMethod.GET)
+	@RequestMapping(value = "/complaint", method = RequestMethod.POST)
 	public String gotoComplaint(Model model) {
 		//create complaint bean and add it to this page
 		return "complain";

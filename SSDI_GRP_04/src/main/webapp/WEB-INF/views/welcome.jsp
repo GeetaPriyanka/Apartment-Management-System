@@ -198,6 +198,17 @@ textarea {
     border: 1px solid #e6e6e6;
     box-sizing: border-box;}
 
+.myButton{
+    background:url(./images/request.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:200px;
+    height:200px;
+}
+
+.myButton:active {
+     background:url(./images/but2.png) no-repeat;
+}
 
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
@@ -235,23 +246,38 @@ textarea {
   <!-- retrieving user details -->
  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5>
  <br>
- <div class="container">
-   <div class="column-center">   </div>
-   <div class="column-left">
-   <div class="container text-center">
-   				 
-   				<br>
-   				       <button id="myButton" class="submit-button" >Submit</button>
-
-				<script type="text/javascript">
-    				document.getElementById("myButton").onclick = function () {
-        			location.href = "complaint";
-    				};
-				</script>
-   </div>	
-	</div>
-   <div class="column-right"> </div>
-</div>
-</c:if>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-4">
+					<p>
+						<strong>Maintenance Request</strong>
+					</p>
+					<br>
+					<form name="ComplaintForm" action="complaint" method="post">
+					<input type="image" src="<c:url value="/resources/images/request.png"/>" />
+					</form>
+						<br><br>
+					<p> Have a problem in your apartment?<br><br> Log a maintenance request here and get it resolved within 2 days. </p>
+				</div>
+				
+				<div class="col-sm-4">
+					<p>
+						<strong>Renew Lease</strong>
+					</p>
+					<br> <input type="image" src="<c:url value="/resources/images/ren.png"/>"  id="saveForm" />
+						<br><br>
+							<p> Like our Apartments?<br><br> Extend your stay by lodging Lease renewal request. </p>
+				</div>
+				<div class="col-sm-4">
+					<p>
+						<strong>Billing</strong>
+					</p>
+					<br> <input type="image" src="<c:url value="/resources/images/billnew.png"/>"  id="saveForm" />
+							<br><br>
+							<p> Your Billing!<br><br> Take a look at your Apartment's billing. </p>
+				</div>
+			</div>
+		</div>
+	</c:if>
 </body>
 </html>
