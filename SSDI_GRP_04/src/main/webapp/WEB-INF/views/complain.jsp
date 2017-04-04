@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,6 +39,8 @@
 body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
+	background-image:
+		url("http://wallpaper.hinaji.com/wp-content/uploads/2016/09/Yellow-Background-Image-With-Sky-Starts.jpg");
 }
 
 h3, h4 {
@@ -235,73 +239,129 @@ textarea {
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="welcome">HOME</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><i
-							class="fa fa-fw fa-bell-o"></i>Profile</span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">${user.name}</a></li>
-							<li><a href="#">${user.email}</a></li>
-							<li><a href="#">Apt #${user.unit}</a></li>
-							<li><a href="#">Javascript</a></li>
-						</ul></li>
-					<li><a href="../app">Sign Out</a></li>
+					<li><a href="./welcome">HOME</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="../home">Sign Out</a></li>
 				</ul>
 			</div>
 		</div>
 		</nav>
+		
+		
+		<!-- NavBar section ends here -->
 		<br>
 		<br>
-		<!-- retrieving user details -->
-
-
-		<div class="container text-center">
-			<h3>Lodge a request here!</h3>
-			<br>
-
-
-			<form>
-				<fieldset class="form-group">
-				Request Area : <br>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="optionsRadios" id="optionsRadios1"
-							value="option1" checked> Plumbing
-						</label>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="optionsRadios" id="optionsRadios2"
-							value="option2"> Carpentry
-						</label>
-					</div>
-					<div class="form-check disabled">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="optionsRadios" id="optionsRadios3"
-							value="option3"> Electrical
-						</label>
-					</div>
-				</fieldset>
-				<div class="form-group">
-					<label for="exampleSelect1">Severity</label> <select
-						class="form-control" id="exampleSelect1">
-						<option>Low</option>
-						<option>Med</option>
-						<option>High</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleTextarea">Problem Description</label>
-					<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-				</div>
-
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-
-
+		
+		
+		<!-- retrieving user details (form starts here) -->
+		<div class="row">
+			<div class="col-md-12 text-center" style="height: 50px;">
+				<label> <font size="5" color="brown"> COMPLAINT PAGE
+				</font></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 text-right" style="height: 50px;">
+				<font color="brown" size="4"> Welcome </font>
+			</div>
+			<div class="col-md-13" style="height: 50px;">
+				<label> <font color="brown" size="4"> ${user.name} </font>
+				</label>
+			</div>
 		</div>
 
+		<form:form name="ComplaintForm" method="post"
+			onsubmit="putTime(this);" action="complaint.submit"
+			modelAttribute="ComplaintBean" commandName="complaint">
+			<div class="col-md-12 text-center" style="height: 75px;">
 
+				<label for="type"> <font size="4" color="brown">Select
+						the complaint type:</font></label> <select name="type">
+					<option value="Plumbing">Plumbimg</option>
+					<option value="Electrical">Electrical</option>
+					<option value="Carpentry">Carpentry</option>
+					<option value="other">Other</option>
+				</select>
+
+				<label for="sev"> <font size="4" color="brown">Select
+						the severity: </font>
+				</label>
+				<div class="btn-group">
+					<label for="severity" class="radio-inline"> <input
+						type="radio" name="severity" value="2"> <font size="4"
+						color="brown"> High</font>
+					</label> <label for="severity" class="radio-inline"> <input
+						type="radio" name="severity" value="1"> <font size="4"
+						color="brown"> Medium </font>
+					</label> <label for="severity" class="radio-inline"> <input
+						type="radio" name="severity" value="0"> <font size="4"
+						color="brown"> Low </font>
+					</label>
+				</div>
+
+			</div>
+			<div class="col-md-12 text-center" style="height: 150px;">
+				<div class="form-group">
+					<span class="label" id="description"> <font size="4"
+						color="brown"> Enter the complaint description here:</font>
+					</span>
+					<textarea name="description" class="form-control" rows="5"
+						id="comment"></textarea>
+				</div>
+			</div>
+
+			<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 100px;">
+				<input type="submit" class="button" name="Submit" value="Submit">
+			</div>
+		</form:form>
+		
+		<script>
+		 var unit=${user.unit} 
+		 
+		var putDate = function(ComplaintForm) {
+  form.date.value = new Date().toString();
+  
+};
+
+</script>
+		<script>
+	    function updatesev() {
+
+		  var severity = document.getElementsByName('severity');
+		  var sev_value;
+		  for(var i = 0; i < rates.length; i++){
+		      if(severity[i].checked){
+		          sev_value = severity[i].value;
+		      }
+		      return sev_value;
+		  }
+
+		  </script>
+		<script type="text/javascript">
+	  function validate(ComplaintForm){
+	
+		  var username = form.username.value;
+		  var password = form.password.value;
+		  form.username.style.borderColor="#ccc";
+		  form.password.style.borderColor="#ccc";
+		  var obj1 = form.getElementById('desc');
+		  ErrorText= ""; 
+		  if ( form.comp.selectedIndex == 0 ) { alert ( "Please select the complaint_type" ); return false; } 
+	  	  else if ( ( form.optradio[0].checked == false ) && ( form.optradio[1].checked == false )&&(form.optradio[0].checked == false) ) { alert ( "Please choose severity" ); return false; }
+	  	  else if(trimfield(obj1.value) == '') 
+		         {      
+		              alert("Please Provide complaint description!");
+		              obj1.focus();
+		              return false;       
+		         }
+	  	  else
+	  		  {
+	  		   alert("Your complaint has been submitted");
+	  		  form.submit() 
+	  		  }
+	  		  } 
+	  </script>
 	</c:if>
 </body>
 </html>

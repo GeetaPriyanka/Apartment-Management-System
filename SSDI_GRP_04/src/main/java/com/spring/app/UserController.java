@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.UserDetailsBean;
+import com.spring.app.model.Complaint;
 import com.spring.app.model.User;
+import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
 import com.spring.app.service.UserService;
 
@@ -27,9 +30,13 @@ import com.spring.app.service.UserService;
 public class UserController {
 	
 	private UserService userService;
+	UserDetailsBean userinfo;
 	
 	@Autowired
 	private Occupied_apartmentService occService;
+	
+	@Autowired
+	private ComplaintService complaintService;
 	
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
@@ -37,12 +44,6 @@ public class UserController {
 		this.userService = ps;
 	}
 	
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public String listPersons(Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("listUsers", this.userService.listUsers());
-		return "user";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(Model model) {
@@ -57,7 +58,7 @@ public class UserController {
 		ModelAndView model= null;
 		try
 		{
-			UserDetailsBean userinfo = this.userService.validate(loginBean);
+			userinfo = this.userService.validate(loginBean);
 			if(userinfo!=null){
 				if(userinfo.getType()==2){
 					//resident login
@@ -87,12 +88,27 @@ public class UserController {
 		model = new ModelAndView("login");
 		return model;
 	}
-	
+	//below method just opens the complaint page so that user can lodge the complaint
 	@RequestMapping(value = "/complaint", method = RequestMethod.POST)
-	public String gotoComplaint(Model model) {
-		//create complaint bean and add it to this page
-		return "complain";
+	public ModelAndView gotoComplaint(Model model) {
+		ModelAndView model1=null;
+		model1 = new ModelAndView("complain");
+		return model1;
 	}
+	
+	//when the complaint is lodged 
+	@RequestMapping(value="/complaint.submit", method = RequestMethod.POST)
+	public ModelAndView executeComplaint(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("ComplaintBean")ComplaintBean ComplaintBean )
+	{			
+				ComplaintBean.setUnit(userinfo.getUnit());
+				ModelAndView model= null;
+				this.complaintService.addComplaint(ComplaintBean);
+				model=new ModelAndView("welcome");
+				return model;	
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String gotoWelcome(Model model) {

@@ -18,23 +18,33 @@ public class Complaint {
 	@Column(name="unit")
 	private String unit;
 	@Column(name="type")
-	private int type;
+	private String type;
 	@Column(name="severity")
 	private int severity;
 	@Column(name="description")
 	private String description;
 	@Column(name="time")
 	private long time;
+	@Column(name="resolved")
+	private int resolved;
+	
+	
+	public int getResolved() {
+		return resolved;
+	}
+	public void setResolved(int resolved) {
+		this.resolved = resolved;
+	}
 	public String getUnit() {
 		return unit;
 	}
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public int getSeverity() {

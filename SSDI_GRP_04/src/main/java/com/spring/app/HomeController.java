@@ -59,14 +59,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Insertin complain", locale);
-		 Complaint c = new Complaint();
-		 c.setDescription("test");
-		 c.setSeverity(1);
-		 c.setTime(456456654);
-		 c.setType(1);
-		 c.setUnit("9545F");
-		 complainService.addUser(c);
+		
 		return "home";
 	}
 	
