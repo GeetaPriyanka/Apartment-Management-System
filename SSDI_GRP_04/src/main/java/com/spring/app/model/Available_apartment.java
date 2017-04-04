@@ -18,6 +18,17 @@ public class Available_apartment {
 	int bhk;
 	@Column(name="area")
 	int area;
+	
+	public Available_apartment() {
+		super();
+	}
+	public Available_apartment(String unit, int rent, int bhk, int area) {
+		super();
+		this.unit = unit;
+		this.rent = rent;
+		this.bhk = bhk;
+		this.area = area;
+	}
 	public String getUnit() {
 		return unit;
 	}
