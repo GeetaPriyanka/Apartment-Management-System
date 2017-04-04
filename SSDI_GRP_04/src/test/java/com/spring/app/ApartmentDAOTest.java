@@ -28,7 +28,8 @@ public class ApartmentDAOTest {
 	    //Create few instances of User class.
 	    apt1 = new Available_apartment("9504F",1000,2,1415);
 	    apt2 = new Available_apartment("954F",1500,4,2000);
-	    when(aptDAOMock.listApartments()).thenReturn(Arrays.asList(apt1,apt2));	    
+	    when(aptDAOMock.listApartments()).thenReturn(Arrays.asList(apt1,apt2));	
+	   // when(aptDAOMock.deleteAvailableApartment("9504F"));
 	  }
 	
 	  @Test
