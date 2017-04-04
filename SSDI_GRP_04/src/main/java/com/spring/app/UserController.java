@@ -59,11 +59,27 @@ public class UserController {
 		{
 			UserDetailsBean userinfo = this.userService.validate(loginBean);
 			if(userinfo!=null){
-				userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
-				userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
-				model = new ModelAndView("welcome");
-				model.addObject("user",userinfo);
-				return model;
+				if(userinfo.getType()==2){
+					//resident login
+					userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
+					userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
+					model = new ModelAndView("welcome");
+					model.addObject("user",userinfo);
+					return model;
+				}else if(userinfo.getType()==1){
+					//staff login
+					//available fields --> lease_start,lease_end,unit
+					model = new ModelAndView("s_welcome");
+					model.addObject("user",userinfo);
+					return model;
+				}else if(userinfo.getType()==0){
+					//manager login
+					//available fields --> lease_start,lease_end,unit
+					model = new ModelAndView("m_welcome");
+					model.addObject("user",userinfo);
+					return model;
+				}
+				
 			}
 		}catch(Exception e){
 			e.printStackTrace();

@@ -5,11 +5,18 @@ import java.sql.Date;
 public class UserDetailsBean {
 	private String name;
 	private String unit;
+	private int type;
 	private String email;
 	private Date lease_start;
 	private Date lease_end;
 	public String getName() {
 		return name;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	public void setName(String name) {
 		this.name = name;
