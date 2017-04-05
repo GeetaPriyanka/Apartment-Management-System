@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.app.bean.ComplaintBean;
+import com.spring.app.bean.ComplaintOut;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.UserDetailsBean;
 import com.spring.app.model.Complaint;
@@ -60,6 +61,7 @@ public class UserController {
 		{
 			userinfo = this.userService.validate(loginBean);
 			if(userinfo!=null){
+				System.out.println("user name"+userinfo.getName() + userinfo.getType());
 				if(userinfo.getType()==2){
 					//resident login
 					userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
@@ -71,7 +73,10 @@ public class UserController {
 					//staff login
 					//available fields --> lease_start,lease_end,unit
 					model = new ModelAndView("s_welcome");
+					model.addObject("complaintout",new ComplaintOut());
 					model.addObject("user",userinfo);
+					model.addObject("listcomplaints",this.complaintService.listComplaints());
+					System.out.println("got list sending to view");
 					return model;
 				}else if(userinfo.getType()==0){
 					//manager login

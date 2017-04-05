@@ -9,11 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.spring.app.model.Complaint;
+import com.spring.app.model.User;
 
 @Repository
 public class ComplaintDAOImpl implements ComplaintDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ComplaintDAO.class);
 
 	private SessionFactory sessionFactory;
 	
@@ -24,7 +25,9 @@ public class ComplaintDAOImpl implements ComplaintDAO {
 	@Override
 	public List<Complaint> listComplaint() {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Complaint> complainList = session.createQuery("from Complaint").list();
+		return complainList;
 	}
 
 	@Override
