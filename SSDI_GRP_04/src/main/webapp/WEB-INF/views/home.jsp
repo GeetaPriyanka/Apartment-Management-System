@@ -134,7 +134,7 @@ h3, h4 {
 }
 
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: 'oswald', sans-serif;
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
@@ -149,8 +149,14 @@ h3, h4 {
 
 .navbar-nav li a:hover {
   color: #fff !important;
+  background-color: black;
 }
-
+. navbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
 .navbar-nav li.active a {
   color: #fff !important;
   background-color: #29292c !important;
@@ -182,7 +188,38 @@ footer a:hover {
 textarea {
   resize: none;
 }
-
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
+.footer-bottom{
+    background-color: black;
+ 
+    min-height: 50px;
+    width: 100%;
+}
+.copyright {
+    color: #fff;
+    line-height: 10px;
+    min-height: 30px;
+    padding: 3px 0;
+}
+.design {
+    color: #fff;
+    line-height: 10px;
+    min-height: 30px;
+    padding: 7px 0;
+    text-align: right;
+}
+.design a {
+    color: #fff;
+}
 </style>
 <body>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
@@ -191,12 +228,13 @@ textarea {
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
+      
         <button type="button" class="navbar-toggle" data-toggle="collapse"
           data-target="#myNavbar">
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+   <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a> 
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -322,6 +360,35 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
     </div>
     <br>
   </div>
+  <div class="footer-bottom">
 
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
+
+				<div class="copyright">
+
+					© 2015, Webenlance, All rights reserved
+
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+				<div class="design">
+
+					 <a href="#">Franchisee </a> |  <a target="_blank" href="http://www.webenlance.com">Web Design & Development by Webenlance</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
 </body>
 </html>

@@ -31,13 +31,18 @@
 	  <!-- CSS Style code -->
  <style type="text/css">
       body {
-  font: 400 15px/1.8 Lato, sans-serif;
+  font: Lato, sans-serif;
   color: #777;
+    background: url(https://stengineer.com/wp-content/uploads/2016/07/Awesome-simple-interior-design-for-apartments-For-Apartment-Design-Interior-with-simple-interior-design-for-apartments-Apartment-Design-Easy.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
+
   font-size: 20px;
   color: #111;
 }
@@ -108,7 +113,10 @@ h3, h4 {
   margin-top: 15px;
   color: #555;
 }
-
+.panel-heading{
+font-family: lato;
+font-size: 12px;
+}
 .btn {
   padding: 10px 20px;
   background-color: #333;
@@ -194,6 +202,16 @@ footer a:hover {
 textarea {
   resize: none;
 }
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
 </style>
 	
 <title>Login</title>
@@ -215,16 +233,17 @@ textarea {
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
   data-offset="50">
-<div class="container" style="background-image: url('<c:url value="/resources/images/bg.jpg"/>')">
+<div class="container">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
+      
         <button type="button" class="navbar-toggle" data-toggle="collapse"
           data-target="#myNavbar">
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -239,9 +258,40 @@ textarea {
 
 <br>
 <br>
+<div class="col-md-12">
+    <div class="modal-dialog" style="margin-bottom:0">
+        <div class="modal-content">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form:form name="LoginForm" action="login.submit" onsubmit="return validate();" method="post" modelAttribute="loginBean">
+                            <fieldset>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="text" id="username" name="username" path="username" placeholder="Email"/>
+                                </div>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="password" id="password" name="password" path="password" placeholder="Password"/>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <button class="btn btn-sm btn-success" type="submit" id="submit" >Sign In</button>
+                                
+                            </fieldset>
+                        </form:form>
+                    </div>
+                </div>
+    </div>
+</div>
+
+
 
 <!-- Login form code -->
-<div class="container text-center">
+<!--  <div class="container text-center">
 		<p id="test"> </p>
 		<div id="Login" class="login-box animated fadeInUp">
 			<form:form name="LoginForm" action="login.submit" onsubmit="return validate();" method="post" modelAttribute="loginBean">
@@ -261,7 +311,10 @@ textarea {
 				<br/>
 			</form:form>
 		</div>
+		
+		<input name="button" >
+                                <a href="javascript:;" class="btn btn-sm btn-success">Login</a>
 </div>
-</div>
+</div>-->
 </body>
 </html>

@@ -40,7 +40,7 @@ body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
 	background-image:
-		url("http://wallpaper.hinaji.com/wp-content/uploads/2016/09/Yellow-Background-Image-With-Sky-Starts.jpg");
+		url("");
 }
 
 h3, h4 {
@@ -223,6 +223,9 @@ textarea {
 	border: 1px solid #e6e6e6;
 	box-sizing: border-box;
 }
+.container1{
+text-aligm
+}
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
 	data-offset="50">
@@ -269,7 +272,7 @@ textarea {
 				</label>
 			</div>
 		</div>
-
+<div class="container1">
 		<form:form name="ComplaintForm" method="post"
 			onsubmit="putTime(this);" action="complaint.submit"
 			modelAttribute="ComplaintBean" commandName="complaint">
@@ -277,7 +280,7 @@ textarea {
 
 				<label for="type"> <font size="4" color="brown">Select
 						the complaint type:</font></label> <select name="type">
-					<option value="Plumbing">Plumbimg</option>
+					<option value="Plumbing">Plumbing</option>
 					<option value="Electrical">Electrical</option>
 					<option value="Carpentry">Carpentry</option>
 					<option value="other">Other</option>
@@ -315,7 +318,7 @@ textarea {
 				<input type="submit" class="button" name="Submit" value="Submit">
 			</div>
 		</form:form>
-		
+		</div>
 		<script>
 		 var unit=${user.unit} 
 		 
@@ -358,9 +361,9 @@ textarea {
 	  	  else
 	  		  {
 	  		   alert("Your complaint has been submitted");
-	  		  form.submit() 
+	  		  form.submit() ;
 	  		  }
-	  		  } 
+	  		  } }
 	  </script>
 	</c:if>
 </body>

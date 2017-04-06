@@ -30,10 +30,16 @@
 	  
 	  <!-- CSS Style code -->
  <style type="text/css">
-      body {
-  font: 400 15px/1.8 Lato, sans-serif;
+        body {
+  font: Lato, sans-serif;
   color: #777;
+    background: url(https://stengineer.com/wp-content/uploads/2016/07/Awesome-simple-interior-design-for-apartments-For-Apartment-Design-Interior-with-simple-interior-design-for-apartments-Apartment-Design-Easy.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 
 h3, h4 {
   margin: 10px 0 30px 0;
@@ -44,6 +50,7 @@ h3, h4 {
 
 .container {
   padding: 80px 120px;
+  
 }
 
 .person {
@@ -67,7 +74,10 @@ h3, h4 {
 .carousel-caption h3 {
   color: #000000 !important;
 }
+.panel{
+width:500px;
 
+}
 @media ( max-width : 600px) {
   .carousel-caption {
     display: none;
@@ -234,7 +244,7 @@ textarea {
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
   data-offset="50">
-<div class="container" style="background-image: url('<c:url value="/resources/images/bg.jpg"/>')">
+<div class="container" >
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -258,9 +268,56 @@ textarea {
 
 <br>
 <br>
-
+<div class="container">
+        <div class="row centered-form">
+        <div >
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Sign Up! </h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-xs-10 col-sm-10 col-md-10">
+			    					<div class="form-group">
+			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-10 col-sm-10 col-md-10">
+			    					<div class="form-group">
+			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+			    					</div>
+			    				</div>
+			    			
+                            <div class="col-xs-10 col-sm-10 col-md-10"> 
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+			    			</div>
+</div>		
+</div>
+			    			<div class="row">
+			    				<div class="col-xs-10 col-sm-10 col-md-10">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-10 col-sm-10 col-md-10">
+			    					<div class="form-group">
+			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="OTP">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			<div class="col-xs-10 col-sm-10 col-md-10">
+			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    		</div>
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
 <!-- SignUp form code -->
-<div class="container text-center">
+<!-- <div class="container text-center">
 		<p id="test"> </p>
 		<div id="Signup" class="login-box animated fadeInUp">
 			<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
@@ -291,7 +348,7 @@ textarea {
 				<button type="submit" id="submit" >Sign Up</button>
 				<br/>
 			</form:form>
-		</div>
+		</div>-->
 		<script type="text/javascript">
 		  document.getElementById('test').innerHTML=" verifying!!";
 		</script>

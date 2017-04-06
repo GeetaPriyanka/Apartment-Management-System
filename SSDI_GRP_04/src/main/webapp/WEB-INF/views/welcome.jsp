@@ -187,6 +187,12 @@ footer a:hover {
 textarea {
   resize: none;
 }
+.btn{
+    margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+    
+}
+
 
 .column-left{ float: left; width: 33%;
     border: 1px solid #e6e6e6;
@@ -224,9 +230,18 @@ textarea {
         </button>
         <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
       </div>
+      
+      <script type="text/javascript">
+      function hide(){
+    	  $("#renew_lease").hide();
+      }
+      function hide1(){
+    	  $("1").hide();
+      }
+      </script>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#myPage">HOME</a></li>
+          <li><a href="#myPage" onclick="hide()">HOME</a></li>
            <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Profile</span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -259,12 +274,23 @@ textarea {
 						<br><br>
 					<p> Have a problem in your apartment?<br><br> Log a maintenance request here and get it resolved within 2 days. </p>
 				</div>
-				
-				<div class="col-sm-4">
+				<script type="text/javascript">
+				$(document).ready(function(){
+					
+						
+					   $("#renew_lease").hide();
+					
+				});
+				function show(){
+					$(renew_lease).show();
+				}
+				</script>
+				<div class="col-sm-4" >
 					<p>
 						<strong>Renew Lease</strong>
 					</p>
-					<br> <input type="image" src="<c:url value="/resources/images/ren.png"/>"  id="saveForm" />
+					<br> <a href = "#renew_lease">
+					<input type="image"  src="<c:url value="/resources/images/ren.png"/>" onclick="show();hide1()"/></a>
 						<br><br>
 							<p> Like our Apartments?<br><br> Extend your stay by lodging Lease renewal request. </p>
 				</div>
@@ -278,6 +304,52 @@ textarea {
 				</div>
 			</div>
 		</div>
+		
 	</c:if>
+	
+	
+	 <div id="renew_lease" class="container text-center">
+    <h3>Want to Renew Lease?</h3>
+    <p>
+      <em>You live your dream here!</em>
+    </p>
+              <div class="row">
+                        <div class="col-sm-6">
+                            <div class="radio">
+                                <input type="radio" name="radio1" id="radio1" value="option1" checked="">
+                                <label for="radio1">
+                                    3 Months
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" name="radio1" id="radio2" value="option2">
+                                <label for="radio2">
+                                    6 Months
+                                                                   </label>
+                            </div>
+                        </div>
+                                  <div class="row">
+                        <div class="col-sm-6">
+                            <div class="radio">
+                                <input type="radio" name="radio1" id="radio3" value="option3" checked="">
+                                <label for="radio3">
+                                    8 Months
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" name="radio1" id="radio4" value="option4">
+                                <label for="radio4">
+                                    12 Months
+                                </label>
+                                
+                            </div>
+                           
+                        </div>
+                         <button type="button" class="btn btn-hot text-uppercase text-center"><a href="http://www.positiwitty.com/">Request</a></button>
+  </div>
+
+  <!-- Container (Contact Section) -->
+  <div id="contact" class="container">
+	
 </body>
 </html>
