@@ -5,13 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class ComplaintOut {
+public class ComplaintOut implements Comparable{
 	private int complaint_number;
 	private String unit;
 	private String type;
 	private String severity;
 	private String description;
 	private String time;
+	private long comparable_time;
 	private String resolved;
 	
 	
@@ -19,8 +20,9 @@ public class ComplaintOut {
 	public ComplaintOut() {
 		super();
 	}
+	
 	public ComplaintOut(int complaint_number, String unit, String type, String severity, String description,
-			String time, String resolved) {
+			String time, long comparable_time, String resolved) {
 		super();
 		this.complaint_number = complaint_number;
 		this.unit = unit;
@@ -28,8 +30,18 @@ public class ComplaintOut {
 		this.severity = severity;
 		this.description = description;
 		this.time = time;
+		this.comparable_time = comparable_time;
 		this.resolved = resolved;
 	}
+
+	public long getComparable_time() {
+		return comparable_time;
+	}
+
+	public void setComparable_time(long comparable_time) {
+		this.comparable_time = comparable_time;
+	}
+
 	public int getComplaint_number() {
 		return complaint_number;
 	}
@@ -72,4 +84,12 @@ public class ComplaintOut {
 	public void setResolved(String resolved) {
 		this.resolved = resolved;
 	}
+	@Override
+	public int compareTo(Object o) {
+		long comparetime= ((ComplaintOut)o).getComparable_time();
+        /* For Ascending order*/
+        return (int) (comparetime-this.getComparable_time());
+		
+	}
+
 }

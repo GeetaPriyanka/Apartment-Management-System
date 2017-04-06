@@ -2,6 +2,7 @@ package com.spring.app.service;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -51,11 +52,12 @@ public class ComplaintServiceImpl implements ComplaintService {
 				String formattedTime = time.format(new Date(comp.getTime()));
 				c.setTime(formattedTime);
 				c.setType(comp.getType());
+				c.setComparable_time(comp.getTime());
 				c.setUnit(comp.getUnit());
 				complaintOut.add(c);
 			}
-
 		}
+		Collections.sort(complaintOut);
 		return complaintOut;
 	}
 

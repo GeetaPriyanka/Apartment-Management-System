@@ -23,9 +23,10 @@ body {
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
+  letter-spacing: 1px;
   font-size: 20px;
   color: #111;
+   text-align: center;
 }
 
 .container {
@@ -204,8 +205,46 @@ textarea {
 }
 
 </style>
+<script>
+     var time = new Date().getTime();
+
+     function refresh() {
+         if(new Date().getTime() - time >= 60000) 
+             window.location.reload(true);
+         else 
+             setTimeout(refresh, 10000);
+     }
+
+     setTimeout(refresh, 10000);
+</script>
 <body>
 
+
+<div class="container">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+          data-target="#myNavbar">
+          <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#myPage">HOME</a></li>
+          <li><a href="apartment">Available Apartments</a></li>
+          <li><a href="./#contact">Contact</a></li>
+          <li><a href="signup">Sign Up!</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<br>
+<br>
+ <h3>All Pending Request</h3>
                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -228,7 +267,6 @@ textarea {
     					<th class="hidden-phone">Severity</th>
     					<th class="hidden-phone">Description</th>
     					<th class="hidden-phone">Time</th>
-    					<th class="hidden-phone">Status</th>
     					<th></th>
     				</tr>
     			</thead>
@@ -242,9 +280,11 @@ textarea {
 					<td >${complaintout.type}</td>
 					<td >${complaintout.severity}</td>
 				    <td >${complaintout.description}</td>	
-				    <td >${complaintout.time}</td>
-				    <td><span class="label label-warning">${complaint.resolved}</span></td>
-				    <td><a class="btn mini blue-stripe" href="{site_url()}admin/editFront/1">Edit</a></td>
+				    <td >${complaintout.time}</td>		    
+				    <td><form name="ComplaintForm" action="/complain_resolve" method="get">
+				    <input type="hidden" name="complaint_id" value="${complaintout.complaint_number}">
+					<button class="btn mini blue-stripe" type="submit" id="submit">Resolve</button>
+					</form></td>
 				</tr>
 			</c:forEach>
 	               </tbody>

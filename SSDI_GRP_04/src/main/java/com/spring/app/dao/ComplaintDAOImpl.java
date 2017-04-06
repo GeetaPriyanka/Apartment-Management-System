@@ -1,5 +1,7 @@
 package com.spring.app.dao;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -22,10 +24,12 @@ public class ComplaintDAOImpl implements ComplaintDAO {
 		this.sessionFactory = sf;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Complaint> listComplaint() {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
 		List<Complaint> complainList = session.createQuery("from Complaint").list();
 		return complainList;
 	}
