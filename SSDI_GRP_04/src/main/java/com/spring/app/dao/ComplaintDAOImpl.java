@@ -39,7 +39,7 @@ public class ComplaintDAOImpl implements ComplaintDAO {
 		System.out.println("you are in add complain");
 		Session session=this.sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(c);
+		session.saveOrUpdate(c);
 		session.getTransaction().commit();
 		session.close();
 	}

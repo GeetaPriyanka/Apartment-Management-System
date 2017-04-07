@@ -281,14 +281,13 @@ textarea {
 					<td >${complaintout.severity}</td>
 				    <td >${complaintout.description}</td>	
 				    <td >${complaintout.time}</td>		    
-				    <td><form name="ComplaintForm" action="/complain_resolve" method="get">
+				    <td><form name="ComplaintForm" action="/app/complain_res" method="get">
 				    <input type="hidden" name="complaint_id" value="${complaintout.complaint_number}">
 					<button class="btn mini blue-stripe" type="submit" id="submit">Resolve</button>
 					</form></td>
 				</tr>
 			</c:forEach>
 	               </tbody>
-
     		</table>
 </body>
 </html>

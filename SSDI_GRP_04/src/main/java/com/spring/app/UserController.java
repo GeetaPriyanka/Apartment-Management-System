@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,13 +113,37 @@ public class UserController {
 				return model;	
 	}
 	
-	
+	@RequestMapping(value ="/complain_res", params = "complaint_id", method = RequestMethod.GET)
+	public ModelAndView resolveRequest(@RequestParam(value = "complaint_id") int complaint_id, HttpServletRequest request) {
+		System.out.println("In complain resolve function");
+		Complaint c = new Complaint();
+		//get the complaint by ID
+		c = this.getComplaintById(complaint_id);
+		//Update this complaint
+		c.setResolved(1);
+		//Save this complaint in the Database
+		this.UpdateComplaint(c);
+		ModelAndView model = new ModelAndView("s_welcome");
+		model.addObject("complaintout",new ComplaintOut());
+		model.addObject("user",userinfo);
+		model.addObject("listcomplaints",this.complaintService.listComplaints());
+		System.out.println("got list sending to view");
+		return model;
+	}
 	
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String gotoWelcome(Model model) {
 		//create complaint bean and add it to this page
 		return "welcome";
+	}
+	
+	public Complaint getComplaintById(int id){
+		return this.complaintService.getComplaint(id);
+	}
+	
+	public void UpdateComplaint(Complaint c){
+		this.complaintService.updateComplaint(c);
 	}
 	
 	public Date getLeaseStart(String unit){
@@ -132,4 +157,6 @@ public class UserController {
 	public float getBill(String unit){
 		return this.occService.getBill(unit);
 	}
+	
+	
 }

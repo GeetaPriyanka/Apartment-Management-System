@@ -75,5 +75,25 @@ public class ComplaintServiceImpl implements ComplaintService {
 		
 		this.complaintDAO.addComplaint(complaint);;
 	}
-
+	
+	@Override
+	@Transactional
+	public Complaint getComplaint(int id) {
+		
+		Complaint c = new Complaint();
+		List<Complaint> complaintIn = new ArrayList<Complaint>();
+		complaintIn = this.complaintDAO.listComplaint();
+		for (Complaint comp : complaintIn) {
+			if (comp.getComplaint_number() == id) {
+				c=comp;
+			}
+		}
+		return c;
+	}
+	
+	@Override
+	@Transactional
+	public void updateComplaint(Complaint c) {	
+		this.complaintDAO.addComplaint(c);;
+	}
 }
