@@ -2,6 +2,7 @@ package com.spring.app.service;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -51,11 +52,12 @@ public class ComplaintServiceImpl implements ComplaintService {
 				String formattedTime = time.format(new Date(comp.getTime()));
 				c.setTime(formattedTime);
 				c.setType(comp.getType());
+				c.setComparable_time(comp.getTime());
 				c.setUnit(comp.getUnit());
 				complaintOut.add(c);
 			}
-
 		}
+		Collections.sort(complaintOut);
 		return complaintOut;
 	}
 
@@ -73,5 +75,25 @@ public class ComplaintServiceImpl implements ComplaintService {
 		
 		this.complaintDAO.addComplaint(complaint);;
 	}
-
+	
+	@Override
+	@Transactional
+	public Complaint getComplaint(int id) {
+		
+		Complaint c = new Complaint();
+		List<Complaint> complaintIn = new ArrayList<Complaint>();
+		complaintIn = this.complaintDAO.listComplaint();
+		for (Complaint comp : complaintIn) {
+			if (comp.getComplaint_number() == id) {
+				c=comp;
+			}
+		}
+		return c;
+	}
+	
+	@Override
+	@Transactional
+	public void updateComplaint(Complaint c) {	
+		this.complaintDAO.addComplaint(c);;
+	}
 }

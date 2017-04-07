@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.spring.app.bean.ComplaintBean;
+
 @Entity
 @Table(name="complaint")
-public class Complaint {
+public class Complaint{
 	
 	@Id
 	@Column(name="complaint_number")
@@ -71,5 +73,6 @@ public class Complaint {
 	public void setComplaint_number(int complaint_number) {
 		this.complaint_number = complaint_number;
 	}
+	
 	
 }

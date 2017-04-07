@@ -9,4 +9,6 @@ import com.spring.app.model.Complaint;
 public interface ComplaintService {
 	public List<ComplaintOut> listComplaints();
 	public void addComplaint(ComplaintBean c);
+	public Complaint getComplaint(int id);
+	public void updateComplaint(Complaint c);
 }

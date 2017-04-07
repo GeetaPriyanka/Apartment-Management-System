@@ -1,6 +1,6 @@
 package com.spring.app.bean;
 
-public class ComplaintBean {
+public class ComplaintBean{
 	private String unit;
 	private String type;
 	private int severity;
@@ -36,6 +36,5 @@ public class ComplaintBean {
 	public void setTime(long time) {
 		this.time = time;
 	}
-
 	
 }
