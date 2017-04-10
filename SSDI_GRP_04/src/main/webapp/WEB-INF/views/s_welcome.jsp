@@ -283,6 +283,8 @@ textarea {
 				    <td >${complaintout.time}</td>		    
 				    <td><form name="ComplaintForm" action="/app/complain_res" method="get">
 				    <input type="hidden" name="complaint_id" value="${complaintout.complaint_number}">
+				    <input type="hidden" name="user" value="${user.email}">
+				    
 					<button class="btn mini blue-stripe" type="submit" id="submit">Resolve</button>
 					</form></td>
 				</tr>

@@ -113,14 +113,16 @@ public class UserController {
 				return model;	
 	}
 	
-	@RequestMapping(value ="/complain_res", params = "complaint_id", method = RequestMethod.GET)
-	public ModelAndView resolveRequest(@RequestParam(value = "complaint_id") int complaint_id, HttpServletRequest request) {
+	@RequestMapping(value ="/complain_res", params = {"complaint_id","user"}, method = RequestMethod.GET)
+	public ModelAndView resolveRequest(@RequestParam(value = "complaint_id") int complaint_id,@RequestParam(value = "user") String user, HttpServletRequest request) {
 		System.out.println("In complain resolve function");
 		Complaint c = new Complaint();
 		//get the complaint by ID
 		c = this.getComplaintById(complaint_id);
 		//Update this complaint
 		c.setResolved(1);
+		c.setResolved_by(user);
+		c.setResolved_time(System.currentTimeMillis());
 		//Save this complaint in the Database
 		this.UpdateComplaint(c);
 		ModelAndView model = new ModelAndView("s_welcome");
