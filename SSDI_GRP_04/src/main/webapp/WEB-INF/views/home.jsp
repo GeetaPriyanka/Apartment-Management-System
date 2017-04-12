@@ -363,7 +363,7 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
   <div class="footer-bottom">
 
 	<div class="container">
-
+<!--  -->
 		<div class="row">
 
 			<div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
