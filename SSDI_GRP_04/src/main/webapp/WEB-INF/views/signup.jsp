@@ -257,9 +257,9 @@ textarea {
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#myPage">HOME</a></li>
+          <li><a href="./">HOME</a></li>
           <li><a href="apartment">Available Apartments</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="./#contact">Contact</a></li>
           <li><a href="login">Login</a></li>
         </ul>
       </div>
@@ -276,23 +276,22 @@ textarea {
 			    		<h3 class="panel-title">Sign Up! </h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form">
+			 						<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
 			    			<div class="row">
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+							<form:input type="text" id="firstname" name="firstname" path="firstname" class="form-control input-sm" placeholder="First Name"/>			    		
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+			    						<form:input type="text" id="lastname" name="lastname" path="lastname" class="form-control input-sm" placeholder="Last Name"/>
 			    					</div>
-			    				</div>
-			    			
+			    				</div>		
                             <div class="col-xs-10 col-sm-10 col-md-10"> 
 			    			<div class="form-group">
-			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-			    			</div>
+			    							<form:input type="email" id="email" name="email" path="email" class="form-control input-sm" placeholder="Email Address"/>
+			    						    			</div>
 </div>		
 </div>
 			    			<div class="row">
@@ -303,14 +302,14 @@ textarea {
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="OTP">
+				                       <form:input type="text" id="otp" name="otp" path="otp" class="form-control input-sm" placeholder="OTP"/><p>*One time password provided by Leasing office!</p>
 			    					</div>
 			    				</div>
 			    			</div>
 			    			<div class="col-xs-10 col-sm-10 col-md-10">
-			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    							<button type="submit" id="submit" class="btn btn-info btn-block" >Sign Up</button>
 			    		</div>
-			    		</form>
+			    		</form:form>
 			    	</div>
 	    		</div>
     		</div>

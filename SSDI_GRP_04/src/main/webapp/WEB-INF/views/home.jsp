@@ -370,7 +370,7 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
 
 				<div class="copyright">
 
-					© 2015, Webenlance, All rights reserved
+					© 2015, SSDI Project, All rights reserved
 
 				</div>
 
@@ -380,7 +380,7 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
 
 				<div class="design">
 
-					 <a href="#">Franchisee </a> |  <a target="_blank" href="http://www.webenlance.com">Web Design & Development by Webenlance</a>
+					 <a href="#">Group 02-04 </a> |  <a target="_blank" href="http://www.webenlance.com">Designing |Developing |Testing Spring 2017</a>
 
 				</div>
 
