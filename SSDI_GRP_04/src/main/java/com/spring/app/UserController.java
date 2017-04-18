@@ -97,7 +97,9 @@ public class UserController {
 				if(userinfo.getType()==2){
 					//resident login
 					userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
+					System.out.println("lease start"+userinfo.getLease_start());
 					userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
+					System.out.println("lease start"+userinfo.getLease_end());
 					model = new ModelAndView("welcome");
 					model.addObject("user",userinfo);
 					return model;

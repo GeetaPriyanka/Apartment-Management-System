@@ -276,9 +276,9 @@ textarea {
  <div class="text-right" >  
  <div class="text-right" >   
  
-  <font  size="4"> Lease start: ${user.lease_start} </font>  </div>
+  <font  size="4"> Lease start:${user.lease_start} </font>  </div>
     <div class="text-right" >   
-   <font  size="4"> Lease end :  ${user.lease_end} </font>  
+   <font  size="4"> Lease end :${user.lease_end} </font>  
  
  </div> 
 <%--  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5> --%>

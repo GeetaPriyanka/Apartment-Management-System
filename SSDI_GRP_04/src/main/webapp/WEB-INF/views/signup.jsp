@@ -235,9 +235,6 @@ textarea {
 		    if (a == "") {
 		    	alert("email Blank");
 		    	return false;
-		    }else if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){  
-		            alert("Not a valid e-mail address");
-		            return false;
 		    }
 		    var z = document.forms["SignupForm"]["password"].value;
 		    if (z == "") {
@@ -278,74 +275,69 @@ textarea {
 
 <br>
 <br>
-<div class="container">
-        <div class="row centered-form">
-        <div >
-        	<div class="panel panel-default">
-        		<div class="panel-heading">
-			    		<h3 class="panel-title">Sign Up! </h3>
-			 			</div>
-			 			<div class="panel-body">
-<<<<<<< HEAD
-			    		<form role="form"  name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
-=======
-			 						<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
-			    			<div class="row">
-			    				<div class="col-xs-10 col-sm-10 col-md-10">
-			    					<div class="form-group">
-<<<<<<< HEAD
-			                <input type="text" name="firstname" id="firstname" class="form-control input-sm" placeholder="First Name">
-=======
-							<form:input type="text" id="firstname" name="firstname" path="firstname" class="form-control input-sm" placeholder="First Name"/>			    		
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-10 col-sm-10 col-md-10">
-			    					<div class="form-group">
-<<<<<<< HEAD
-			    						<input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Last Name">
-=======
-			    						<form:input type="text" id="lastname" name="lastname" path="lastname" class="form-control input-sm" placeholder="Last Name"/>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
-			    					</div>
-			    				</div>		
-                            <div class="col-xs-10 col-sm-10 col-md-10"> 
-			    			<div class="form-group">
-			    							<form:input type="email" id="email" name="email" path="email" class="form-control input-sm" placeholder="Email Address"/>
-			    						    			</div>
-</div>		
-</div>
-			    			<div class="row">
-			    				<div class="col-xs-10 col-sm-10 col-md-10">
-			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-10 col-sm-10 col-md-10">
-			    					<div class="form-group">
-<<<<<<< HEAD
-			    						<input type="text" name="otp" id="otp" class="form-control input-sm" placeholder="OTP">
-=======
-				                       <form:input type="text" id="otp" name="otp" path="otp" class="form-control input-sm" placeholder="OTP"/><p>*One time password provided by Leasing office!</p>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
-			    					</div>
-			    				</div>
-			    			</div>
-			    			<div class="col-xs-10 col-sm-10 col-md-10">
-<<<<<<< HEAD
-			    			<button type="submit" value="Register" class="btn btn-info btn-block">Sign Up</button>
-=======
-			    							<button type="submit" id="submit" class="btn btn-info btn-block" >Sign Up</button>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
-			    		</div>
-			    		</form:form>
-			    	</div>
-	    		</div>
-    		</div>
-    	</div>
-    </div>
-<!-- SignUp form code -->
+		<div class="container">
+			<div class="row centered-form">
+				<div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Sign Up!</h3>
+						</div>
+						<div class="panel-body">
+							<form:form name="SignupForm" method="post"
+								onsubmit="return validate();" action="signup.submit"
+								modelAttribute="signupBean">
+
+								<div class="row">
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="firstname" name="firstname"
+												path="firstname" class="form-control input-sm"
+												placeholder="First Name" />
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="lastname" name="lastname"
+												path="lastname" class="form-control input-sm"
+												placeholder="Last Name" />
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="email" name="email" path="email"
+												class="form-control input-sm" placeholder="Email Address" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="password" name="password" id="password"
+												path="password" class="form-control input-sm"
+												placeholder="Password" />
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="otp" name="otp" path="otp"
+												class="form-control input-sm" placeholder="OTP" />
+											<p>*One time password provided by Leasing office!</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-10 col-sm-10 col-md-10">
+									<button type="submit" value="Register"
+										class="btn btn-info btn-block">Sign Up</button>
+									<button type="submit" id="submit"
+										class="btn btn-info btn-block">Sign Up</button>
+								</div>
+							</form:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- SignUp form code -->
 <!-- <div class="container text-center">
 		<p id="test"> </p>
 		<div id="Signup" class="login-box animated fadeInUp">
