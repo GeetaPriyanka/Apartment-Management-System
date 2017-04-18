@@ -98,6 +98,11 @@ h3, h4 {
   border-top-left-radius: 0;
 }
 
+p.error{
+color:red;
+font-size:18px;
+}
+
 .list-group-item:last-child {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -237,9 +242,7 @@ textarea {
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-      
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-          data-target="#myNavbar">
+
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
@@ -247,7 +250,7 @@ textarea {
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#myPage">HOME</a></li>
+          <li><a href="./">HOME</a></li>
           <li><a href="apartment">Available Apartments</a></li>
           <li><a href="./#contact">Contact</a></li>
           <li><a href="signup">Sign Up!</a></li>
@@ -257,13 +260,19 @@ textarea {
   </nav>
 
 <br>
+
+
 <br>
 <div class="col-md-12">
     <div class="modal-dialog" style="margin-bottom:0">
         <div class="modal-content">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>
-                    </div>
+						<br>
+						<c:if test="${!empty result}">
+							<p class="error">${result}</p>
+						</c:if>
+					</div>
                     <div class="panel-body">
                         <form:form name="LoginForm" action="login.submit" onsubmit="return validate();" method="post" modelAttribute="loginBean">
                             <fieldset>

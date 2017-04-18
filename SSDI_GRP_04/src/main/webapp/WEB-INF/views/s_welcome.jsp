@@ -234,9 +234,6 @@ textarea {
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#myPage">HOME</a></li>
-          <li><a href="apartment">Available Apartments</a></li>
-          <li><a href="./#contact">Contact</a></li>
-          <li><a href="signup">Sign Up!</a></li>
         </ul>
       </div>
     </div>

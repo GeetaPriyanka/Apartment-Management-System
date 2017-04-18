@@ -24,6 +24,7 @@ public class ComplaintServiceImpl implements ComplaintService {
 		this.complaintDAO = complaintDAO;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<ComplaintOut> listComplaints() {
@@ -96,5 +97,45 @@ public class ComplaintServiceImpl implements ComplaintService {
 	@Transactional
 	public void updateComplaint(Complaint c) {	
 		this.complaintDAO.addComplaint(c);;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<ComplaintOut> SLAbreachedComplaints() {
+		
+		List<ComplaintOut> complaintOut = new ArrayList<ComplaintOut>();
+		List<Complaint> complaintIn = new ArrayList<Complaint>();
+		complaintIn = this.complaintDAO.listComplaint();
+		for (Complaint comp : complaintIn) {
+			if (comp.getResolved() == 0) {
+				if((System.currentTimeMillis()-comp.getTime())>(24*60*60*1000)){
+					ComplaintOut c = new ComplaintOut();
+					c.setComplaint_number(comp.getComplaint_number());
+					c.setDescription(comp.getDescription());
+					c.setResolved("Pending");
+					switch (comp.getSeverity()) {
+					case 0:
+						c.setSeverity("Low");
+						break;
+					case 1:
+						c.setSeverity("Medium");
+						break;
+					case 2:
+						c.setSeverity("High");
+						break;
+					}
+					PrettyTime time = new PrettyTime();
+					String formattedTime = time.format(new Date(comp.getTime()));
+					c.setTime(formattedTime);
+					c.setType(comp.getType());
+					c.setComparable_time(comp.getTime());
+					c.setUnit(comp.getUnit());
+					complaintOut.add(c);
+				}
+			}
+		}
+		Collections.sort(complaintOut);
+		return complaintOut;
 	}
 }

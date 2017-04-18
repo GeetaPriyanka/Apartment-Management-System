@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
@@ -22,6 +22,10 @@
   	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <style>
 body {
@@ -197,11 +201,7 @@ textarea {
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-          data-target="#myNavbar">
-          <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
+        
         <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -238,7 +238,76 @@ textarea {
 </div>
 <h3>Your Future Apartment</h3>
 <c:if test="${!empty listApartments}">
-	<table border="1">
+
+ <table class="table table-striped table-hover table-users">
+    			<thead>
+    				<tr>
+    					<th class="hidden-phone">Floor Plan</th>
+    					<th class="hidden-phone">Unit Number</th>
+    					<th></th>
+    				</tr>
+    			</thead>
+
+    			<tbody>
+		<c:forEach items="${listApartments}" var="apartment">
+				<tr>
+						<td>
+							<div id="pageone" data-role="main" class="ui-content">
+								<c:if test="${apartment.bhk==2}">
+									<div id="pageone" data-role="main" class="ui-content">
+										<a href="#myPopup" data-rel="popup" data-position-to="window">
+											<img src="<c:url value="/resources/images/moremore.jpg"/>"
+											alt="Skaret View" style="width: 200px;">
+										</a>
+
+										<div data-role="popup" id="myPopup">
+											<a href="#pageone" data-rel="back"
+												class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img
+												src="<c:url value="/resources/images/moremore.jpg"/>"
+												style="width: 800px; height: 400px;" alt="Skaret View">
+										</div>
+									</div>
+								</c:if>
+								<c:if test="${apartment.bhk==3}">
+									<div id="pageone" data-role="main" class="ui-content">
+										<a href="#myPopup" data-rel="popup" data-position-to="window">
+											<img src="<c:url value="/resources/images/moremore.jpg"/>"
+											alt="Skaret View" style="width: 200px;">
+										</a>
+
+										<div data-role="popup" id="myPopup">
+											<a href="#pageone" data-rel="back"
+												class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img
+												src="<c:url value="/resources/images/moremore.jpg"/>"
+												style="width: 800px; height: 400px;" alt="Skaret View">
+										</div>
+									</div>
+								</c:if>
+						</td>
+						<td>${apartment.unit}
+						<br><P>Floor Area : ${apartment.area } sq. ft</P>
+						<P>Rent From : $${apartment.rent }</P>
+						<P>Deposit : $250</P>
+						<P>Available : Now</P>
+						<P>Bedrooms : ${apartment.bhk}</P>
+						<P>Baths : 2</P>
+						<p>This is a ${apartment.bhk}BHK apartment perfect for your family.This apartment is currently available.Hurry up! </p>
+						</td>	    
+				    <td><form name="ComplaintForm" action="/app/complain_res" method="get">
+				    <input type="hidden" name="complaint_id" value="${complaintout.complaint_number}">
+				    <input type="hidden" name="user" value="${user.email}">
+				    
+					<!-- <button class="btn mini blue-stripe" type="submit" id="submit">Resolve</button> -->
+					</form></td>
+				</tr>
+			</c:forEach>
+	               </tbody>
+    		</table>
+    		 <div data-role="popup" id="myPopup">
+      <p>This is my picture!</p> 
+      <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="<c:url value="/resources/images/moremore.jpg"/>" style="width:800px;height:400px;" alt="Skaret View">
+    </div>
+<%-- 	<table border="1">
 		<tr>
 			<th width="80">Unit</th>
 			<th width="120">rent</th>
@@ -252,8 +321,8 @@ textarea {
 				<td>${apartment.area}</td>
 				<td>${apartment.bhk}</td>
 			</tr>
-		</c:forEach>
-	</table>
+		</c:forEach> 
+	</table>--%>
 </c:if>
 
  <div id="band" class="main-content-container container totalbusiness-item-start-content">

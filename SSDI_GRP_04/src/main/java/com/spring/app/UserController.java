@@ -1,7 +1,9 @@
 package com.spring.app;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +19,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.app.bean.AllocateBean;
 import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.ComplaintOut;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.UserDetailsBean;
+import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
+import com.spring.app.model.Otp;
 import com.spring.app.model.User;
+import com.spring.app.service.ApartmentService;
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
+import com.spring.app.service.OtpService;
 import com.spring.app.service.UserService;
 
 @Controller
@@ -38,7 +45,13 @@ public class UserController {
 	private Occupied_apartmentService occService;
 	
 	@Autowired
+	private ApartmentService apartmentService;
+	
+	@Autowired
 	private ComplaintService complaintService;
+	
+	@Autowired
+	private OtpService otpService;
 	
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
@@ -83,6 +96,9 @@ public class UserController {
 					//manager login
 					//available fields --> lease_start,lease_end,unit
 					model = new ModelAndView("m_welcome");
+					model.addObject("allocateBean",new AllocateBean());
+					model.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
+					model.addObject("listapartment",this.getUnAllocatedApartments());
 					model.addObject("user",userinfo);
 					return model;
 				}
@@ -92,6 +108,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		model = new ModelAndView("login");
+		model.addObject("result", "Incorrect credentials");
 		return model;
 	}
 	//below method just opens the complaint page so that user can lodge the complaint
@@ -140,6 +157,20 @@ public class UserController {
 		return "welcome";
 	}
 	
+	@RequestMapping(value="/allocate", method = RequestMethod.POST)
+	public ModelAndView allocateApartment(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("allocateBean")AllocateBean allocateBean)
+	{
+		ModelAndView model= null;
+		System.out.println(" "+allocateBean.getStart()+"  "+allocateBean.getEnd()+"  "+allocateBean.getUnit());
+		model = new ModelAndView("m_welcome");
+		Random r = new Random();
+		int randNo = r.nextInt(99999)+100000;
+		System.out.println(" "+randNo);
+
+		model.addObject("otp", randNo);
+		return model;
+	}
+	
 	public Complaint getComplaintById(int id){
 		return this.complaintService.getComplaint(id);
 	}
@@ -160,5 +191,31 @@ public class UserController {
 		return this.occService.getBill(unit);
 	}
 	
+	public List<Otp> getAllOTP(){
+		return otpService.listOtp();
+	}
+	
+	public List<Available_apartment> getUnAllocatedApartments(){
+		List<Otp> otpList = this.getAllOTP();
+		System.out.println("you are here in the inportant method != ");
+		
+		int flag=0;
+		ArrayList<Available_apartment> list = (ArrayList<Available_apartment>) this.apartmentService.listApartments();
+		ArrayList<Available_apartment> Sendlist = new ArrayList<Available_apartment>();
+		for (Available_apartment available_apartment : list) {
+			flag =0;
+			for (Otp otp : otpList) {
+				System.out.println(otp.getUnit()+ " != "+ available_apartment.getUnit());
+				if(otp.getUnit().equals(available_apartment.getUnit())){
+					System.out.println(otp.getUnit()+ " != "+ available_apartment.getUnit());
+					flag=1;
+				}
+			}
+			if(flag==0){
+				Sendlist.add(available_apartment);
+			}
+		}
+		return Sendlist;
+	}
 	
 }
