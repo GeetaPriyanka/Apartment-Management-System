@@ -24,27 +24,27 @@ import com.spring.app.bean.AllocateBean;
 import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.ComplaintOut;
 import com.spring.app.bean.Loginbean;
+import com.spring.app.bean.RenewLeaseBean;
 import com.spring.app.bean.UserDetailsBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
-<<<<<<< HEAD
 import com.spring.app.model.Otp;
-=======
+
 import com.spring.app.model.RenewLeaseModel;
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
+
 import com.spring.app.model.User;
-<<<<<<< HEAD
+
 import com.spring.app.service.ApartmentService;
-=======
+
 import com.spring.app.service.ApartmentServiceImpl;
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
+
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
-<<<<<<< HEAD
+
 import com.spring.app.service.OtpService;
-=======
+
 import com.spring.app.service.RenewLeaseService;
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
+
 import com.spring.app.service.UserService;
 
 @Controller
@@ -209,18 +209,16 @@ public class UserController {
 		return this.occService.getBill(unit);
 	}
 	
-<<<<<<< HEAD
 	public List<Otp> getAllOTP(){
 		return otpService.listOtp();
-=======
+	}
+
 	@Autowired(required=true)
 	@Qualifier(value = "renewService")
 	public void setRenewLeaseService(RenewLeaseService rs){
 		this.renewlease = rs;
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 	}
 	
-<<<<<<< HEAD
 	public List<Available_apartment> getUnAllocatedApartments(){
 		List<Otp> otpList = this.getAllOTP();
 		System.out.println("you are here in the inportant method != ");
@@ -243,9 +241,7 @@ public class UserController {
 		}
 		return Sendlist;
 	}
-	//tt
-=======
-		
+
 	@RequestMapping(value = "/renewlease",method = RequestMethod.POST)
 	@Transactional
 	public String renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
@@ -261,6 +257,5 @@ public class UserController {
 		return "welcome";
 	}
       }
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 }
 

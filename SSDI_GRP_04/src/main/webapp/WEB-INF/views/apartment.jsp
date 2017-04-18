@@ -211,17 +211,8 @@ textarea {
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-<<<<<<< HEAD
-        
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
-=======
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-          data-target="#myNavbar">
-          <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
+
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">

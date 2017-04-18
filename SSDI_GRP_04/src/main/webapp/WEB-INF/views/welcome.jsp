@@ -270,14 +270,11 @@ textarea {
   <!-- retrieving user details -->
   
 <div class="row">
-<div class="col-md-10 text-left" > <font size="4"> Welcome,  ${user.name}</font></div>
+<div class="col-md-10 text-left" > <font size="4"> Welcome, ${user.name}</font></div>
 <div class="text-right"> <font  size="4">Your Unit number : ${user.unit} </font> </div>
 </div>
-<<<<<<< HEAD
  <div class="text-right" >  
-=======
  <div class="text-right" >   
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
  
   <font  size="4"> Lease start: ${user.lease_start} </font>  </div>
     <div class="text-right" >   
