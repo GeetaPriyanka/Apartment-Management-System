@@ -72,7 +72,8 @@ public class ComplaintServiceImpl implements ComplaintService {
 		complaint.setTime(System.currentTimeMillis());
 		complaint.setUnit(c.getUnit());
 		complaint.setResolved(0);
-		
+		complaint.setResolved_by(null);
+		complaint.setResolved_time(0);
 		this.complaintDAO.addComplaint(complaint);;
 	}
 	

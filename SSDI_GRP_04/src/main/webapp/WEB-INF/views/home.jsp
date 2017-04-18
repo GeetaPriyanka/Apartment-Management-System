@@ -49,7 +49,6 @@ h3, h4 {
 .carousel-inner img {
   -webkit-filter: grayscale(0%);
   width: 100%; /* Set width to 100% */
-  height:80%;
   margin: auto;
 }
 

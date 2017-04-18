@@ -29,7 +29,10 @@ public class Complaint{
 	private long time;
 	@Column(name="resolved")
 	private int resolved;
-	
+	@Column(name="resolved_by")
+	private String resolved_by;	
+	@Column(name="resolved_time")
+	private long resolved_time;
 	
 	public int getResolved() {
 		return resolved;
@@ -73,6 +76,17 @@ public class Complaint{
 	public void setComplaint_number(int complaint_number) {
 		this.complaint_number = complaint_number;
 	}
-	
+	public String getResolved_by() {
+		return resolved_by;
+	}
+	public void setResolved_by(String resolved_by) {
+		this.resolved_by = resolved_by;
+	}
+	public long getResolved_time() {
+		return resolved_time;
+	}
+	public void setResolved_time(long resolved_time) {
+		this.resolved_time = resolved_time;
+	}
 	
 }

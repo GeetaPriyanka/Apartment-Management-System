@@ -268,13 +268,25 @@ textarea {
   <br>
   <br>
   <!-- retrieving user details -->
- <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5>
+  
+<div class="row">
+<div class="col-md-10 text-left" > <font size="4"> Welcome,  ${user.name}</font></div>
+<div class="text-right"> <font  size="4">Your Unit number : ${user.unit} </font> </div>
+</div>
+ <div class="text-right" >   
+ 
+  <font  size="4"> Lease start: ${user.lease_start} </font>  </div>
+    <div class="text-right" >   
+   <font  size="4"> Lease end :  ${user.lease_end} </font>  
+ 
+ </div> 
+<%--  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5> --%>
  <br>
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-sm-4">
 					<p>
-						<strong>Maintenance Request</strong>
+						<strong><font  size="4">Maintenance Request</font></strong>
 					</p>
 					<br>
 					<form name="ComplaintForm" action="complaint" method="post">
@@ -296,7 +308,7 @@ textarea {
 				</script>
 				<div class="col-sm-4" >
 					<p>
-						<strong>Renew Lease</strong>
+						<strong><font  size="4">Renew Lease</font></strong>
 					</p>
 					<br> <a href = "#renew_lease">
 					<input type="image"  src="<c:url value="/resources/images/ren.png"/>" onclick="show();hide1()"/></a>
@@ -305,10 +317,10 @@ textarea {
 				</div>
 				<div class="col-sm-4">
 					<p>
-						<strong>Billing</strong>
+						<strong><font  size="4">Billing</font></strong>
 					</p>
 					<br> <input type="image" src="<c:url value="/resources/images/billnew.png"/>"  id="saveForm" />
-							<br><br>
+							<br><br><br>
 							<p> Your Billing!<br><br> Take a look at your Apartment's billing. </p>
 				</div>
 			</div>
