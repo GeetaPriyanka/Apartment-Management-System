@@ -42,6 +42,7 @@
 				<beans:value>com.spring.app.model.Otp</beans:value>
 				<beans:value>com.spring.app.model.Occupied_apartment</beans:value>
 					<beans:value>com.spring.app.model.Complaint</beans:value>
+					<beans:value>com.spring.app.model.RenewLeaseModel</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -56,9 +57,19 @@
 	<beans:bean id="userDAO" class="com.spring.app.dao.UserDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	
+
+
+		
 	<beans:bean id="userService" class="com.spring.app.service.UserServiceImpl">
 		<beans:property name="userDAO" ref="userDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="renewLeaseDAO" class="com.spring.app.dao.RenewLeaseDAOimpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="renewService" class="com.spring.app.service.RenewLeaseServiceImpl">
+		<beans:property name="renewLeaseDAO" ref="renewLeaseDAO" />
 	</beans:bean>
 	
 	<beans:bean id="complaintDAO" class="com.spring.app.dao.ComplaintDAOImpl">
@@ -92,7 +103,7 @@
 	<beans:bean id="occService" class="com.spring.app.service.Occupied_apartmentServiceImpl">
 		<beans:property name="occupied_apartmentDAO" ref="occupied_apartmentDAO"></beans:property>
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.spring.app" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>

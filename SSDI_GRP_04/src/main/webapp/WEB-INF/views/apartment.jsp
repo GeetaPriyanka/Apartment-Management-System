@@ -188,6 +188,16 @@ footer a:hover {
 textarea {
   resize: none;
 }
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
 </style>
 <body>
 
@@ -202,7 +212,7 @@ textarea {
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">

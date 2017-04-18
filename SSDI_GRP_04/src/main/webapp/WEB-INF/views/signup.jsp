@@ -204,6 +204,16 @@ footer a:hover {
 textarea {
   resize: none;
 }
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
 </style>
 	
 <title>Login</title>
@@ -253,7 +263,7 @@ textarea {
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -276,16 +286,16 @@ textarea {
 			    		<h3 class="panel-title">Sign Up! </h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form">
+			    		<form role="form"  name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
 			    			<div class="row">
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+			                <input type="text" name="firstname" id="firstname" class="form-control input-sm" placeholder="First Name">
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+			    						<input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Last Name">
 			    					</div>
 			    				</div>
 			    			
@@ -303,12 +313,12 @@ textarea {
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
-			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="OTP">
+			    						<input type="text" name="otp" id="otp" class="form-control input-sm" placeholder="OTP">
 			    					</div>
 			    				</div>
 			    			</div>
 			    			<div class="col-xs-10 col-sm-10 col-md-10">
-			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    			<button type="submit" value="Register" class="btn btn-info btn-block">Sign Up</button>
 			    		</div>
 			    		</form>
 			    	</div>

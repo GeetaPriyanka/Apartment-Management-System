@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,11 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.ComplaintOut;
 import com.spring.app.bean.Loginbean;
+import com.spring.app.bean.RenewLeaseBean;
 import com.spring.app.bean.UserDetailsBean;
 import com.spring.app.model.Complaint;
+import com.spring.app.model.RenewLeaseModel;
 import com.spring.app.model.User;
+import com.spring.app.service.ApartmentServiceImpl;
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
+import com.spring.app.service.RenewLeaseService;
 import com.spring.app.service.UserService;
 
 @Controller
@@ -36,6 +41,11 @@ public class UserController {
 	
 	@Autowired
 	private Occupied_apartmentService occService;
+	
+	
+	@Autowired
+	@Qualifier(value = "renewService")
+	private RenewLeaseService renewlease;
 	
 	@Autowired
 	private ComplaintService complaintService;
@@ -158,5 +168,27 @@ public class UserController {
 		return this.occService.getBill(unit);
 	}
 	
+	@Autowired(required=true)
+	@Qualifier(value = "renewService")
+	public void setRenewLeaseService(RenewLeaseService rs){
+		this.renewlease = rs;
+	}
 	
+		
+	@RequestMapping(value = "/renewlease",method = RequestMethod.POST)
+	@Transactional
+	public String renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
+      RenewLeaseModel renew = new RenewLeaseModel();
+      if(userinfo.getEmail()!=renew.getEmail()){
+      renew.setApproval_status(true);
+        renew.setEmail(userinfo.getEmail());
+        renew.setExtenion_period(renewleasereq.getExtension_period());
+        renew.setUnit(userinfo.getUnit());
+        this.renewlease.addRenewLease(renew);
+		return "welcome";
+	}else{
+		return "welcome";
+	}
+      }
 }
+
