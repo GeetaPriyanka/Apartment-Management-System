@@ -38,6 +38,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  
 }
 
 h3, h4 {
@@ -217,6 +218,10 @@ textarea {
   margin-right: 40px;
   margin-left:40px;
 }
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
 </style>
 	
 <title>Login</title>
@@ -284,7 +289,7 @@ textarea {
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input id="rememberme" name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
@@ -298,32 +303,5 @@ textarea {
 </div>
 
 
-
-<!-- Login form code -->
-<!--  <div class="container text-center">
-		<p id="test"> </p>
-		<div id="Login" class="login-box animated fadeInUp">
-			<form:form name="LoginForm" action="login.submit" onsubmit="return validate();" method="post" modelAttribute="loginBean">
-				<div class="box-header">
-					<h2>Sign In</h2>
-				</div>
-				<form:label for="username" path="username">Username</form:label>
-				<br/>
-				<form:input type="text" id="username" name="username" path="username"/>
-				<br/>
-				<form:label for="password" path="password">Password</form:label>
-				<br/>
-				<form:input type="password" id="password" name="password" path="password"/>
-				<br/>
-				<p id="error"></p><br/>
-				<button type="submit" id="submit" >Sign In</button>
-				<br/>
-			</form:form>
-		</div>
-		
-		<input name="button" >
-                                <a href="javascript:;" class="btn btn-sm btn-success">Login</a>
-</div>
-</div>-->
 </body>
 </html>

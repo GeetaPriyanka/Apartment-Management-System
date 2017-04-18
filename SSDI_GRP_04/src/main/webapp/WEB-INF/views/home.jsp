@@ -360,35 +360,7 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
     </div>
     <br>
   </div>
-  <div class="footer-bottom">
+  
 
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
-
-				<div class="copyright">
-
-					© 2015, SSDI Project, All rights reserved
-
-				</div>
-
-			</div>
-
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-
-				<div class="design">
-
-					 <a href="#">Group 02-04 </a> |  <a target="_blank" href="http://www.webenlance.com">Designing |Developing |Testing Spring 2017</a>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-</div>
 </body>
 </html>

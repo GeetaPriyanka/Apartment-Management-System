@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,12 +27,24 @@ import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.UserDetailsBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
+<<<<<<< HEAD
 import com.spring.app.model.Otp;
+=======
+import com.spring.app.model.RenewLeaseModel;
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 import com.spring.app.model.User;
+<<<<<<< HEAD
 import com.spring.app.service.ApartmentService;
+=======
+import com.spring.app.service.ApartmentServiceImpl;
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
+<<<<<<< HEAD
 import com.spring.app.service.OtpService;
+=======
+import com.spring.app.service.RenewLeaseService;
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 import com.spring.app.service.UserService;
 
 @Controller
@@ -43,6 +56,11 @@ public class UserController {
 	
 	@Autowired
 	private Occupied_apartmentService occService;
+	
+	
+	@Autowired
+	@Qualifier(value = "renewService")
+	private RenewLeaseService renewlease;
 	
 	@Autowired
 	private ApartmentService apartmentService;
@@ -191,10 +209,18 @@ public class UserController {
 		return this.occService.getBill(unit);
 	}
 	
+<<<<<<< HEAD
 	public List<Otp> getAllOTP(){
 		return otpService.listOtp();
+=======
+	@Autowired(required=true)
+	@Qualifier(value = "renewService")
+	public void setRenewLeaseService(RenewLeaseService rs){
+		this.renewlease = rs;
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 	}
 	
+<<<<<<< HEAD
 	public List<Available_apartment> getUnAllocatedApartments(){
 		List<Otp> otpList = this.getAllOTP();
 		System.out.println("you are here in the inportant method != ");
@@ -218,4 +244,23 @@ public class UserController {
 		return Sendlist;
 	}
 	//tt
+=======
+		
+	@RequestMapping(value = "/renewlease",method = RequestMethod.POST)
+	@Transactional
+	public String renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
+      RenewLeaseModel renew = new RenewLeaseModel();
+      if(userinfo.getEmail()!=renew.getEmail()){
+      renew.setApproval_status(true);
+        renew.setEmail(userinfo.getEmail());
+        renew.setExtenion_period(renewleasereq.getExtension_period());
+        renew.setUnit(userinfo.getUnit());
+        this.renewlease.addRenewLease(renew);
+		return "welcome";
+	}else{
+		return "welcome";
+	}
+      }
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 }
+

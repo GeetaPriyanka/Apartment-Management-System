@@ -215,7 +215,16 @@ textarea {
 .myButton:active {
      background:url(./images/but2.png) no-repeat;
 }
-
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
   data-offset="50">
@@ -228,7 +237,7 @@ textarea {
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       
       <script type="text/javascript">
@@ -245,7 +254,7 @@ textarea {
            <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Profile</span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">${user.name}</a></li>
+					<h4><li><a href="#">${user.name}</a></li></h4>	
 						<li><a href="#">${user.name}</a></li>
 						<li><a href="#">Apt #${user.unit}</a></li>
 						<li><a href="#">Javascript</a></li>
@@ -264,7 +273,11 @@ textarea {
 <div class="col-md-10 text-left" > <font size="4"> Welcome,  ${user.name}</font></div>
 <div class="text-right"> <font  size="4">Your Unit number : ${user.unit} </font> </div>
 </div>
+<<<<<<< HEAD
  <div class="text-right" >  
+=======
+ <div class="text-right" >   
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
  
   <font  size="4"> Lease start: ${user.lease_start} </font>  </div>
     <div class="text-right" >   
@@ -319,49 +332,34 @@ textarea {
 		
 	</c:if>
 	
-	
+		<form:form name="RenewLeaseForm" method="post" action="renewlease"
+			modelAttribute="RenewLeaseBean" onsubmit="putTime(this)" commandName="renewleasereq">
 	 <div id="renew_lease" class="container text-center">
     <h3>Want to Renew Lease?</h3>
     <p>
       <em>You live your dream here!</em>
     </p>
-              <div class="row">
-                        <div class="col-sm-6">
-                            <div class="radio">
-                                <input type="radio" name="radio1" id="radio1" value="option1" checked="">
-                                <label for="radio1">
-                                    3 Months
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <input type="radio" name="radio1" id="radio2" value="option2">
-                                <label for="radio2">
-                                    6 Months
-                                                                   </label>
-                            </div>
-                        </div>
-                                  <div class="row">
-                        <div class="col-sm-6">
-                            <div class="radio">
-                                <input type="radio" name="radio1" id="radio3" value="option3" checked="">
-                                <label for="radio3">
-                                    8 Months
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <input type="radio" name="radio1" id="radio4" value="option4">
-                                <label for="radio4">
-                                    12 Months
-                                </label>
-                                
-                            </div>
-                           
-                        </div>
-                         <button type="button" class="btn btn-hot text-uppercase text-center"><a href="http://www.positiwitty.com/">Request</a></button>
-  </div>
-
-  <!-- Container (Contact Section) -->
-  <div id="contact" class="container">
-	
+              		<div class="btn-group">
+					<label for="renewlease" class="radio-inline"> <input
+						type="radio" name="extension_period" value="3"> <font size="4"
+						color="black"> 3 Months</font>
+					</label> <label for="renewlease" class="radio-inline"> <input
+						type="radio" name="extension_period" value="9"> <font size="4"
+						color="black"> 9 Months </font>
+					</label> <label for="renewlease" class="radio-inline"> <input
+						type="radio" name="extension_period" value="12"> <font size="4"
+						color="black"> 12 Months </font>
+					</label>
+				</div>
+                        
+                         <button type="submit" name=" class="btn btn-hot text-uppercase text-center" >Request</a></button>
+  </div></form:form>
+<script>
+function submitForm() {
+    document.getElementById("envselection").submit();
+}
+</script>
+</div>
+	</div>
 </body>
 </html>

@@ -204,6 +204,16 @@ footer a:hover {
 textarea {
   resize: none;
 }
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
 </style>
 	
 <title>Login</title>
@@ -253,7 +263,7 @@ textarea {
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -276,16 +286,28 @@ textarea {
 			    		<h3 class="panel-title">Sign Up! </h3>
 			 			</div>
 			 			<div class="panel-body">
+<<<<<<< HEAD
+			    		<form role="form"  name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
+=======
 			 						<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 			    			<div class="row">
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
+<<<<<<< HEAD
+			                <input type="text" name="firstname" id="firstname" class="form-control input-sm" placeholder="First Name">
+=======
 							<form:input type="text" id="firstname" name="firstname" path="firstname" class="form-control input-sm" placeholder="First Name"/>			    		
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 			    					</div>
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
+<<<<<<< HEAD
+			    						<input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Last Name">
+=======
 			    						<form:input type="text" id="lastname" name="lastname" path="lastname" class="form-control input-sm" placeholder="Last Name"/>
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 			    					</div>
 			    				</div>		
                             <div class="col-xs-10 col-sm-10 col-md-10"> 
@@ -302,12 +324,20 @@ textarea {
 			    				</div>
 			    				<div class="col-xs-10 col-sm-10 col-md-10">
 			    					<div class="form-group">
+<<<<<<< HEAD
+			    						<input type="text" name="otp" id="otp" class="form-control input-sm" placeholder="OTP">
+=======
 				                       <form:input type="text" id="otp" name="otp" path="otp" class="form-control input-sm" placeholder="OTP"/><p>*One time password provided by Leasing office!</p>
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 			    					</div>
 			    				</div>
 			    			</div>
 			    			<div class="col-xs-10 col-sm-10 col-md-10">
+<<<<<<< HEAD
+			    			<button type="submit" value="Register" class="btn btn-info btn-block">Sign Up</button>
+=======
 			    							<button type="submit" id="submit" class="btn btn-info btn-block" >Sign Up</button>
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 			    		</div>
 			    		</form:form>
 			    	</div>

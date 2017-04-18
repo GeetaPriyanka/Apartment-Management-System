@@ -40,7 +40,7 @@ body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
 	background-image:
-		url("");
+		url("http://eskipaper.com/images/blurred-3.jpg");
 }
 
 h3, h4 {
@@ -201,6 +201,12 @@ footer a:hover {
 
 textarea {
 	resize: none;
+	height:200px;
+	margin-top: 40px;
+	}
+
+.button{
+margin-top: 40px;
 }
 
 .column-left {
@@ -226,6 +232,34 @@ textarea {
 .container1{
 text-aligm
 }
+.panel{
+width:600px;
+height: 500px;
+position:relative;
+left: 710px;
+
+}
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
+  .panel-transparent {
+        background: none;
+    }
+
+    .panel-transparent .panel-heading{
+        background: rgba(122, 130, 136, 0.2)!important;
+    }
+
+    .panel-transparent .panel-body{
+        background: rgba(46, 51, 56, 0.2)!important;
+    }
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
 	data-offset="50">
@@ -238,7 +272,7 @@ text-aligm
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#myPage">UNCC Apartments</a>
+				<a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
@@ -258,57 +292,59 @@ text-aligm
 		
 		<!-- retrieving user details (form starts here) -->
 		<div class="row">
-			<div class="col-md-12 text-center" style="height: 50px;">
-				<label> <font size="5" color="brown"> COMPLAINT PAGE
-				</font></label>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-10 text-right" style="height: 50px;">
-				<font color="brown" size="4"> Welcome </font>
+				<font color="black" size="4"> Welcome </font>
 			</div>
 			<div class="col-md-13" style="height: 50px;">
-				<label> <font color="brown" size="4"> ${user.name} </font>
+				<label> <font color="black" size="4"> ${user.name} </font>
 				</label>
 			</div>
 		</div>
-<div class="container1">
+			<div class="panel panel-deafault panel-transparent">
+		<div class="panel-heading">
+		<div class="row">
+			<div class="col-md-12 text-center" style="height: 50px;">
+				<label> <font size="5" color="black"> COMPLAINT FORM
+				</font></label>
+			</div></div>
+		</div>
+		
+	<div class="panel-body">
+
 		<form:form name="ComplaintForm" method="post"
 			onsubmit="putTime(this);" action="complaint.submit"
 			modelAttribute="ComplaintBean" commandName="complaint">
 			<div class="col-md-12 text-center" style="height: 75px;">
 
-				<label for="type"> <font size="4" color="brown">Select
+				<label for="type"> <font size="4" color="black">Select
 						the complaint type:</font></label> <select name="type">
 					<option value="Plumbing">Plumbing</option>
 					<option value="Electrical">Electrical</option>
 					<option value="Carpentry">Carpentry</option>
 					<option value="other">Other</option>
 				</select>
-
-				<label for="sev"> <font size="4" color="brown">Select
+</div><div class="col-md-12 text-center">
+				<label for="sev"> <font size="4" color="black">Select
 						the severity: </font>
 				</label>
 				<div class="btn-group">
 					<label for="severity" class="radio-inline"> <input
 						type="radio" name="severity" value="2"> <font size="4"
-						color="brown"> High</font>
+						color="black"> High</font>
 					</label> <label for="severity" class="radio-inline"> <input
 						type="radio" name="severity" value="1"> <font size="4"
-						color="brown"> Medium </font>
+						color="black"> Medium </font>
 					</label> <label for="severity" class="radio-inline"> <input
 						type="radio" name="severity" value="0"> <font size="4"
-						color="brown"> Low </font>
+						color="black"> Low </font>
 					</label>
 				</div>
 
 			</div>
 			<div class="col-md-12 text-center" style="height: 150px;">
 				<div class="form-group">
-					<span class="label" id="description"> <font size="4"
-						color="brown"> Enter the complaint description here:</font>
-					</span>
-					<textarea name="description" class="form-control" rows="5"
+				
+					<textarea name="description" placeholder="Enter the complaint description here" class="form-control" rows="5"
 						id="comment"></textarea>
 				</div>
 			</div>
@@ -318,7 +354,7 @@ text-aligm
 				<input type="submit" class="button" name="Submit" value="Submit">
 			</div>
 		</form:form>
-		</div>
+		</div></div>
 		<script>
 		 var unit=${user.unit} 
 		 
