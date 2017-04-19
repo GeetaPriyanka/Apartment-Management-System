@@ -26,6 +26,7 @@ import com.spring.app.bean.ComplaintOut;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.RenewLeaseBean;
 import com.spring.app.bean.UserDetailsBean;
+import com.spring.app.bean.deleteApartmentBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
 import com.spring.app.model.Otp;
@@ -76,7 +77,19 @@ public class UserController {
 	public void setUserService(UserService ps){
 		this.userService = ps;
 	}
+
 	
+	@RequestMapping(value="/vacate.submit", method = RequestMethod.POST)
+	public ModelAndView executevacate(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("deleteApartmentBean")deleteApartmentBean deleteApartmentBean)
+	{		
+		String d=deleteApartmentBean.getVacate();
+		occService.deleteOccupiedApartment(d);
+		apartmentService.addAvailableApartment(d);
+		
+		ModelAndView model= null;
+				model=new ModelAndView("m_welcome");
+				return model;	 
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(Model model) {

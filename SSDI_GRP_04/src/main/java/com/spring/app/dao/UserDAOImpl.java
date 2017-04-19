@@ -49,6 +49,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public void deleteUser(String email) {
 		// TODO Auto-generated method stub
 		 String hql = "delete from User where email = :email";

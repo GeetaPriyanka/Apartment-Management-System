@@ -7,14 +7,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.app.model.Occupied_apartment;
+import com.spring.app.service.UserService;
 
 @Repository
 public class Occupied_apartmentDAOImpl implements Occupied_apartmentDAO{
 
-
+	@Autowired
+	private UserService userService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
 
 	private SessionFactory sessionFactory;
@@ -49,6 +53,15 @@ public class Occupied_apartmentDAOImpl implements Occupied_apartmentDAO{
 	@Override
 	public void deleteOccupiedApartment(String unit) {
 		// TODO Auto-generated method stub
+		String email=null;
+		List<Occupied_apartment> ocp_apt =  occupiedApartmentsList();
+		for (Occupied_apartment occupied_apartment : ocp_apt) {
+			if(occupied_apartment.getUnit().equals(unit)){
+				email = occupied_apartment.getEmail();
+			}
+		}
+		//System.out.println(email);
+		userService.deleteUser(email);
 		String hql = "delete from Occupied_apartment where unit = :unit";
 		  Session session=this.sessionFactory.getCurrentSession();
 	        Query query = session.createQuery(hql);

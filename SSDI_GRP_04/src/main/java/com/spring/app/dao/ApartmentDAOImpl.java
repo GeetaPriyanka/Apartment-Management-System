@@ -22,6 +22,19 @@ public class ApartmentDAOImpl implements ApartmentDAO {
 		this.sessionFactory = sf;
 	}
 	
+	@Override
+	@Transactional
+	public void addAvailableApartment(Available_apartment availableApartment){
+		Session session=this.sessionFactory.openSession();
+		availableApartment.setRent(1500);
+		availableApartment.setArea(1400);
+		availableApartment.setBhk(3);
+		session.beginTransaction();
+		session.save(availableApartment);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Available_apartment> listApartments() {
