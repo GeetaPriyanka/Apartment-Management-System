@@ -19,6 +19,13 @@ public class ApartmentServiceImpl implements ApartmentService {
 	}
 	
 	@Override
+	public void addAvailableApartment(String unit){
+		Available_apartment availableApartment= new Available_apartment();
+		availableApartment.setUnit(unit);
+		this.apartmentDAO.addAvailableApartment(availableApartment);
+
+	}
+	@Override
 	@Transactional
 	public List<Available_apartment> listApartments() {
 		return this.apartmentDAO.listApartments();

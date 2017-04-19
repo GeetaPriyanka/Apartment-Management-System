@@ -214,9 +214,8 @@ jQuery(document).ready(function($) {
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../app">HOME</a></li>
-          <li><a href="#apartment">Available Apartments</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="signup">Sign Up!</a></li>
+          <li><a href="../app">Sign Out</a></li>
+          
         </ul>
       </div>
     </div>
@@ -224,13 +223,22 @@ jQuery(document).ready(function($) {
 
 <br>
 <br>
-
 <c:if test="${!empty otp}">
 <p>Generated OTP is : ${otp}</p>
 </c:if>
+<div class="row">
+			<div class="col-md-10 text-right">
+				<font color="black" size="4"> Welcome, </font>
+			</div>
+			<div class="col-md-13" >
+				<label> <font color="black" size="4"> ${user.name} </font>
+				</label>
+			</div>
+		</div>
+
 
 <div class="container text-center">
-  <h3>Dashoard</h3>
+  <h3>Dashboard</h3>
   <br>
   <div class="row">
     <div class="col-sm-4">
@@ -291,6 +299,46 @@ jQuery(document).ready(function($) {
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					
+						
+					   $("#vacate_apt").hide();
+					
+				});
+				function show(){
+					$(vacate_apt).show();
+				}
+				</script>
+				<div class="container text-center">
+					<p>
+						<strong><font  size="4">Vacate</font></strong>
+					</p>
+					<br> <a href = "#vacate_apt">
+						<button  class="btn btn-sm btn-success" type="submit" id="Vacate" onclick="show();hide1()"> Vacate an apartment </button></a>
+				</div>
+									
+					<form:form name="vacate" method="post" action="vacate.submit" modelAttribute="deleteApartmentBean">
+					 <div id="vacate_apt" class="container text-center">
+					<div class="form-group">
+						<div class="col-md-12 text-center" >
+				
+					<span class="label" id="description"> <font size="4" color="black"> Enter the name of the apt you want to vacate </font>
+					</span></div>
+				<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 75px;">	<input type="text" class="form-control" name="vacate"  ></div>
+				</div>
+				
+		<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 75px;">
+    		  <button  class="btn btn-sm btn-success" type="submit" id="submit" >Submit</button>
+    		</div>
+    		</div>
+		</form:form>
+				
+				
 
 
 </body>
