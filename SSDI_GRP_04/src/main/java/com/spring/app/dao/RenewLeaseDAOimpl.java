@@ -9,9 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.app.model.Complaint;
-import com.spring.app.model.RenewLeaseModel;
-
 import java.util.*;
 
 @Repository
@@ -25,17 +22,20 @@ public class RenewLeaseDAOimpl implements RenewLeaseDAO {
 	}
 	
 	@Override
-	public List<RenewLeaseModel> listRenewLease() {
+	@Transactional
+	public List<Renew_lease> listRenewLease() {
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<RenewLeaseModel> RenewLease = session.createQuery("from renew_lease").list();
-		
+		List<Renew_lease> RenewLease = session.createQuery("from Renew_lease").list();
+		for (Renew_lease renewLeaseModel : RenewLease) {
+			logger.info("Renew List: "+renewLeaseModel);
+		}
 		return RenewLease;
 	}
 
 	@Override
-	
-	public void addRenewLease(RenewLeaseModel renew) {
+	@Transactional
+	public void addRenewLease(Renew_lease renew) {
 		Session session=this.sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(renew);

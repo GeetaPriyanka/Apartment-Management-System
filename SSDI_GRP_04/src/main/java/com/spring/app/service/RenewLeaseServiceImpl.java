@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.app.dao.ApartmentDAO;
 import com.spring.app.dao.RenewLeaseDAO;
-import com.spring.app.model.RenewLeaseModel;
+import com.spring.app.model.Renew_lease;
 @Service
 public class RenewLeaseServiceImpl implements RenewLeaseService {
 	
@@ -21,14 +21,14 @@ public class RenewLeaseServiceImpl implements RenewLeaseService {
 
 	@Override
 	@Transactional
-	public List<RenewLeaseModel> listRenewLease() {
+	public List<Renew_lease> listRenewLease() {
 		
 		return renewLeaseDAO.listRenewLease();
 	}
 
 	@Override
 	@Transactional
-	public void addRenewLease(RenewLeaseModel renew) {
+	public void addRenewLease(Renew_lease renew) {
 	this.renewLeaseDAO.addRenewLease(renew);	
 	}
 

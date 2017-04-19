@@ -26,6 +26,7 @@ public class OtpServiceImpl implements OtpService {
 
 
 	@Override
+	@Transactional
 	public void addOtp(Otp otp) {
 		// TODO Auto-generated method stub
 		otpDAO.addOtp(otp);
@@ -33,6 +34,7 @@ public class OtpServiceImpl implements OtpService {
 
 
 	@Override
+	@Transactional
 	public void deleteOtp(int otp) {
 		// TODO Auto-generated method stub
 		otpDAO.deleteOtp(otp);

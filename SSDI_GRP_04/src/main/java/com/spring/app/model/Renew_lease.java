@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="renew_lease")
 
-public class RenewLeaseModel {
+public class Renew_lease {
 
 	
 	@Id
@@ -18,7 +18,7 @@ public class RenewLeaseModel {
 	@Column(name="approval_status")
 	boolean approval_status;
 	
-	public RenewLeaseModel(){
+	public Renew_lease(){
 		
 	}
 

@@ -30,7 +30,7 @@ import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
 import com.spring.app.model.Otp;
 
-import com.spring.app.model.RenewLeaseModel;
+import com.spring.app.model.Renew_lease;
 
 import com.spring.app.model.User;
 
@@ -177,20 +177,44 @@ public class UserController {
 		return "welcome";
 	}
 	
-	@RequestMapping(value="/allocate", method = RequestMethod.POST)
-	public ModelAndView allocateApartment(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("allocateBean")AllocateBean allocateBean)
-	{
-		ModelAndView model= null;
-		System.out.println(" "+allocateBean.getStart()+"  "+allocateBean.getEnd()+"  "+allocateBean.getUnit());
-		model = new ModelAndView("m_welcome");
+	
+	@RequestMapping(value ="/allocates", params = {"start","end","unit"}, method = RequestMethod.GET)
+	public ModelAndView allocateapt(@RequestParam(value = "start") Date start,@RequestParam(value = "end") Date end,@RequestParam(value = "unit") String unit, HttpServletRequest request) {
+		ModelAndView model3= null;
+		System.out.println(" "+start+"  "+end+"  "+unit);
+		model3 = new ModelAndView("m_welcome");
+		int flag = this.checkOtp(unit);
+		if(flag==-1){
 		Random r = new Random();
 		int randNo = r.nextInt(99999)+100000;
 		System.out.println(" "+randNo);
-
-		model.addObject("otp", randNo);
-		return model;
+		Otp o = new Otp();
+		o.setStartDate(start);
+		o.setEndDate(end);
+		o.setUnit(unit);
+		o.setOtp(randNo);
+		this.otpService.addOtp(o);
+		String op = "OTP generated for apartment "+ unit + " is :"+ randNo;
+		model3.addObject("otp", randNo);
+		}else{
+			model3.addObject("otp", "OTP generated for apartment "+ unit + " is :"+ flag);
+		}
+		model3.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
+		model3.addObject("listapartment",this.getUnAllocatedApartments());
+		model3.addObject("user",userinfo);
+		return model3;
 	}
 	
+	public int checkOtp(String unit){
+		List<Otp> list = this.otpService.listOtp();
+		for (Otp otp : list) {
+			if(otp.getUnit().equals(unit)){
+				System.out.println("OTP already exists");
+				return otp.getOtp();
+			}
+		}
+		return -1;
+	}
 	public Complaint getComplaintById(int id){
 		return this.complaintService.getComplaint(id);
 	}
@@ -246,18 +270,39 @@ public class UserController {
 
 	@RequestMapping(value = "/renewlease",method = RequestMethod.POST)
 	@Transactional
-	public String renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
-      RenewLeaseModel renew = new RenewLeaseModel();
-      if(userinfo.getEmail()!=renew.getEmail()){
+	public ModelAndView renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
+  	  System.out.println("  -00- "+userinfo.getEmail());
+      Renew_lease renew = new Renew_lease();
+      ModelAndView model2= null;
+      int flag = 0;
+      List<Renew_lease> listRenew = this.getLeaseRequest();
+  	  System.out.println("  -00- "+listRenew.get(0).getEmail());
+
+      for (Renew_lease renewLeaseModel : listRenew) {
+    	  System.out.println(renewLeaseModel.getEmail()+"  -00- "+userinfo.getEmail());
+		if(renewLeaseModel.getEmail().equals(userinfo.getEmail())){
+			flag=1;
+		}
+	}
+      if(flag==0){
       renew.setApproval_status(true);
         renew.setEmail(userinfo.getEmail());
         renew.setExtenion_period(renewleasereq.getExtension_period());
         renew.setUnit(userinfo.getUnit());
         this.renewlease.addRenewLease(renew);
-		return "welcome";
+        model2 = new ModelAndView("welcome");
+		model2.addObject("result","Thank you for submitting request");
+		return model2;
 	}else{
-		return "welcome";
+		
+		model2 = new ModelAndView("welcome");
+		model2.addObject("result","Request is already submitted, it is currently being processed");
+		return model2;
 	}
-      }
+   }
+	
+	public List<Renew_lease> getLeaseRequest(){
+		return this.renewlease.listRenewLease();
+	}
 }
 

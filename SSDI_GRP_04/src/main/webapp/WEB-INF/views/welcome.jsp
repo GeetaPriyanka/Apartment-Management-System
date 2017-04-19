@@ -192,7 +192,12 @@ textarea {
     box-shadow: 1px 1px 5px #888888;
     
 }
+p.message{
+color:green;
+font-size:18px;
+  text-align: center;
 
+}
 
 .column-left{ float: left; width: 33%;
     border: 1px solid #e6e6e6;
@@ -273,13 +278,15 @@ textarea {
 <div class="col-md-10 text-left" > <font size="4"> Welcome, ${user.name}</font></div>
 <div class="text-right"> <font  size="4">Your Unit number : ${user.unit} </font> </div>
 </div>
- <div class="text-right" >  
  <div class="text-right" >   
  
   <font  size="4"> Lease start:${user.lease_start} </font>  </div>
     <div class="text-right" >   
    <font  size="4"> Lease end :${user.lease_end} </font>  
  
+ <c:if test="${!empty result}">
+							<p class="message">${result}</p>
+						</c:if>
  </div> 
 <%--  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5> --%>
  <br>

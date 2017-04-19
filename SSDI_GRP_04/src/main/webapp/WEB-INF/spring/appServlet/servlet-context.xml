@@ -42,7 +42,7 @@
 				<beans:value>com.spring.app.model.Otp</beans:value>
 				<beans:value>com.spring.app.model.Occupied_apartment</beans:value>
 					<beans:value>com.spring.app.model.Complaint</beans:value>
-					<beans:value>com.spring.app.model.RenewLeaseModel</beans:value>
+					<beans:value>com.spring.app.model.Renew_lease</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

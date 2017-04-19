@@ -134,7 +134,14 @@ h3, h4 {
 .nav-tabs li a {
   color: #777;
 }
-
+.otp_back{
+  background-color: #FFFFFF;
+}
+.otp{
+  color: #00FF00 !important;
+  text-align: center;
+  font-size: 30px;
+}
 #googleMap {
   width: 100%;
   height: 400px;
@@ -213,10 +220,8 @@ jQuery(document).ready(function($) {
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="../app">HOME</a></li>
           <li><a href="#apartment">Available Apartments</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="signup">Sign Up!</a></li>
+          <li><a href="login">Check OTP</a></li>
         </ul>
       </div>
     </div>
@@ -226,98 +231,167 @@ jQuery(document).ready(function($) {
 <br>
 
 <c:if test="${!empty otp}">
-<p>Generated OTP is : ${otp}</p>
+<div class="otp_back">
+<p class="otp">${otp}</p>
+</div>
+
 </c:if>
 
-<div class="container text-center">
-  <h3>Dashoard</h3>
-  <br>
-  <div class="row">
-    <div class="col-sm-4">
-      <p><strong>Available Apartments</strong></p><br>
-		<table class="table table-striped table-hover table-users">
-    			<thead>
-    				<tr>
-    					
-    				
-    					<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
-    					<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
-    					<th></th>
-    				</tr>
-    			</thead>
+	<div class="container text-center">
+		<h3>Dashoard</h3>
+		<br>
+		<div class="row">
+			<div class="col-sm-4">
+				<p>
+					<strong>Available Apartments</strong>
+				</p>
+				<br>
+				<table class="table table-striped table-hover table-users">
+					<thead>
+						<tr>
 
-    			<tbody>
+
+							<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
+							<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
 
 						<c:forEach items="${listapartment}" var="apartment">
 							<tr class='clickable-row' data-href='url://link-for-first-row/'>
 								<td>${apartment.unit}</td>
 								<td>${apartment.bhk}BHK</td>
+								<td>
+									<div data-role="main" class="ui-content">
+										<a href="#myPopup" data-rel="popup"
+											class="ui-btn ui-btn-inline ui-corner-all">Book</a>
+
+										<div data-role="popup" id="myPopup" class="ui-content"
+											style="min-width: 250px;">
+										<div class="panel-body">
+										<h3>Allocate Apartment</h3>
+										
+										<form name="ComplaintForm" action="/app/allocates" method="get">
+				    <input type="date" name="start">
+				    <input type="date" name="end">
+				    <input type="hidden" name="unit" value="${apartment.unit}">
+				    
+					<button class="btn mini blue-stripe" type="submit" id="submit">Resolve</button>
+					</form>
+					
+					
+                 <%--        <form:form name="AllocateApartment" action="http://localhost:8080/app/allocates/" method="get" modelAttribute="allocateBean">
+                            <fieldset>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="date" id="start" name="start" path="start" placeholder="start"/>
+                                </div>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="date" id="end" name="end" path="end" placeholder="end"/>
+                                </div>                           
+                                 <!-- Change this to a button or input when using this as a form -->
+                                <button class="btn btn-sm btn-success" type="submit" id="submit" >Book</button>
+                                
+                            </fieldset>
+                        </form:form>
+                 --%>    </div>
+										</div>
+									</div>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
-    		</table>
-    </div>
-    &nbsp;&nbsp;
-&nbsp;&nbsp;    <div class="col-sm-4">
-      <p><strong>Complaints that breached SLA</strong></p><br>
-      <table class="table table-striped table-hover table-users">
-    			<thead>
-    				<tr>
-    					<th class="hidden-phone">Type</th>
-    					<th class="hidden-phone">Severity</th>
-    					<th class="hidden-phone">Description</th>
-    					<th class="hidden-phone">Time</th>
-    					<th></th>
-    				</tr>
-    			</thead>
+				</table>
+			</div>
+			&nbsp;&nbsp; &nbsp;&nbsp;
+			<div class="col-sm-4">
+				<p>
+					<strong>Complaints that breached SLA</strong>
+				</p>
+				<br>
+				<table class="table table-striped table-hover table-users">
+					<thead>
+						<tr>
+							<th class="hidden-phone">Type</th>
+							<th class="hidden-phone">Severity</th>
+							<th class="hidden-phone">Description</th>
+							<th class="hidden-phone">Time</th>
+							<th></th>
+						</tr>
+					</thead>
 
-    			<tbody>
+					<tbody>
 
-			<c:forEach items="${listcomplaints}" var="complaintout">
-				<tr>
-					<td >${complaintout.type}</td>
-					<td >${complaintout.severity}</td>
-				    <td >${complaintout.description}</td>	
-				    <td >${complaintout.time}</td>		    
-					</form></td>
-				</tr>
-			</c:forEach>
-	               </tbody>
-    		</table>
-      
-    </div>
-    <div class="col-sm-4">
-      <p><strong>Notifications</strong></p><br>
-    </div>
-  </div>
-</div>
+						<c:forEach items="${listcomplaints}" var="complaintout">
+							<tr>
+								<td>${complaintout.type}</td>
+								<td>${complaintout.severity}</td>
+								<td>${complaintout.description}</td>
+								<td>${complaintout.time}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="col-sm-4">
+				<p>
+					<strong>Notifications</strong>
+				</p>
+				<br>
+			</div>
+		</div>
+	</div>
 
 
 </body>
 </html>
 
-<%-- 
-		<td>
-								<div data-role="main" class="ui-content">
-									<a href="#myPopup" data-rel="popup"
-										class="ui-btn ui-btn-inline ui-corner-all">Allocate
-										Apartment</a>
 
-									<div data-role="popup" id="myPopup" class="ui-content"
-										style="min-width: 250px;">
-										<form:form name="AllocateForm" action="allocate" method="post"
-											modelAttribute="allocateBean">
-											<h3>Lease Details</h3>
-         Lease Start Date:
-                <form:input class="form-control" type="date" id="start"
-												name="start" path="start" placeholder="Start Date" />
-         Lease End Date:       
-                <form:input class="form-control" type="date" id="end"
-												name="end" path="end" placeholder="End Date" />
-											<form:input class="form-control" type="hidden" name="user"
-												path="unit" value="${apartment.unit}" />
-											<button class="form-control" type="submit" id="submit">Book</button>
-										</form:form>
-									
-									</div>
-							</td> --%>
+
+
+
+				<%--  <div class="panel-body">
+                        <form:form name="AllocateApartment" action="allocate" onsubmit="validate();" method="post" modelAttribute="allocateBean">
+                            <fieldset>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="date" id="start" name="start" path="start" placeholder="start"/>
+                                </div>
+                                <div class="form-group">
+                                    <form:input class="form-control" type="date" id="end" name="end" path="end" placeholder="end"/>
+                                </div>                           
+                                 <!-- Change this to a button or input when using this as a form -->
+                                <button class="btn btn-sm btn-success" type="submit" id="submit" >Book</button>
+                                
+                            </fieldset>
+                        </form:form>
+                    </div> --%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

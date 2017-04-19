@@ -7,9 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.app.model.Otp;
 
+@Repository
 public class OtpDAOImpl implements OtpDAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserDAOImpl.class);
@@ -26,7 +29,7 @@ public class OtpDAOImpl implements OtpDAO{
 	public List<Otp> listOtp() {
 		// TODO Auto-generated method stub
 		session = this.sessionFactory.getCurrentSession();
-		System.out.println("in OTP DAO Implementation");
+		System.out.println("in OTP DAO listing");
 		List<Otp> OtpList = session.createQuery("from Otp").list();
 		for(Otp p : OtpList){
 			logger.info("Otp List: "+p);
@@ -35,12 +38,15 @@ public class OtpDAOImpl implements OtpDAO{
 	}
 
 	@Override
+	@Transactional
 	public void addOtp(Otp otp) {
 		// TODO Auto-generated method stub
-		session=this.sessionFactory.getCurrentSession();
+		System.out.println("in OTP DAO addition");
+		Session session=this.sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(otp);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override
