@@ -363,7 +363,5 @@ function submitForm() {
     document.getElementById("envselection").submit();
 }
 </script>
-</div>
-	</div>
 </body>
 </html>

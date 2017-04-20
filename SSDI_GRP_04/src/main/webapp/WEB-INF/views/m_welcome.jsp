@@ -238,8 +238,8 @@ jQuery (document).ready (function($) { $(".clickable-row
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#apartment">Available Apartments</a></li>
-				<li><a href="login">Check OTP</a></li>
-				<li><a href="../app">HOME</a></li>
+				<li><a href="#check_otp" onclick="showotp();">Check OTP</a></li>
+				<li><a href="#vacate_apt" onclick="return show();" action="#vacate_apt">Vacate Apartment	</a></li>
 				<li><a href="../app">Sign Out</a></li>
 			</ul>
 		</div>
@@ -269,19 +269,6 @@ jQuery (document).ready (function($) { $(".clickable-row
 	<div class="container text-center">
 		<h3>Dashoard</h3>
 		<br>
-		<div class="row">
-			<div class="col-sm-4">
-				<p>
-					<strong>Available Apartments</strong>
-				</p>
-				<br>
-				<table class="table table-striped table-hover table-users">
-					<thead>
-						<tr>
-							<div class="container text-center">
-								<h3>Dashboard</h3>
-								<br>
-								<div class="row">
 									<div class="col-sm-4">
 										<p>
 											<strong>Available Apartments</strong>
@@ -290,21 +277,12 @@ jQuery (document).ready (function($) { $(".clickable-row
 										<table class="table table-striped table-hover table-users">
 											<thead>
 												<tr>
-
-
-													<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
+												    <th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
 													<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
 													<th></th>
 												</tr>
-											</thead>
-											<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
-											<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
-											<th></th>
-											</tr>
-											</thead>
 
 											<tbody>
-
 												<c:forEach items="${listapartment}" var="apartment">
 													<tr class='clickable-row'
 														data-href='url://link-for-first-row/'>
@@ -376,39 +354,33 @@ jQuery (document).ready (function($) { $(".clickable-row
 										<br>
 									</div>
 								</div>
-							</div>
+				
 
 
 							<script type="text/javascript">
 								$(document).ready(function() {
 
 									$("#vacate_apt").hide();
-
+									$("#check").hide();
 								});
 								function show() {
 									$(vacate_apt).show();
+									return true;
+								}
+								function showotp(){
+									$(check).show();
 								}
 							</script>
-							<div class="container text-center">
-								<p>
-									<strong><font size="4">Vacate</font></strong>
-								</p>
-								<br> <a href="#vacate_apt">
-									<button class="btn btn-sm btn-success" type="submit"
-										id="Vacate" onclick="show();hide1()">Vacate an
-										apartment</button>
-								</a>
-							</div>
+							
 
+	<div id="vacate_apt" class="container text-center">
 							<form:form name="vacate" method="post" action="vacate.submit"
 								modelAttribute="deleteApartmentBean">
-								<div id="vacate_apt" class="container text-center">
 									<div class="form-group">
 										<div class="col-md-12 text-center">
 
 											<span class="label" id="description"> <font size="4"
-												color="black"> Enter the name of the apt you want to
-													vacate </font>
+												color="black"> Enter the Unit number</font>
 											</span>
 										</div>
 										<div class="col-md-offset-3 col-md-6 text-center"
@@ -422,8 +394,37 @@ jQuery (document).ready (function($) { $(".clickable-row
 										<button class="btn btn-sm btn-success" type="submit"
 											id="submit">Submit</button>
 									</div>
-								</div>
+								
 							</form:form>
+							</div>
+							
+							<div id="check">
+																<div class="col-sm-4">
+							
+											<p>
+											<strong>Unused OTP</strong>
+										</p>
+										<br>
+										<table class="table table-striped table-hover table-users">
+											<thead>
+												<tr>
+													<th class="hidden-phone">OTP</th>
+													<th class="hidden-phone">Unit</th>
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<c:forEach items="${listotp}" var="otp">
+													<tr>
+														<td>${otp.otp}</td>
+														<td>${otp.unit}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										</div>
+							</div>
 </body>
 </html>
 

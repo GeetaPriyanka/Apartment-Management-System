@@ -78,6 +78,7 @@ public class HomeController {
 		for(Otp o:otpList){
 			if(signupBean.getOtp() == o.getOtp()){
 				System.out.println("Otp matched for APT No: "+ o.getUnit());
+				this.deleteOTP(o.getOtp());
 				this.DeleteApartment(o.getUnit());
 				System.out.println("In controller again");
 				User user=new User();
@@ -109,5 +110,10 @@ protected void DeleteApartment(String unit){
 protected void OccupyApartment(String unit,String email){
 	occService.addOccupiedApartment(unit,email);
 }
+
+protected void deleteOTP(int otp){
+	this.otpService.deleteOtp(otp);
+}
+
 	
 }

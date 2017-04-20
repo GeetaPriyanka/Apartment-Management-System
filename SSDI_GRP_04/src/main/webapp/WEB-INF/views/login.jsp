@@ -33,7 +33,7 @@
       body {
   font: Lato, sans-serif;
   color: #777;
-    background: url(https://stengineer.com/wp-content/uploads/2016/07/Awesome-simple-interior-design-for-apartments-For-Apartment-Design-Interior-with-simple-interior-design-for-apartments-Apartment-Design-Easy.jpg) no-repeat center center fixed; 
+    background: url(http://www.maac.com/~/media/images/properties/north-carolina/charlotte/colonial-grand-at-university-center/slides/3cg-university-center---clubhouse.ashx) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

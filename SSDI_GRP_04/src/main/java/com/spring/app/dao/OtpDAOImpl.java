@@ -52,7 +52,7 @@ public class OtpDAOImpl implements OtpDAO{
 	@Override
 	public void deleteOtp(int otp_no) {
 		// TODO Auto-generated method stub
-		String hql = "delete from Otp where otp_no = :otp_no";
+		String hql = "delete from Otp where otp = :otp_no";
 		 session=this.sessionFactory.getCurrentSession();
 	        Query query = session.createQuery(hql);
 	        query.setParameter("otp_no", otp_no);

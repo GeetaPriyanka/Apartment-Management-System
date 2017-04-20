@@ -85,10 +85,8 @@ public class UserController {
 		String d=deleteApartmentBean.getVacate();
 		occService.deleteOccupiedApartment(d);
 		apartmentService.addAvailableApartment(d);
-		
-		ModelAndView model= null;
-				model=new ModelAndView("m_welcome");
-				return model;	 
+		ModelAndView model=new ModelAndView("m_welcome");
+		return model;	 
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -132,6 +130,7 @@ public class UserController {
 					model.addObject("allocateBean",new AllocateBean());
 					model.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
 					model.addObject("listapartment",this.getUnAllocatedApartments());
+					model.addObject("listotp",this.getAllOTP());
 					model.addObject("user",userinfo);
 					return model;
 				}
@@ -268,9 +267,7 @@ public class UserController {
 		for (Available_apartment available_apartment : list) {
 			flag =0;
 			for (Otp otp : otpList) {
-				System.out.println(otp.getUnit()+ " != "+ available_apartment.getUnit());
 				if(otp.getUnit().equals(available_apartment.getUnit())){
-					System.out.println(otp.getUnit()+ " != "+ available_apartment.getUnit());
 					flag=1;
 				}
 			}
@@ -317,5 +314,6 @@ public class UserController {
 	public List<Renew_lease> getLeaseRequest(){
 		return this.renewlease.listRenewLease();
 	}
+	
 }
 
