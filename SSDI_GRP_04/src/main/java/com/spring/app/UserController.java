@@ -30,55 +30,45 @@ import com.spring.app.bean.deleteApartmentBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
 import com.spring.app.model.Otp;
-
 import com.spring.app.model.Renew_lease;
-
-import com.spring.app.model.User;
-
 import com.spring.app.service.ApartmentService;
-
-import com.spring.app.service.ApartmentServiceImpl;
-
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
-
 import com.spring.app.service.OtpService;
-
 import com.spring.app.service.RenewLeaseService;
-
 import com.spring.app.service.UserService;
 
 @Controller
 @SessionAttributes("user")
 public class UserController {
-	
+
 	private UserService userService;
 	UserDetailsBean userinfo;
-	
+
 	@Autowired
 	private Occupied_apartmentService occService;
-	
-	
+
+
 	@Autowired
 	@Qualifier(value = "renewService")
 	private RenewLeaseService renewlease;
-	
+
 	@Autowired
 	private ApartmentService apartmentService;
-	
+
 	@Autowired
 	private ComplaintService complaintService;
-	
+
 	@Autowired
 	private OtpService otpService;
-	
+
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
 	public void setUserService(UserService ps){
 		this.userService = ps;
 	}
 
-	
+
 	@RequestMapping(value="/vacate.submit", method = RequestMethod.POST)
 	public ModelAndView executevacate(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("deleteApartmentBean")deleteApartmentBean deleteApartmentBean)
 	{		
@@ -112,14 +102,14 @@ public class UserController {
 	  		return model2;
 	    }
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(Model model) {
 		Loginbean loginBean=new Loginbean();
 		model.addAttribute("loginBean", loginBean);
 		return "login";
 	}
-	
+
 	@RequestMapping(value="/login.submit", method = RequestMethod.POST)
 	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean")Loginbean loginBean)
 	{
@@ -156,9 +146,15 @@ public class UserController {
 					model.addObject("listapartment",this.getUnAllocatedApartments());
 					model.addObject("listotp",this.getAllOTP());
 					model.addObject("user",userinfo);
+					List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
+					leaseRequests=getLeaseRequest();
+					if(leaseRequests!=null){
+						System.out.println("lease requests size "+leaseRequests.size());
+						model.addObject("leaseRequests",leaseRequests);
+					}
 					return model;
 				}
-				
+
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -174,18 +170,18 @@ public class UserController {
 		model1 = new ModelAndView("complain");
 		return model1;
 	}
-	
+
 	//when the complaint is lodged 
 	@RequestMapping(value="/complaint.submit", method = RequestMethod.POST)
 	public ModelAndView executeComplaint(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("ComplaintBean")ComplaintBean ComplaintBean )
 	{			
-				ComplaintBean.setUnit(userinfo.getUnit());
-				ModelAndView model= null;
-				this.complaintService.addComplaint(ComplaintBean);
-				model=new ModelAndView("welcome");
-				return model;	
+		ComplaintBean.setUnit(userinfo.getUnit());
+		ModelAndView model= null;
+		this.complaintService.addComplaint(ComplaintBean);
+		model=new ModelAndView("welcome");
+		return model;	
 	}
-	
+
 	@RequestMapping(value ="/complain_res", params = {"complaint_id","user"}, method = RequestMethod.GET)
 	public ModelAndView resolveRequest(@RequestParam(value = "complaint_id") int complaint_id,@RequestParam(value = "user") String user, HttpServletRequest request) {
 		System.out.println("In complain resolve function");
@@ -205,15 +201,15 @@ public class UserController {
 		System.out.println("got list sending to view");
 		return model;
 	}
-	
-	
+
+
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String gotoWelcome(Model model) {
 		//create complaint bean and add it to this page
 		return "welcome";
 	}
-	
-	
+
+
 	@RequestMapping(value ="/allocates", params = {"start","end","unit"}, method = RequestMethod.GET)
 	public ModelAndView allocateapt(@RequestParam(value = "start") Date start,@RequestParam(value = "end") Date end,@RequestParam(value = "unit") String unit, HttpServletRequest request) {
 		ModelAndView model3= null;
@@ -221,17 +217,17 @@ public class UserController {
 		model3 = new ModelAndView("m_welcome");
 		int flag = this.checkOtp(unit);
 		if(flag==-1){
-		Random r = new Random();
-		int randNo = r.nextInt(99999)+100000;
-		System.out.println(" "+randNo);
-		Otp o = new Otp();
-		o.setStartDate(start);
-		o.setEndDate(end);
-		o.setUnit(unit);
-		o.setOtp(randNo);
-		this.otpService.addOtp(o);
-		String op = "OTP generated for apartment "+ unit + " is :"+ randNo;
-		model3.addObject("otp", randNo);
+			Random r = new Random();
+			int randNo = r.nextInt(99999)+100000;
+			System.out.println(" "+randNo);
+			Otp o = new Otp();
+			o.setStartDate(start);
+			o.setEndDate(end);
+			o.setUnit(unit);
+			o.setOtp(randNo);
+			this.otpService.addOtp(o);
+			String op = "OTP generated for apartment "+ unit + " is :"+ randNo;
+			model3.addObject("otp", randNo);
 		}else{
 			model3.addObject("otp", "OTP generated for apartment "+ unit + " is :"+ flag);
 		}
@@ -240,7 +236,7 @@ public class UserController {
 		model3.addObject("user",userinfo);
 		return model3;
 	}
-	
+
 	public int checkOtp(String unit){
 		List<Otp> list = this.otpService.listOtp();
 		for (Otp otp : list) {
@@ -254,23 +250,27 @@ public class UserController {
 	public Complaint getComplaintById(int id){
 		return this.complaintService.getComplaint(id);
 	}
-	
+
 	public void UpdateComplaint(Complaint c){
 		this.complaintService.updateComplaint(c);
 	}
-	
+
 	public Date getLeaseStart(String unit){
 		return this.occService.getLeaseStaetDate(unit);
 	}
-	
+
+	public void updateLeaseEndDate(String unit, Date leaseendDate, int months){
+		 this.occService.updateLeaseEndDate(months, leaseendDate, unit);
+	}
+
 	public Date getLeaseEnd(String unit){
 		return this.occService.getLeasendDate(unit);
 	}
-	
+
 	public float getBill(String unit){
 		return this.occService.getBill(unit);
 	}
-	
+
 	public List<Otp> getAllOTP(){
 		return otpService.listOtp();
 	}
@@ -280,11 +280,11 @@ public class UserController {
 	public void setRenewLeaseService(RenewLeaseService rs){
 		this.renewlease = rs;
 	}
-	
+
 	public List<Available_apartment> getUnAllocatedApartments(){
 		List<Otp> otpList = this.getAllOTP();
 		System.out.println("you are here in the inportant method != ");
-		
+
 		int flag=0;
 		ArrayList<Available_apartment> list = (ArrayList<Available_apartment>) this.apartmentService.listApartments();
 		ArrayList<Available_apartment> Sendlist = new ArrayList<Available_apartment>();
@@ -305,39 +305,63 @@ public class UserController {
 	@RequestMapping(value = "/renewlease",method = RequestMethod.POST)
 	@Transactional
 	public ModelAndView renewLeasereq(@ModelAttribute("SpringWeb")RenewLeaseBean renewleasereq,Model model){
-  	  System.out.println("  -00- "+userinfo.getEmail());
-      Renew_lease renew = new Renew_lease();
-      ModelAndView model2= null;
-      int flag = 0;
-      List<Renew_lease> listRenew = this.getLeaseRequest();
-  	  System.out.println("  -00- "+listRenew.get(0).getEmail());
+		System.out.println("  -00- "+userinfo.getEmail());
+		Renew_lease renew = new Renew_lease();
+		ModelAndView model2= null;
+		int flag = 0;
+		List<Renew_lease> listRenew = this.getLeaseRequest();
+		System.out.println("  -00- "+listRenew.get(0).getEmail());
 
-      for (Renew_lease renewLeaseModel : listRenew) {
-    	  System.out.println(renewLeaseModel.getEmail()+"  -00- "+userinfo.getEmail());
-		if(renewLeaseModel.getEmail().equals(userinfo.getEmail())){
-			flag=1;
+		for (Renew_lease renewLeaseModel : listRenew) {
+			System.out.println(renewLeaseModel.getEmail()+"  -00- "+userinfo.getEmail());
+			if(renewLeaseModel.getEmail().equals(userinfo.getEmail())){
+				flag=1;
+			}
 		}
+		if(flag==0){
+			renew.setApproval_status(true);
+			renew.setEmail(userinfo.getEmail());
+			renew.setExtenion_period(renewleasereq.getExtension_period());
+			renew.setUnit(userinfo.getUnit());
+			this.renewlease.addRenewLease(renew);
+			model2 = new ModelAndView("welcome");
+			model2.addObject("result","Thank you for submitting request");
+			return model2;
+		}else{
+
+			model2 = new ModelAndView("welcome");
+			model2.addObject("result","Request is already submitted, it is currently being processed");
+			return model2;
+		}
+
+
 	}
-      if(flag==0){
-      renew.setApproval_status(true);
-        renew.setEmail(userinfo.getEmail());
-        renew.setExtenion_period(renewleasereq.getExtension_period());
-        renew.setUnit(userinfo.getUnit());
-        this.renewlease.addRenewLease(renew);
-        model2 = new ModelAndView("welcome");
-		model2.addObject("result","Thank you for submitting request");
-		return model2;
-	}else{
-		
-		model2 = new ModelAndView("welcome");
-		model2.addObject("result","Request is already submitted, it is currently being processed");
-		return model2;
-	}
-   }
-	
+
 	public List<Renew_lease> getLeaseRequest(){
 		return this.renewlease.listRenewLease();
 	}
+	public void updateLeaseStatus(String email){
+		 this.renewlease.updateRenewLease(email);
+	}
+	public void deleteLeaseReq(String email){
+		 this.renewlease.deleteRenewLease(email);
+	}
+
+	@RequestMapping(value = "/leaseApproval",method = RequestMethod.POST)
+	public void leaseApproval(@RequestParam("name") String name, @RequestParam("type") String type
+			,@RequestParam("unit") String unit,@RequestParam("month") int month){
+
+		System.out.println("type: "+type);
+		if(type.equals("accept")){
+			updateLeaseStatus(name);
+			Date leaseEnd=getLeaseEnd(unit);
+			updateLeaseEndDate(unit, leaseEnd, month);
+			
+		}else if(type.equals("reject")){
+			deleteLeaseReq(name);
+		}
 	
-}
+	}
+
+}	
 

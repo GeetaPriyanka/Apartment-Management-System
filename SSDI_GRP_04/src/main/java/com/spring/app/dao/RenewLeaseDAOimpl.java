@@ -43,15 +43,29 @@ public class RenewLeaseDAOimpl implements RenewLeaseDAO {
 		
 	}
 	@Override
-	
+	@Transactional
 	public void deleteRenewLease(String email) {
 		// TODO Auto-generated method stub
-		String hql = "delete from renew_lease where email = :email";
+		String hql = "delete from Renew_lease where email = :email";
 		  Session session=this.sessionFactory.getCurrentSession();
 	        Query query = session.createQuery(hql);
 	        query.setParameter("email", email);
 	        int rowCount = query.executeUpdate();
 	        System.out.println("Rows affected: " + rowCount);
+	}
+
+	@Override
+	@Transactional
+	public void updateRenewLease(String email) {
+		// TODO Auto-generated method stub
+		String hql="update Renew_lease  set approval_status = true where email= :email";
+		Session session=this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("email", email);
+        int rowCount = query.executeUpdate();
+        System.out.println("Rows affected: " + rowCount);
+        
+		
 	}
 	}
 

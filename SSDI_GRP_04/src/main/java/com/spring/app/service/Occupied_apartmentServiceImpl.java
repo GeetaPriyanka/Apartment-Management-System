@@ -92,4 +92,18 @@ public class Occupied_apartmentServiceImpl implements Occupied_apartmentService 
 		return bill;
 	}
 
+	@Override
+	@Transactional
+	public void updateLeaseEndDate(int months, Date leaseEndDate, String unit) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("leaseEndDate: "+leaseEndDate);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(leaseEndDate);
+		cal.add(Calendar.MONTH, months);
+		 java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
+		
+		occupied_apartmentDAO.updateOccupiedLeaseEndDate(unit, sqlDate);
+	}
+
 }

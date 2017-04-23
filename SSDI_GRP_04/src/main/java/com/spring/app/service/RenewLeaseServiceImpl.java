@@ -36,7 +36,13 @@ public class RenewLeaseServiceImpl implements RenewLeaseService {
 	@Transactional
 	public void deleteRenewLease(String email) {
 		// TODO Auto-generated method stub
-		
+		this.renewLeaseDAO.deleteRenewLease(email);
+	}
+
+	@Override
+	public void updateRenewLease(String email) {
+		// TODO Auto-generated method stub
+		this.renewLeaseDAO.updateRenewLease(email);
 	}
 
 }

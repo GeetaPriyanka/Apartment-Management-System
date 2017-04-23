@@ -1,6 +1,9 @@
 package com.spring.app.dao;
 
+import java.sql.Date;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,6 +44,7 @@ public class Occupied_apartmentDAOImpl implements Occupied_apartmentDAO{
 	}
 
 	@Override
+	@Transactional
 	public void addOccupiedApartment(Occupied_apartment occuaptmnt) {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.openSession();
@@ -51,6 +55,7 @@ public class Occupied_apartmentDAOImpl implements Occupied_apartmentDAO{
 	}
 
 	@Override
+	@Transactional
 	public void deleteOccupiedApartment(String unit) {
 		// TODO Auto-generated method stub
 		String email=null;
@@ -68,6 +73,20 @@ public class Occupied_apartmentDAOImpl implements Occupied_apartmentDAO{
 	        query.setParameter("unit", unit);
 	        int rowCount = query.executeUpdate();
 	        System.out.println("Rows affected: " + rowCount);
+	}
+
+
+	@Override
+	@Transactional
+	public void updateOccupiedLeaseEndDate(String unit, Date lease_end) {
+		// TODO Auto-generated method stub
+		String hql="update Occupied_apartment  set lease_end=:lease_end where unit= :unit";
+		Session session=this.sessionFactory.getCurrentSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("unit", unit);
+        query.setParameter("lease_end", lease_end);
+        int result=query.executeUpdate();
+        System.out.println("Rows affected: " + result);
 	}
 
 }
