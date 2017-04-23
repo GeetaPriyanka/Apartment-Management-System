@@ -1,10 +1,7 @@
 package com.spring.app;
 
 import static org.junit.Assert.*;
-
-import java.io.Serializable;
-
-import javax.transaction.Transaction;
+import static org.mockito.Mockito.mock;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,17 +15,13 @@ import com.spring.app.model.Complaint;
 @Repository
 public class ComplaintDAOImplTest {
 	
-	static Complaint c1=new Complaint();
-	static Complaint c2;
+	private static Complaint complaintMock,complaintMock2;
 
-
+	
 	private static SessionFactory sessionFactory;
 	private static Session session1,session2;
-	private static ComplaintDAOImpl cdao;
-	//private static org.hibernate.Transaction tx;
-
-	//Serializable save,save2;
-
+	private static ComplaintDAOImpl cdaoMock,cdaoMock2;
+	
 
 	public void setSessionFactory(SessionFactory sf){
 		ComplaintDAOImplTest.sessionFactory = sf;
@@ -38,51 +31,53 @@ public class ComplaintDAOImplTest {
 	@BeforeClass
 	public static void setUp()
 	{
-		c1.setUnit("9523F");
-		c1.setType("Plumbing");
-		c1.setSeverity(2);
-		c1.setTime(System.currentTimeMillis());
-		c1.setDescription("Desc of plumbing");
+		complaintMock = mock(Complaint.class);
+		complaintMock.setUnit("9527");
+		complaintMock.setType("Plumbing");
+		complaintMock.setSeverity(2);
+		complaintMock.setTime(System.currentTimeMillis());
+		complaintMock.setDescription("Desc of plumbing");
 
 	}
+	
 	public void addComplaint1()
 	{
-		cdao.addComplaint(c1);		
-		//cdao.addComplaint(c1);
+		cdaoMock=mock(ComplaintDAOImpl.class);
+		cdaoMock.addComplaint(complaintMock);		
+
 		session1=ComplaintDAOImplTest.sessionFactory.openSession();
 		session1.beginTransaction();
-		session1.save(c1);
+		session1.save(cdaoMock);
 		session1.getTransaction().commit();
 		session1.close();
 
 	}
+	
 	public void addComplaint2()
 	{
-		cdao.addComplaint(c2);		
-		//cdao.addComplaint(c1);
+
+		cdaoMock2=mock(ComplaintDAOImpl.class);
+		cdaoMock2.addComplaint(complaintMock2);
 		session2=ComplaintDAOImplTest.sessionFactory.openSession();
 		session2.beginTransaction();
-		session2.save(c2);
+		session2.save(cdaoMock2);
 		session2.getTransaction().commit();
 		session2.close();
 
 	}
-	/*@Test	
-	public void testAddComplaint() {
-					assertNotNull(tx!=null);
-					assertNotNull(save!=null);
-					assertNotNull(session1!=null);
-					
-		}*/
+
 	@Test
 	public void testAddComplaintPositive(){
-		
-        assertNotNull(c1.getComplaint_number());
+		   
+        assertNotNull(complaintMock.getComplaint_number());
 
+        
 	}
 	@Test
 	public void testAddComplaintNegative(){
-        assertNotNull(c2.getComplaint_number());
+		
+
+        assertNotNull(complaintMock2.getComplaint_number());
 
 	}
 	

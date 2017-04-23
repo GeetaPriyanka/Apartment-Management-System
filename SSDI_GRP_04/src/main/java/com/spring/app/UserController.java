@@ -83,10 +83,30 @@ public class UserController {
 	public ModelAndView executevacate(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("deleteApartmentBean")deleteApartmentBean deleteApartmentBean)
 	{		
 		String d=deleteApartmentBean.getVacate();
+		int flag = 0;
+
+	      for (Available_apartment Available_aptlist: this.apartmentService.listApartments()) {
+			if(Available_aptlist.getUnit().equals(d)){
+				flag=1;
+				System.out.println("Apartment has already been vacated");
+			}
+		}
+	      
+	    if(flag==0){
+		
 		occService.deleteOccupiedApartment(d);
 		apartmentService.addAvailableApartment(d);
-		ModelAndView model=new ModelAndView("m_welcome");
-		return model;	 
+		ModelAndView model1=new ModelAndView("m_welcome");
+		model1.addObject("result","Apartment has been vacated");
+		return model1;	 
+	     
+	    }
+	    else 
+	    {
+	    	  ModelAndView model2 = new ModelAndView("m_welcome");
+	  		model2.addObject("result","Apartment has already been vacated");
+	  		return model2;
+	    }
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
