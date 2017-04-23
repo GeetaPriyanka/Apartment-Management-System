@@ -19,13 +19,7 @@ public class ComplaintServiceImplTest {
 			return 10000000L;
 		}
 	}
-/*	@Test
-	public void testAddDate(){
-		new SystemMock();
-		long currentTime=System.currentTimeMillis();
-		assertEquals(10000000L,currentTime);
-	}
-*/
+
 	@BeforeClass
 	public static void setUp(){
 	complaintMock = mock(Complaint.class);

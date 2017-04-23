@@ -22,7 +22,7 @@ public class ComplaintDAOImplTest {
 	private static Session session1,session2;
 	private static ComplaintDAOImpl cdaoMock,cdaoMock2;
 	
-
+	
 	public void setSessionFactory(SessionFactory sf){
 		ComplaintDAOImplTest.sessionFactory = sf;
 	}

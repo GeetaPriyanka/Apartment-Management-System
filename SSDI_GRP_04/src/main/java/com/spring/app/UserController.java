@@ -92,16 +92,20 @@ public class UserController {
 			}
 		}
 	      
-	    if(flag==0){
-		
-		occService.deleteOccupiedApartment(d);
-		apartmentService.addAvailableApartment(d);
-		ModelAndView model1=new ModelAndView("m_welcome");
-		model1.addObject("result","Apartment has been vacated");
-		return model1;	 
-	     
-	    }
-	    else 
+	    
+	    
+	    if(flag==0)
+	    {
+			
+			occService.deleteOccupiedApartment(d);
+			apartmentService.addAvailableApartment(d);
+			ModelAndView model1=new ModelAndView("m_welcome");
+			model1.addObject("result","Apartment has been vacated");
+			return model1;	 
+		     
+		}
+	    
+	    else
 	    {
 	    	  ModelAndView model2 = new ModelAndView("m_welcome");
 	  		model2.addObject("result","Apartment has already been vacated");
