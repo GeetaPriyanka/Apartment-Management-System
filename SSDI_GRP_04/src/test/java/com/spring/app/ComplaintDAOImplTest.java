@@ -46,23 +46,13 @@ public class ComplaintDAOImplTest {
 		when(cdaoMock.listComplaint()).thenReturn(Arrays.asList(complaintMock));
 	}
 	
+	@Test
 	public void mockaddComplaint()
 	{
 		cdaoMock=mock(ComplaintDAOImpl.class);
-		cdaoMock.addComplaint(complaintMock);		
-
-		session1=ComplaintDAOImplTest.sessionFactory.openSession();
-		session1.beginTransaction();
-		session1.save(cdaoMock);
-		session1.getTransaction().commit();
-		session1.close();
-	}
-	
-	@Test
-	public void testAddComplaintPositive(){
-		   
+		cdaoMock.addComplaint(complaintMock);
         assertNotNull(complaintMock.getComplaint_number());
-        
+
 	}
 	
 	@Test
