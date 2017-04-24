@@ -42,7 +42,7 @@ import com.spring.app.service.UserService;
 @SessionAttributes("user")
 public class UserController {
 
-	private UserService userService;
+	public UserService userService;
 	UserDetailsBean userinfo;
 
 	@Autowired
@@ -60,7 +60,7 @@ public class UserController {
 	private ComplaintService complaintService;
 
 	@Autowired
-	private OtpService otpService;
+	public OtpService otpService;
 
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
@@ -111,12 +111,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/login.submit", method = RequestMethod.POST)
-	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean")Loginbean loginBean)
+	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean")Loginbean loginBean) throws Exception
 	{
 		ModelAndView model= null;
-		try
-		{
-			userinfo = this.userService.validate(loginBean);
+		
+			
+			UserDetailsBean userinfo = userService.validate(loginBean);
 			if(userinfo!=null){
 				System.out.println("user name"+userinfo.getName() + userinfo.getType());
 				if(userinfo.getType()==2){
@@ -156,9 +156,7 @@ public class UserController {
 				}
 
 			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		
 		model = new ModelAndView("login");
 		model.addObject("result", "Incorrect credentials");
 		return model;
@@ -211,7 +209,7 @@ public class UserController {
 
 
 	@RequestMapping(value ="/allocates", params = {"start","end","unit"}, method = RequestMethod.GET)
-	public ModelAndView allocateapt(@RequestParam(value = "start") Date start,@RequestParam(value = "end") Date end,@RequestParam(value = "unit") String unit, HttpServletRequest request) {
+	public ModelAndView allocateapt(@RequestParam(value = "start") Date start,@RequestParam(value = "end") Date end,@RequestParam(value = "unit") String unit, HttpServletRequest request) throws Exception {
 		ModelAndView model3= null;
 		System.out.println(" "+start+"  "+end+"  "+unit);
 		model3 = new ModelAndView("m_welcome");
@@ -237,8 +235,9 @@ public class UserController {
 		return model3;
 	}
 
-	public int checkOtp(String unit){
+	public int checkOtp(String unit) throws Exception{
 		List<Otp> list = this.otpService.listOtp();
+		
 		for (Otp otp : list) {
 			if(otp.getUnit().equals(unit)){
 				System.out.println("OTP already exists");
@@ -286,8 +285,8 @@ public class UserController {
 		System.out.println("you are here in the inportant method != ");
 
 		int flag=0;
-		ArrayList<Available_apartment> list = (ArrayList<Available_apartment>) this.apartmentService.listApartments();
-		ArrayList<Available_apartment> Sendlist = new ArrayList<Available_apartment>();
+		List<Available_apartment> list = this.apartmentService.listApartments();
+		List<Available_apartment> Sendlist = new ArrayList<Available_apartment>();
 		for (Available_apartment available_apartment : list) {
 			flag =0;
 			for (Otp otp : otpList) {
@@ -310,7 +309,7 @@ public class UserController {
 		ModelAndView model2= null;
 		int flag = 0;
 		List<Renew_lease> listRenew = this.getLeaseRequest();
-		System.out.println("  -00- "+listRenew.get(0).getEmail());
+		//System.out.println("  -00- "+listRenew.get(0).getEmail());
 
 		for (Renew_lease renewLeaseModel : listRenew) {
 			System.out.println(renewLeaseModel.getEmail()+"  -00- "+userinfo.getEmail());

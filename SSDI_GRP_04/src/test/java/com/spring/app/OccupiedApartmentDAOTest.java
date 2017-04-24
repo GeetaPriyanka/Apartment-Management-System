@@ -53,7 +53,7 @@ public class OccupiedApartmentDAOTest {
 
 	@Test
 	public void testAddOccApt() {
-		Occupied_apartment occuaptmnt = new Occupied_apartment();
+		Occupied_apartment occuaptmnt = mock(Occupied_apartment.class);
 		occuaptmnt.setEmail("ex@ex.ex");
 		occuaptmnt.setBill(1);
 		occuaptmnt.setUnit("Example unit");
@@ -68,7 +68,7 @@ public class OccupiedApartmentDAOTest {
 		}
 	}
 
-/*	@Test
+	@Test
 	public void testDeleteOccApt() {
 		Occupied_apartment occuaptmnt = new Occupied_apartment();
 		occuaptmnt.setEmail("ex@ex.ex");
@@ -79,8 +79,8 @@ public class OccupiedApartmentDAOTest {
 
 		occaptDaoImplMock.deleteOccupiedApartment("Example unit");
 
-		List<Occupied_apartment> occlist1 = occaptDaoImplMock.occupiedApartmentsList();
+		occlist = occaptDaoImplMock.occupiedApartmentsList();
 
-		assertEquals(occlist.size()-1, occlist1.size());
-	}*/
+		assertEquals(2, occlist.size());
+	}
 }
