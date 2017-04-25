@@ -25,8 +25,8 @@ body {
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
-  font-size: 20px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
   color: #111;
 }
 
@@ -48,15 +48,17 @@ h3, h4 {
 
 .carousel-inner img {
   -webkit-filter: grayscale(0%);
-  width: 100%; /* Set width to 100% */
+  width: 120%; /* Set width to 100% */
   margin: auto;
-}
+  
+  }
+  
 
 .carousel-caption h3 {
   color: #000000 !important;
 }
 
-@media ( max-width : 600px) {
+@media ( max-width : 700px) {
   .carousel-caption {
     display: none;
     /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -138,8 +140,8 @@ h3, h4 {
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 14px !important;
+  font-family: verdana;
   opacity: 0.9;
 }
 
@@ -220,6 +222,9 @@ textarea {
 .design a {
     color: #fff;
 }
+.carousel-control {
+top: 40%;
+}
 </style>
 <body>
 <body id="myPage" data-spy="scroll" data-target=".navbar"
@@ -260,8 +265,8 @@ textarea {
     <div class="carousel-inner" role="listbox">
       <div class="item active" height="400">
         <img
-          src="http://www.everyaptmapped.org/apartments/charlotte,north+carolina,nc/vista+park/vista+park+apartments+photo.jpg"
-          alt="New York" width="1200" height="350">
+          src="http://cgmallardlake.maac.com/~/media/images/properties/north-carolina/charlotte/colonial-grand-at-mallard-lake/slides/2cg-mallard-lake---lake-views.ashx"
+          alt="New York" style="width:1350px;height:660px" >
         <div class="carousel-caption">
           <h3>UNCC Apartments</h3>
           <p>We offer the best amenities in Charlotte,NC.</p>
@@ -270,8 +275,8 @@ textarea {
 
       <div class="item">
         <img
-          src="https://inhabitat.com/nyc/wp-content/blogs.dir/2/files/2015/12/Heres-What-NYCs-first-micro-apartments-will-look-like-on-the-inside-Living-Area.jpg"
-          alt="Chicago" width="1200" height="350">
+          src="http://cgcornelius.maac.com/~/media/images/properties/north-carolina/charlotte/colonial-grand-at-cornelius/slides/8cg-cornelius---built-in-desk.ashx"
+          alt="Chicago" style="width:1350px;height:660px">
         <div class="carousel-caption">
           <h3>Apartment</h3>
           <p>Fully Furnished Apartments, ready to move in!</p>
@@ -280,8 +285,8 @@ textarea {
 
       <div class="item">
         <img
-          src="http://liveashford.com/file/2016/01/Ashford-Green-Apartments-Exterior-Lake-700x400.jpg"
-          alt="LHHH" width="1200" height="350">
+          src="http://cgcornelius.maac.com/~/media/images/properties/north-carolina/charlotte/colonial-grand-at-cornelius/slides/1cg-cornelius---pool.ashx"
+          alt="LHHH" style="width:1350px;height:660px">
         <div class="carousel-caption">
           <h3>Serene View</h3>
           <p>Apartments with beautiful views,all ready for you to move

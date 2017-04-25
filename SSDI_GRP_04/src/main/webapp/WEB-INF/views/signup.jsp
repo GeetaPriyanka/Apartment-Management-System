@@ -156,12 +156,12 @@ width:500px;
 }
 
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: 'oswald', sans-serif;
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 14px !important;
+  font-family: verdana;
   opacity: 0.9;
 }
 

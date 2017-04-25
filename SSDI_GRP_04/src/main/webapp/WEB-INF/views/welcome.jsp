@@ -30,10 +30,11 @@ body {
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
-  font-size: 20px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
   color: #111;
 }
+
 
 .container {
   padding: 80px 120px;
@@ -139,15 +140,14 @@ h3, h4 {
 }
 
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: 'oswald', sans-serif;
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 14px !important;
+  font-family: verdana;
   opacity: 0.9;
 }
-
 .navbar li a, .navbar .navbar-brand {
   color: #d5d5d5 !important;
 }
@@ -275,19 +275,21 @@ font-size:18px;
   <!-- retrieving user details -->
   
 <div class="row">
-<div class="col-md-10 text-left" > <font size="4"> Welcome, ${user.name}</font></div>
-<div class="text-right"> <font  size="4">Your Unit number : ${user.unit} </font> </div>
+<div class="col-md-11 text-right" style="margin-right:10px;" > <h3> Welcome, ${user.name}</h3></div>
 </div>
- <div class="text-right" >   
+<div class="row">
+<div class="col-md-5"> <font  size="4">Your Unit number : ${user.unit} </font>
+</div>
  
-  <font  size="4"> Lease start:${user.lease_start} </font>  </div>
-    <div class="text-right" >   
+ <div class="col-md-4 ">
+  <font  size="4"    > Lease start:${user.lease_start} </font>  </div>
+   <div class="col-md-3 pull-right ">    
    <font  size="4"> Lease end :${user.lease_end} </font>  
- 
+ </div> 
  <c:if test="${!empty result}">
 							<p class="message">${result}</p>
 						</c:if>
- </div> 
+ </div>
 <%--  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5> --%>
  <br>
 		<div class="container text-center">
