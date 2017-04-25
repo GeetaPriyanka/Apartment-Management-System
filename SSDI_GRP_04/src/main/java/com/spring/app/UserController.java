@@ -69,40 +69,6 @@ public class UserController {
 	}
 
 
-	@RequestMapping(value="/vacate.submit", method = RequestMethod.POST)
-	public ModelAndView executevacate(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("deleteApartmentBean")deleteApartmentBean deleteApartmentBean)
-	{		
-		String d=deleteApartmentBean.getVacate();
-		int flag = 0;
-
-	      for (Available_apartment Available_aptlist: this.apartmentService.listApartments()) {
-			if(Available_aptlist.getUnit().equals(d)){
-				flag=1;
-				System.out.println("Apartment has already been vacated");
-			}
-		}
-	      
-	    
-	    
-	    if(flag==0)
-	    {
-			
-			occService.deleteOccupiedApartment(d);
-			apartmentService.addAvailableApartment(d);
-			ModelAndView model1=new ModelAndView("m_welcome");
-			model1.addObject("result","Apartment has been vacated");
-			return model1;	 
-		     
-		}
-	    
-	    else
-	    {
-	    	  ModelAndView model2 = new ModelAndView("m_welcome");
-	  		model2.addObject("result","Apartment has already been vacated");
-	  		return model2;
-	    }
-	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(Model model) {
 		Loginbean loginBean=new Loginbean();
@@ -360,6 +326,46 @@ public class UserController {
 			deleteLeaseReq(name);
 		}
 	
+	}
+
+
+	@RequestMapping(value="/vacate.submit", method = RequestMethod.POST)
+	public ModelAndView executevacate(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("deleteApartmentBean")deleteApartmentBean deleteApartmentBean)
+	{		
+		String d=deleteApartmentBean.getVacate();
+		int flag = 0;
+		ModelAndView model1=new ModelAndView("m_welcome");
+	      for (Available_apartment Available_aptlist: this.apartmentService.listApartments()) {
+			if(Available_aptlist.getUnit().equals(d)){
+				flag=1;
+				System.out.println("Apartment has already been vacated");
+			}
+		}
+	    if(flag==0)
+	    {
+			
+			occService.deleteOccupiedApartment(d);
+			apartmentService.addAvailableApartment(d);
+			model1.addObject("result","Apartment has been vacated");
+			model1.addObject("allocateBean",new AllocateBean());
+			model1.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
+			model1.addObject("listapartment",this.getUnAllocatedApartments());
+			model1.addObject("listotp",this.getAllOTP());
+			model1.addObject("user",userinfo);
+			List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
+			leaseRequests=getLeaseRequest();
+			if(leaseRequests!=null){
+				System.out.println("lease requests size "+leaseRequests.size());
+				model1.addObject("leaseRequests",leaseRequests);
+			}
+			return model1;	 
+		}
+	    
+	    else
+	    {
+	  		model1.addObject("result","No such occupied Apartment found");
+	  		return model1;
+	    }
 	}
 
 }	

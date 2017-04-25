@@ -172,8 +172,7 @@ h3, h4 {
 	background-color: #2d2d30;
 	border: 0;
 	font-size: 11px !important;
-	letter-spacing: 4px;
-	opacity: 0.9;
+	letter-spacing: 2px;
 }
 
 .navbar li a, .navbar .navbar-brand {
@@ -239,7 +238,7 @@ jQuery (document).ready (function($) { $(".clickable-row
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#apartment">Available Apartments</a></li>
 				<li><a href="#check_otp" onclick="showotp();">Check OTP</a></li>
-				<li><a href="#vacate_apt" onclick="return show();" action="#vacate_apt">Vacate Apartment	</a></li>
+				<li><a href="#vacate_apt" onclick="return show();">Vacate Apartment	</a></li>
 				<li><a href="../app">Sign Out</a></li>
 			</ul>
 		</div>
