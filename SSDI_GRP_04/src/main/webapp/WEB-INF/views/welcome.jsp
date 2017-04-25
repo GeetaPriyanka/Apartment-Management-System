@@ -298,9 +298,9 @@ font-size:18px;
 					</p>
 					<br>
 					<form name="ComplaintForm" action="complaint" method="post">
-					<input type="image" src="<c:url value="/resources/images/request.png"/>" />
+					<input type="image" src="<c:url value="/resources/images/request.png"/>" width="60%" />
 					</form>
-						<br><br>
+						<br>
 					<p> Have a problem in your apartment?<br><br> Log a maintenance request here and get it resolved within 2 days. </p>
 				</div>
 				<script type="text/javascript">
@@ -319,16 +319,16 @@ font-size:18px;
 						<strong><font  size="4">Renew Lease</font></strong>
 					</p>
 					<br> <a href = "#renew_lease">
-					<input type="image"  src="<c:url value="/resources/images/ren.png"/>" onclick="show();hide1()"/></a>
-						<br><br>
+					<input type="image"  src="<c:url value="/resources/images/ren.png"/>" width="60%" onclick="show();hide1()"/></a>
+						<br>
 							<p> Like our Apartments?<br><br> Extend your stay by lodging Lease renewal request. </p>
 				</div>
 				<div class="col-sm-4">
 					<p>
 						<strong><font  size="4">Billing</font></strong>
 					</p>
-					<br> <input type="image" src="<c:url value="/resources/images/billnew.png"/>"  id="saveForm" />
-							<br><br><br>
+					<br> <input type="image" src="<c:url value="/resources/images/billnew.png"/>" width="60%"  id="saveForm" />
+							<br>
 							<p> Your Billing!<br><br> Take a look at your Apartment's billing. </p>
 				</div>
 			</div>

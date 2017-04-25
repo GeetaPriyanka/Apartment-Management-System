@@ -8,4 +8,5 @@ public interface RenewLeaseService {
 	public List<Renew_lease> listRenewLease();
 	public void addRenewLease(Renew_lease renew);
 	public void deleteRenewLease(String email);
+	public void updateRenewLease(String email); 
 }

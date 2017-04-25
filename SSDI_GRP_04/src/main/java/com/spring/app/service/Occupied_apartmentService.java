@@ -12,4 +12,5 @@ public interface Occupied_apartmentService {
 	public Date getLeaseStaetDate(String unit);
 	public Date getLeasendDate(String unit);
 	public float getBill(String unit);
+	public void updateLeaseEndDate(int months, Date leaseEndDate, String unit); 
 }
