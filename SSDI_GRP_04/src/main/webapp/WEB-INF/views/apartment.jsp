@@ -58,17 +58,15 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 
 .carousel-inner img {
   -webkit-filter: grayscale(0%);
-  width: 120%; /* Set width to 100% */
+  width: 100%; /* Set width to 100% */
   margin: auto;
-  
-  }
-  
+}
 
 .carousel-caption h3 {
   color: #000000 !important;
 }
 
-@media ( max-width : 700px) {
+@media ( max-width : 600px) {
   .carousel-caption {
     display: none;
     /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -161,14 +159,8 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 
 .navbar-nav li a:hover {
   color: #fff !important;
-  background-color: black;
 }
-. navbar.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
-}
+
 .navbar-nav li.active a {
   color: #fff !important;
   background-color: #29292c !important;
@@ -209,31 +201,6 @@ textarea {
   height: 500%;
   margin-right: 40px;
   margin-left:40px;
-}
-.footer-bottom{
-    background-color: black;
- 
-    min-height: 50px;
-    width: 100%;
-}
-.copyright {
-    color: #fff;
-    line-height: 10px;
-    min-height: 30px;
-    padding: 3px 0;
-}
-.design {
-    color: #fff;
-    line-height: 10px;
-    min-height: 30px;
-    padding: 7px 0;
-    text-align: right;
-}
-.design a {
-    color: #fff;
-}
-.carousel-control {
-top: 40%;
 }
 </style>
 <body>

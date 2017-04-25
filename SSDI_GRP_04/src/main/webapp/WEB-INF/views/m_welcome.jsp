@@ -45,20 +45,18 @@ body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
 }
-
 h3, h4 {
-	margin: 10px 0 30px 0;
-	letter-spacing: 10px;
-	font-size: 20px;
-	color: #111;
+  margin: 10px 0 30px 0;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
+  color: #111;
 }
-
 .container {
 	padding: 80px 120px;
 }
 
 .person {
-	border: 10px solid transparent;
+	border: 10px transparent;
 	margin-bottom: 25px;
 	width: 80%;
 	height: 80%;
@@ -129,7 +127,7 @@ h3, h4 {
 }
 
 .btn:hover, .btn:focus {
-	border: 1px solid #333;
+	border: 1px #333;
 	background-color: #fff;
 	color: #000;
 }
@@ -152,6 +150,12 @@ h3, h4 {
 .otp_back {
 	background-color: #FFFFFF;
 }
+. navbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
 
 .otp {
 	color: #00FF00 !important;
@@ -167,12 +171,13 @@ h3, h4 {
 }
 
 .navbar {
-	font-family: Montserrat, sans-serif;
-	margin-bottom: 0;
-	background-color: #2d2d30;
-	border: 0;
-	font-size: 11px !important;
-	letter-spacing: 2px;
+  font-family: 'oswald', sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 14px !important;
+  font-family: verdana;
+  opacity: 0.9;
 }
 
 .navbar li a, .navbar .navbar-brand {
@@ -224,7 +229,7 @@ jQuery (document).ready (function($) { $(".clickable-row
 );
 </style>
 <body>
-<body id="apartment" data-spy="scroll" data-target=".navbar"
+<body id="apartment" data-spy="scroll-spy" data-target=".navbar"
 	data-offset="50">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -237,14 +242,18 @@ jQuery (document).ready (function($) { $(".clickable-row
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#apartment">Available Apartments</a></li>
-				<li><a href="#check_otp" onclick="showotp();">Check OTP</a></li>
-				<li><a href="#vacate_apt" onclick="return show();">Vacate Apartment	</a></li>
-				<li><a href="../app">Sign Out</a></li>
+				<li><a href="#check" onclick="showotp();">Check OTP</a></li>
+				<li><a href="#vacate_apt" onclick="show();">Vacate Apartment	</a></li>
+				<li><a  onclick="refreshPage()">Sign Out</a></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
-
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 	<br>
 	<br>
 	<c:if test="${!empty otp}">
@@ -266,7 +275,7 @@ jQuery (document).ready (function($) { $(".clickable-row
 
 
 	<div class="container text-center">
-		<h3>Dashoard</h3>
+		<h3>Dashboard</h3>
 		<br>
 									<div class="col-sm-4">
 										<p>
@@ -357,6 +366,12 @@ jQuery (document).ready (function($) { $(".clickable-row
 
 
 							<script type="text/javascript">
+							 
+							 	
+							
+
+							//$('window').scrollUp(function(){ $(#div).show() });
+
 								$(document).ready(function() {
 
 									$("#vacate_apt").hide();
@@ -364,10 +379,11 @@ jQuery (document).ready (function($) { $(".clickable-row
 								});
 								function show() {
 									$(vacate_apt).show();
-									return true;
+									$('#vacate_apt').get(0).scrollIntoView()
 								}
 								function showotp(){
 									$(check).show();
+									$('#check').get(0).scrollIntoView()
 								}
 							</script>
 							
