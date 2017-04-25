@@ -44,10 +44,10 @@ body {
 }
 
 h3, h4 {
-	margin: 10px 0 30px 0;
-	letter-spacing: 10px;
-	font-size: 20px;
-	color: #111;
+  margin: 10px 0 30px 0;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
+  color: #111;
 }
 
 .container {
@@ -154,15 +154,14 @@ h3, h4 {
 }
 
 .navbar {
-	font-family: Montserrat, sans-serif;
-	margin-bottom: 0;
-	background-color: #2d2d30;
-	border: 0;
-	font-size: 11px !important;
-	letter-spacing: 4px;
-	opacity: 0.9;
+  font-family: 'oswald', sans-serif;
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 14px !important;
+  font-family: verdana;
+  opacity: 0.9;
 }
-
 .navbar li a, .navbar .navbar-brand {
 	color: #d5d5d5 !important;
 }
@@ -293,10 +292,10 @@ left: 710px;
 		<!-- retrieving user details (form starts here) -->
 		<div class="row">
 			<div class="col-md-10 text-right" style="height: 50px;">
-				<font color="black" size="4"> Welcome </font>
+				<h3> Welcome </h3>
 			</div>
 			<div class="col-md-13" style="height: 50px;">
-				<label> <font color="black" size="4"> ${user.name} </font>
+				<label><h3> ${user.name} <h3>
 				</label>
 			</div>
 		</div>
@@ -304,8 +303,8 @@ left: 710px;
 		<div class="panel-heading">
 		<div class="row">
 			<div class="col-md-12 text-center" style="height: 50px;">
-				<label> <font size="5" color="black"> COMPLAINT FORM
-				</font></label>
+				<label> <h3> COMPLAINT FORM
+				</h3></label>
 			</div></div>
 		</div>
 		

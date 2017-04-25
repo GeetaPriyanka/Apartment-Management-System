@@ -10,5 +10,5 @@ public interface Occupied_apartmentDAO {
 	public List<Occupied_apartment> occupiedApartmentsList();
 	public void addOccupiedApartment(Occupied_apartment occuaptmnt);
 	public void deleteOccupiedApartment(String unit);
-	public void updateOccupiedLeaseEndDate(String unit, Date lease_end);
+	public void updateOccupiedLeaseEndDate(String unit, Date lease_end); 
 }

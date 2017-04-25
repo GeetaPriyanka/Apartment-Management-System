@@ -43,10 +43,11 @@
 
 h3, h4 {
   margin: 10px 0 30px 0;
-
-  font-size: 20px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
   color: #111;
 }
+
 
 .container {
   padding: 80px 120px;
@@ -160,12 +161,12 @@ font-size: 12px;
 }
 
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: 'oswald', sans-serif;
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 14px !important;
+  font-family: verdana;
   opacity: 0.9;
 }
 
@@ -269,8 +270,8 @@ textarea {
 
 <br>
 <div class="col-md-12">
-    <div class="modal-dialog" style="margin-bottom:0">
-        <div class="modal-content">
+    <div class="modal-dialog " style="margin-bottom:0">
+        <div class="modal-content ">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>
 						<br>

@@ -35,8 +35,8 @@ body {
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
-  font-size: 20px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
   color: #111;
 }
 
@@ -58,15 +58,17 @@ h3, h4 {
 
 .carousel-inner img {
   -webkit-filter: grayscale(0%);
-  width: 100%; /* Set width to 100% */
+  width: 120%; /* Set width to 100% */
   margin: auto;
-}
+  
+  }
+  
 
 .carousel-caption h3 {
   color: #000000 !important;
 }
 
-@media ( max-width : 600px) {
+@media ( max-width : 700px) {
   .carousel-caption {
     display: none;
     /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -144,12 +146,12 @@ h3, h4 {
 }
 
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: 'oswald', sans-serif;
   margin-bottom: 0;
   background-color: #2d2d30;
   border: 0;
-  font-size: 11px !important;
-  letter-spacing: 4px;
+  font-size: 14px !important;
+  font-family: verdana;
   opacity: 0.9;
 }
 
@@ -159,8 +161,14 @@ h3, h4 {
 
 .navbar-nav li a:hover {
   color: #fff !important;
+  background-color: black;
 }
-
+. navbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
 .navbar-nav li.active a {
   color: #fff !important;
   background-color: #29292c !important;
@@ -201,6 +209,31 @@ textarea {
   height: 500%;
   margin-right: 40px;
   margin-left:40px;
+}
+.footer-bottom{
+    background-color: black;
+ 
+    min-height: 50px;
+    width: 100%;
+}
+.copyright {
+    color: #fff;
+    line-height: 10px;
+    min-height: 30px;
+    padding: 3px 0;
+}
+.design {
+    color: #fff;
+    line-height: 10px;
+    min-height: 30px;
+    padding: 7px 0;
+    text-align: right;
+}
+.design a {
+    color: #fff;
+}
+.carousel-control {
+top: 40%;
 }
 </style>
 <body>
