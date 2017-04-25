@@ -239,7 +239,7 @@ jQuery (document).ready (function($) { $(".clickable-row
 				<li><a href="#apartment">Available Apartments</a></li>
 				<li><a href="#check_otp" onclick="showotp();">Check OTP</a></li>
 				<li><a href="#vacate_apt" onclick="return show();">Vacate Apartment	</a></li>
-				<li><a href="../app">Sign Out</a></li>
+				<li><a href="../app/">Sign Out</a></li>
 			</ul>
 		</div>
 	</div>
@@ -387,7 +387,15 @@ jQuery (document).ready (function($) { $(".clickable-row
 											<input type="text" class="form-control" name="vacate">
 										</div>
 									</div>
-
+									<label for="type"> <font size="4" color="black">Select the Apartment Number:</font></label> 
+									<select name="type">
+									
+									           <c:forEach items="${occ_apartment}" var="apt">
+													<option value="${apt.unit}">${apt.unit}</option>	
+												</c:forEach>
+											
+									</select>
+									
 									<div class="col-md-offset-3 col-md-6 text-center"
 										style="height: 75px;">
 										<button class="btn btn-sm btn-success" type="submit"
