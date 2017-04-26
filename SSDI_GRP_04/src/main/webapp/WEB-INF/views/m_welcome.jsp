@@ -373,37 +373,29 @@ jQuery (document).ready (function($) { $(".clickable-row
 							
 
 	<div id="vacate_apt" class="container text-center">
-							<form:form name="vacate" method="post" action="vacate.submit"
-								modelAttribute="deleteApartmentBean">
-									<div class="form-group">
-										<div class="col-md-12 text-center">
+		<form:form name="vacate" method="post" action="vacate.submit"
+			modelAttribute="deleteApartmentBean">
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-6 text-center">
+					<label for="type"> <font size="4" color="black">Select
+							the Apartment Number:</font></label> <select name="vacate">
 
-											<span class="label" id="description"> <font size="4"
-												color="black"> Enter the Unit number</font>
-											</span>
-										</div>
-										<div class="col-md-offset-3 col-md-6 text-center"
-											style="height: 75px;">
-											<input type="text" class="form-control" name="vacate">
-										</div>
-									</div>
-									<label for="type"> <font size="4" color="black">Select the Apartment Number:</font></label> 
-									<select name="type">
-									
-									           <c:forEach items="${occ_apartment}" var="apt">
-													<option value="${apt.unit}">${apt.unit}</option>	
-												</c:forEach>
-											
-									</select>
-									
-									<div class="col-md-offset-3 col-md-6 text-center"
-										style="height: 75px;">
-										<button class="btn btn-sm btn-success" type="submit"
-											id="submit">Submit</button>
-									</div>
-								
-							</form:form>
-							</div>
+						<c:forEach items="${occ_apartment}" var="apt">
+							<option value="${apt.unit}">${apt.unit}</option>
+						</c:forEach>
+
+					</select>
+				</div>
+			</div>
+
+
+			<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 75px;">
+				<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+			</div>
+
+		</form:form>
+	</div>
 							
 							<div id="check">
 																<div class="col-sm-4">

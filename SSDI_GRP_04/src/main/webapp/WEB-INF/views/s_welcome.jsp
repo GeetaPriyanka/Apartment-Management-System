@@ -233,7 +233,8 @@ textarea {
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#myPage">HOME</a></li>
+                  <li><a href="pastReq">Past Resolved Requests</a></li>
+          		  <li><a href="../">Sign Out</a></li>
         </ul>
       </div>
     </div>
