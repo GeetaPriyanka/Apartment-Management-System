@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

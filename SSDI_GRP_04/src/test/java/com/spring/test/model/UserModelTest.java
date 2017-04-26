@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.model;
 
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
