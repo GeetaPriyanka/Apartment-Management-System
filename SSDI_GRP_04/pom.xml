@@ -39,6 +39,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+	    <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>3.2.8.RELEASE</version>
+		</dependency>
+		
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -153,6 +159,13 @@
 		<artifactId>prettytime</artifactId>
 		<version>3.2.7.Final</version>
 	</dependency>
+	
+	<!-- Mailer -->
+	 <dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.3</version>
+    </dependency>
 	
 		<!-- Test -->
 		 <dependency>

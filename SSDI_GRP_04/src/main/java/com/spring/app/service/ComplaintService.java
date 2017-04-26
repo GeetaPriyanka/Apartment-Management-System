@@ -12,4 +12,5 @@ public interface ComplaintService {
 	public Complaint getComplaint(int id);
 	public void updateComplaint(Complaint c);
 	public List<ComplaintOut> SLAbreachedComplaints() ;
+	public List<ComplaintOut> ResolvedComplaints();
 }

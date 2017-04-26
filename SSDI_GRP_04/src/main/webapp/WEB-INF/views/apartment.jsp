@@ -205,6 +205,7 @@ textarea {
   margin-right: 40px;
   margin-left:40px;
 }
+
 </style>
 <body>
 
@@ -221,8 +222,9 @@ textarea {
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../app/">HOME</a></li>
           <li><a href="#apartment">Available Apartments</a></li>
-          <li><a href="login">Login</a></li>
+          <li><a href="/app/login">Login</a></li>
           <li><a href="signup">Sign Up!</a></li>
+          
         </ul>
       </div>
     </div>

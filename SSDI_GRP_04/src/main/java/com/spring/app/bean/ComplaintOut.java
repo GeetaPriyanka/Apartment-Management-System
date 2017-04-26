@@ -92,4 +92,12 @@ public class ComplaintOut implements Comparable{
 		
 	}
 
+	@Override
+	public String toString() {
+		return "ComplaintOut [complaint_number=" + complaint_number + ", unit=" + unit + ", type=" + type
+				+ ", severity=" + severity + ", description=" + description + ", time=" + time + ", comparable_time="
+				+ comparable_time + ", resolved=" + resolved + "]";
+	}
+
+	
 }

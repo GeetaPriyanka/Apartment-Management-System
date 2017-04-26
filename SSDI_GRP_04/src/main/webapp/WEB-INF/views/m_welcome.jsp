@@ -45,9 +45,11 @@ body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
 }
-.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a{
-text-shadow:0 0 0;
-font-weight:normal;
+
+.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a
+	{
+	text-shadow: 0 0 0;
+	font-weight: normal;
 }
 
 h3, h4 {
@@ -149,7 +151,6 @@ h3, h4 {
 	padding: 40px 50px;
 }
 
-
 .otp_back {
 	background-color: #FFFFFF;
 }
@@ -226,17 +227,19 @@ textarea {
 }
 
 .navbar-default .navbar-brand {
-  display: flex;
-  align-items: center;
-  padding: 5px;
+	display: flex;
+	align-items: center;
+	padding: 5px;
 }
+
 .navbar-brand img {
-  height: 500%;
-  margin-right: 40px;
-  margin-left:40px;
+	height: 500%;
+	margin-right: 40px;
+	margin-left: 40px;
 }
+
 jQuery (document ).ready (function ($) { $(".clickable-row
-	").click(function() { window.location = $(this).data("href");
+	 ").click (function() {window .location = $(this).data("href");
 	
 }
 );
@@ -244,14 +247,15 @@ jQuery (document ).ready (function ($) { $(".clickable-row
 );
 </style>
 <body>
-<body id="apartment" class="ui-bar-a" data-spy="scroll-spy" data-target=".navbar"
-	data-offset="50">
+<body id="apartment" class="ui-bar-a" data-spy="scroll-spy"
+	data-target=".navbar" data-offset="50">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span> <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
+				class="icon-bar"></span> <a class="navbar-brand" href="#myPage"><img
+				src="<c:url value="/resources/images/23.png"/>"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
@@ -259,7 +263,7 @@ jQuery (document ).ready (function ($) { $(".clickable-row
 				<li><a href="#check" onclick="showotp();">Check OTP</a></li>
 				<li><a href="#vacate_apt" onclick="show();">Vacate
 						Apartment </a></li>
-			 <li><a href="../app/login">Sign Out</a></li>
+				<li><a href="../app/login">Sign Out</a></li>
 
 
 			</ul>
@@ -409,31 +413,37 @@ function refreshPage(){
 			<div class="form-group">
 				<div class="col-md-12 text-center">
 
-					<span class="label" id="description"> <font size="4"
-						color="black"> Enter the Unit number</font>
-					</span>
+					<div class="col-md-offset-3 col-md-6 text-center">
+						<label for="type"> <font size="4" color="black">Select
+								the Apartment Number:</font></label> <select name="vacate">
+
+							<span class="label" id="description"> <font size="4"
+								color="black"> Enter the Unit number</font>
+						</span>
+					</div>
+					<div class="col-md-offset-3 col-md-6 text-center"
+						style="height: 75px;">
+						<input type="text" class="form-control" name="vacate">
+					</div>
 				</div>
-				<div class="col-md-offset-3 col-md-6 text-center"
-					style="height: 75px;">
-					<input type="text" class="form-control" name="vacate">
-				</div>
+				<label for="type"> <font size="4" color="black">Select
+						the Apartment Number:</font></label> <select name="type">
+
+					<c:forEach items="${occ_apartment}" var="apt">
+						<option value="${apt.unit}">${apt.unit}</option>
+					</c:forEach>
+					</select></div>
+</form:form>
+				</select>
 			</div>
-			<label for="type"> <font size="4" color="black">Select
-					the Apartment Number:</font></label>
-			<select name="type">
+	</div>
 
-				<c:forEach items="${occ_apartment}" var="apt">
-					<option value="${apt.unit}">${apt.unit}</option>
-				</c:forEach>
 
-			</select>
+	<div class="col-md-offset-3 col-md-6 text-center" style="height: 75px;">
+		<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+	</div>
 
-			<div class="col-md-offset-3 col-md-6 text-center"
-				style="height: 75px;">
-				<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
-			</div>
-
-		</form:form>
+	</form:form>
 	</div>
 
 	<div id="check">
@@ -450,19 +460,48 @@ function refreshPage(){
 						<th class="hidden-phone">Unit</th>
 					</tr>
 				</thead>
+		
+				<c:forEach items="${occ_apartment}" var="apt">
+					<option value="${apt.unit}">${apt.unit}</option>
+				</c:forEach>
 
-				<tbody>
+				</select>
 
-					<c:forEach items="${listotp}" var="otp">
-						<tr>
-							<td>${otp.otp}</td>
-							<td>${otp.unit}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+				<div class="col-md-offset-3 col-md-6 text-center"
+					style="height: 75px;">
+					<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+				</div>
+
+			
+				</div>
+
+				<div id="check">
+					<div class="col-sm-4">
+
+						<p>
+							<strong>Unused OTP</strong>
+						</p>
+						<br>
+						<table class="table table-striped table-hover table-users">
+							<thead>
+								<tr>
+									<th class="hidden-phone">OTP</th>
+									<th class="hidden-phone">Unit</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+								<c:forEach items="${listotp}" var="otp">
+									<tr>
+										<td>${otp.otp}</td>
+										<td>${otp.unit}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
 </body>
 </html>
 

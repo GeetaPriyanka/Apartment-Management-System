@@ -34,6 +34,7 @@ import com.spring.app.model.Otp;
 import com.spring.app.model.Renew_lease;
 import com.spring.app.service.ApartmentService;
 import com.spring.app.service.ComplaintService;
+import com.spring.app.service.Mailer;
 import com.spring.app.service.Occupied_apartmentService;
 import com.spring.app.service.OtpService;
 import com.spring.app.service.RenewLeaseService;
@@ -62,6 +63,9 @@ public class UserController {
 
 	@Autowired
 	public OtpService otpService;
+	
+	//@Autowired
+	//public Mailer mailer;
 
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
@@ -74,24 +78,22 @@ public class UserController {
 	public String loginPage(Model model) {
 		Loginbean loginBean=new Loginbean();
 		model.addAttribute("loginBean", loginBean);
+		//mailer.sendMail("uncc.apartments@gmail.com","hhundiwa@uncc.edu","Thanks", "Its working!");
 		return "login";
 	}
 
+	
 	@RequestMapping(value="/login.submit", method = RequestMethod.POST)
 	public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean")Loginbean loginBean) throws Exception
 	{
 		ModelAndView model= null;
-		
-			
-			UserDetailsBean userinfo = userService.validate(loginBean);
+			userinfo = userService.validate(loginBean);
 			if(userinfo!=null){
 				System.out.println("user name"+userinfo.getName() + userinfo.getType());
 				if(userinfo.getType()==2){
 					//resident login
 					userinfo.setLease_start(this.getLeaseStart(userinfo.getUnit()));
-					System.out.println("lease start"+userinfo.getLease_start());
 					userinfo.setLease_end(this.getLeaseEnd(userinfo.getUnit()));
-					System.out.println("lease start"+userinfo.getLease_end());
 					model = new ModelAndView("welcome");
 					model.addObject("user",userinfo);
 					return model;
@@ -140,7 +142,10 @@ public class UserController {
 	//when the complaint is lodged 
 	@RequestMapping(value="/complaint.submit", method = RequestMethod.POST)
 	public ModelAndView executeComplaint(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("ComplaintBean")ComplaintBean ComplaintBean )
-	{			
+	{	
+		
+		System.out.println("user" + userinfo.getEmail());
+		System.out.println("user" + userinfo.getUnit());
 		ComplaintBean.setUnit(userinfo.getUnit());
 		ModelAndView model= null;
 		this.complaintService.addComplaint(ComplaintBean);
@@ -384,6 +389,16 @@ public class UserController {
 	  		return model1;
 	    }
 	}
+			
+	//below method just opens the complaint page so that user can lodge the complaint
+	@RequestMapping(value = "/pastReq", method = RequestMethod.GET)
+	public ModelAndView gotopastComplaint(Model model) {
+		ModelAndView model1=null;
+		model1 = new ModelAndView("pastReq");
+		model1.addObject("listcomplaints",this.complaintService.ResolvedComplaints());
+		return model1;
+	}
 
+	
 }	
 
