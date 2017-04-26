@@ -33,7 +33,7 @@
         body {
   font: Lato, sans-serif;
   color: #777;
-    background: url(https://stengineer.com/wp-content/uploads/2016/07/Awesome-simple-interior-design-for-apartments-For-Apartment-Design-Interior-with-simple-interior-design-for-apartments-Apartment-Design-Easy.jpg) no-repeat center center fixed; 
+     background: url(http://www.maac.com/~/media/images/properties/north-carolina/charlotte/colonial-grand-at-university-center/slides/3cg-university-center---clubhouse.ashx) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -43,15 +43,12 @@
 
 h3, h4 {
   margin: 10px 0 30px 0;
-  letter-spacing: 10px;
-  font-size: 20px;
+font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 25px;
   color: #111;
 }
 
-.container {
-  padding: 80px 120px;
-  
-}
+
 
 .person {
   border: 10px solid transparent;
@@ -76,7 +73,7 @@ h3, h4 {
 }
 .panel{
 width:500px;
-
+align:center;
 }
 @media ( max-width : 600px) {
   .carousel-caption {
@@ -214,9 +211,10 @@ textarea {
   margin-right: 40px;
   margin-left:40px;
 }
+.btn{min-width:250px;}
 </style>
 	
-<title>Login</title>
+<title>Sign up</title>
 <script type="text/javascript">
 	  function validate(){
 		  var x = document.forms["SignupForm"]["firstname"].value;
@@ -260,7 +258,7 @@ textarea {
           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
             class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
+        <a class="navbar-brand" href="../app"><img src="<c:url value="/resources/images/23.png"/>"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -275,9 +273,9 @@ textarea {
 
 <br>
 <br>
-		<div class="container">
+		<div class="col-md-12" style="margin-top:120px">
 			<div class="row centered-form">
-				<div>
+				<div class="col-md-8 col-md-offset-3">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Sign Up!</h3>
@@ -288,21 +286,21 @@ textarea {
 								modelAttribute="signupBean">
 
 								<div class="row">
-									<div class="col-xs-10 col-sm-10 col-md-10">
+									<div class="col-xs-10 col-sm-10 col-md-12">
 										<div class="form-group">
 											<form:input type="text" id="firstname" name="firstname"
 												path="firstname" class="form-control input-sm"
 												placeholder="First Name" />
 										</div>
 									</div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
+									<div class="col-xs-10 col-sm-10 col-md-12">
 										<div class="form-group">
 											<form:input type="text" id="lastname" name="lastname"
 												path="lastname" class="form-control input-sm"
 												placeholder="Last Name" />
 										</div>
 									</div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
+									<div class="col-xs-10 col-sm-10 col-md-12">
 										<div class="form-group">
 											<form:input type="text" id="email" name="email" path="email"
 												class="form-control input-sm" placeholder="Email Address" />
@@ -310,14 +308,14 @@ textarea {
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-10 col-sm-10 col-md-10">
+									<div class="col-xs-10 col-sm-10 col-md-12">
 										<div class="form-group">
 											<form:input type="password" name="password" id="password"
 												path="password" class="form-control input-sm"
 												placeholder="Password" />
 										</div>
 									</div>
-									<div class="col-xs-10 col-sm-10 col-md-10">
+									<div class="col-xs-10 col-sm-10 col-md-12">
 										<div class="form-group">
 											<form:input type="text" id="otp" name="otp" path="otp"
 												class="form-control input-sm" placeholder="OTP" />
@@ -325,11 +323,10 @@ textarea {
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-10 col-sm-10 col-md-10">
-									<button type="submit" value="Register"
-										class="btn btn-info btn-block">Sign Up</button>
+								<div class="col-xs-4 col-sm-4 col-md-10" style="margin-left:90px;">
+									
 									<button type="submit" id="submit"
-										class="btn btn-info btn-block">Sign Up</button>
+										class="btn btn-info ">Sign Up</button>
 								</div>
 							</form:form>
 						</div>

@@ -45,12 +45,18 @@ body {
 	font: 400 15px/1.8 Lato, sans-serif;
 	color: #777;
 }
-h3, h4 {
-  margin: 10px 0 30px 0;
-font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size: 25px;
-  color: #111;
+.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a{
+text-shadow:0 0 0;
+font-weight:normal;
 }
+
+h3, h4 {
+	margin: 10px 0 30px 0;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 25px;
+	color: #111;
+}
+
 .container {
 	padding: 80px 120px;
 }
@@ -143,18 +149,17 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 	padding: 40px 50px;
 }
 
-.nav-tabs li a {
-	color: #777;
-}
 
 .otp_back {
 	background-color: #FFFFFF;
 }
-. navbar.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
+
+.
+navbar.affix {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10;
 }
 
 .otp {
@@ -171,13 +176,13 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .navbar {
-  font-family: 'oswald', sans-serif;
-  margin-bottom: 0;
-  background-color: #2d2d30;
-  border: 0;
-  font-size: 14px !important;
-  font-family: verdana;
-  opacity: 0.9;
+	font-family: 'oswald', sans-serif;
+	margin-bottom: 0;
+	background-color: #2d2d30;
+	border: 0;
+	font-size: 14px;
+	font-family: verdana;
+	opacity: 0.9;
 }
 
 .navbar li a, .navbar .navbar-brand {
@@ -220,7 +225,17 @@ textarea {
 	resize: none;
 }
 
-jQuery (document).ready (function($) { $(".clickable-row
+.navbar-default .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.navbar-brand img {
+  height: 500%;
+  margin-right: 40px;
+  margin-left:40px;
+}
+jQuery (document ).ready (function ($) { $(".clickable-row
 	").click(function() { window.location = $(this).data("href");
 	
 }
@@ -229,27 +244,29 @@ jQuery (document).ready (function($) { $(".clickable-row
 );
 </style>
 <body>
-<body id="apartment" data-spy="scroll-spy" data-target=".navbar"
+<body id="apartment" class="ui-bar-a" data-spy="scroll-spy" data-target=".navbar"
 	data-offset="50">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span> <a class="navbar-brand" href="#myPage">UNCC
-				Apartments</a>
+				class="icon-bar"></span> <a class="navbar-brand" href="#myPage"><img src="<c:url value="/resources/images/23.png"/>"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#apartment">Available Apartments</a></li>
 				<li><a href="#check" onclick="showotp();">Check OTP</a></li>
-				<li><a href="#vacate_apt" onclick="show();">Vacate Apartment	</a></li>
-				<li><a  onclick="refreshPage()">Sign Out</a></li>
+				<li><a href="#vacate_apt" onclick="show();">Vacate
+						Apartment </a></li>
+			 <li><a href="../app/login">Sign Out</a></li>
+
+
 			</ul>
 		</div>
 	</div>
 	</nav>
-<script>
+	<script>
 function refreshPage(){
     window.location.reload();
 } 
@@ -277,95 +294,93 @@ function refreshPage(){
 	<div class="container text-center">
 		<h3>Dashboard</h3>
 		<br>
-									<div class="col-sm-4">
-										<p>
-											<strong>Available Apartments</strong>
-										</p>
-										<br>
-										<table class="table table-striped table-hover table-users">
-											<thead>
-												<tr>
-												    <th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
-													<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
-													<th></th>
-												</tr>
+		<div class="col-sm-4">
+			<p>
+				<strong>Available Apartments</strong>
+			</p>
+			<br>
+			<table class="table table-striped table-hover table-users">
+				<thead>
+					<tr>
+						<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;Unit</th>
+						<th class="hidden-phone">&nbsp;&nbsp;&nbsp;&nbsp;BHK</th>
+						<th></th>
+					</tr>
+				<tbody>
+					<c:forEach items="${listapartment}" var="apartment">
+						<tr class='clickable-row' data-href='url://link-for-first-row/'>
+							<td>${apartment.unit}</td>
+							<td>${apartment.bhk}BHK</td>
+							<td>
+								<div data-role="main" class="ui-content">
+									<a href="#myPopup" data-rel="popup"
+										class="ui-btn ui-btn-inline ui-corner-all">Book</a>
 
-											<tbody>
-												<c:forEach items="${listapartment}" var="apartment">
-													<tr class='clickable-row'
-														data-href='url://link-for-first-row/'>
-														<td>${apartment.unit}</td>
-														<td>${apartment.bhk}BHK</td>
-														<td>
-															<div data-role="main" class="ui-content">
-																<a href="#myPopup" data-rel="popup"
-																	class="ui-btn ui-btn-inline ui-corner-all">Book</a>
+									<div data-role="popup" id="myPopup" class="ui-content"
+										style="min-width: 250px;">
+										<div class="panel-body">
+											<h3>Allocate Apartment</h3>
 
-																<div data-role="popup" id="myPopup" class="ui-content"
-																	style="min-width: 250px;">
-																	<div class="panel-body">
-																		<h3>Allocate Apartment</h3>
+											<form name="ComplaintForm" action="/app/allocates"
+												method="get">
+												<input type="date" name="start"> <input type="date"
+													name="end"> <input type="hidden" name="unit"
+													value="${apartment.unit}">
 
-																		<form name="ComplaintForm" action="/app/allocates"
-																			method="get">
-																			<input type="date" name="start"> <input
-																				type="date" name="end"> <input type="hidden"
-																				name="unit" value="${apartment.unit}">
-
-																			<button class="btn mini blue-stripe" type="submit"
-																				id="submit">Book</button>
-																		</form>
-																	</div>
-																</div>
-															</div>
-														</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-									&nbsp;&nbsp; &nbsp;&nbsp;
-									<div class="col-sm-4">
-										<p>
-											<strong>Complaints that breached SLA</strong>
-										</p>
-										<br>
-										<table class="table table-striped table-hover table-users">
-											<thead>
-												<tr>
-													<th class="hidden-phone">Type</th>
-													<th class="hidden-phone">Severity</th>
-													<th class="hidden-phone">Description</th>
-													<th class="hidden-phone">Time</th>
-													<th></th>
-												</tr>
-											</thead>
-
-											<tbody>
-
-												<c:forEach items="${listcomplaints}" var="complaintout">
-													<tr>
-														<td>${complaintout.type}</td>
-														<td>${complaintout.severity}</td>
-														<td>${complaintout.description}</td>
-														<td>${complaintout.time}</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-
-									</div>
-									<div class="col-sm-4">
-										<p>
-											<strong>Notifications</strong>
-										</p>
-										<br>
+												<button class="btn mini blue-stripe" type="submit"
+													id="submit">Book</button>
+											</form>
+										</div>
 									</div>
 								</div>
-				
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		&nbsp;&nbsp; &nbsp;&nbsp;
+		<div class="col-sm-4">
+			<p>
+				<strong>Complaints that breached SLA</strong>
+			</p>
+			<br>
+			<table class="table table-striped table-hover table-users">
+				<thead>
+					<tr>
+						<th class="hidden-phone">Type</th>
+						<th class="hidden-phone">Severity</th>
+						<th class="hidden-phone">Description</th>
+						<th class="hidden-phone">Time</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					<c:forEach items="${listcomplaints}" var="complaintout">
+						<tr>
+							<td>${complaintout.type}</td>
+							<td>${complaintout.severity}</td>
+							<td>${complaintout.description}</td>
+							<td>${complaintout.time}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="col-sm-4">
+			<p>
+				<strong>Notifications</strong>
+			</p>
+			<br>
+		</div>
+	</div>
 
 
-							<script type="text/javascript">
+
+	<script type="text/javascript">
 							 
 							 	
 							
@@ -386,60 +401,68 @@ function refreshPage(){
 									$('#check').get(0).scrollIntoView()
 								}
 							</script>
-							
+
 
 	<div id="vacate_apt" class="container text-center">
-							<form:form name="vacate" method="post" action="vacate.submit"
-								modelAttribute="deleteApartmentBean">
-									<div class="form-group">
-										<div class="col-md-12 text-center">
+		<form:form name="vacate" method="post" action="vacate.submit"
+			modelAttribute="deleteApartmentBean">
+			<div class="form-group">
+				<div class="col-md-12 text-center">
 
-											<span class="label" id="description"> <font size="4"
-												color="black"> Enter the Unit number</font>
-											</span>
-										</div>
-										<div class="col-md-offset-3 col-md-6 text-center"
-											style="height: 75px;">
-											<input type="text" class="form-control" name="vacate">
-										</div>
-									</div>
+					<span class="label" id="description"> <font size="4"
+						color="black"> Enter the Unit number</font>
+					</span>
+				</div>
+				<div class="col-md-offset-3 col-md-6 text-center"
+					style="height: 75px;">
+					<input type="text" class="form-control" name="vacate">
+				</div>
+			</div>
+			<label for="type"> <font size="4" color="black">Select
+					the Apartment Number:</font></label>
+			<select name="type">
 
-									<div class="col-md-offset-3 col-md-6 text-center"
-										style="height: 75px;">
-										<button class="btn btn-sm btn-success" type="submit"
-											id="submit">Submit</button>
-									</div>
-								
-							</form:form>
-							</div>
-							
-							<div id="check">
-																<div class="col-sm-4">
-							
-											<p>
-											<strong>Unused OTP</strong>
-										</p>
-										<br>
-										<table class="table table-striped table-hover table-users">
-											<thead>
-												<tr>
-													<th class="hidden-phone">OTP</th>
-													<th class="hidden-phone">Unit</th>
-												</tr>
-											</thead>
+				<c:forEach items="${occ_apartment}" var="apt">
+					<option value="${apt.unit}">${apt.unit}</option>
+				</c:forEach>
 
-											<tbody>
+			</select>
 
-												<c:forEach items="${listotp}" var="otp">
-													<tr>
-														<td>${otp.otp}</td>
-														<td>${otp.unit}</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										</div>
-							</div>
+			<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 75px;">
+				<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+			</div>
+
+		</form:form>
+	</div>
+
+	<div id="check">
+		<div class="col-sm-4">
+
+			<p>
+				<strong>Unused OTP</strong>
+			</p>
+			<br>
+			<table class="table table-striped table-hover table-users">
+				<thead>
+					<tr>
+						<th class="hidden-phone">OTP</th>
+						<th class="hidden-phone">Unit</th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					<c:forEach items="${listotp}" var="otp">
+						<tr>
+							<td>${otp.otp}</td>
+							<td>${otp.unit}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
 

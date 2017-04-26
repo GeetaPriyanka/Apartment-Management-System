@@ -29,6 +29,7 @@ import com.spring.app.bean.UserDetailsBean;
 import com.spring.app.bean.deleteApartmentBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
+import com.spring.app.model.Occupied_apartment;
 import com.spring.app.model.Otp;
 import com.spring.app.model.Renew_lease;
 import com.spring.app.service.ApartmentService;
@@ -111,6 +112,7 @@ public class UserController {
 					model.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
 					model.addObject("listapartment",this.getUnAllocatedApartments());
 					model.addObject("listotp",this.getAllOTP());
+					model.addObject("occ_apartment",this.allOccupiedApartment());
 					model.addObject("user",userinfo);
 					List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
 					leaseRequests=getLeaseRequest();
@@ -177,9 +179,10 @@ public class UserController {
 	@RequestMapping(value ="/allocates", params = {"start","end","unit"}, method = RequestMethod.GET)
 	public ModelAndView allocateapt(@RequestParam(value = "start") Date start,@RequestParam(value = "end") Date end,@RequestParam(value = "unit") String unit, HttpServletRequest request) throws Exception {
 		ModelAndView model3= null;
+		int flag=0;
 		System.out.println(" "+start+"  "+end+"  "+unit);
 		model3 = new ModelAndView("m_welcome");
-		int flag = this.checkOtp(unit);
+		flag = this.checkOtp(unit);
 		if(flag==-1){
 			Random r = new Random();
 			int randNo = r.nextInt(99999)+100000;
@@ -197,13 +200,22 @@ public class UserController {
 		}
 		model3.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
 		model3.addObject("listapartment",this.getUnAllocatedApartments());
-		model3.addObject("user",userinfo);
-		return model3;
+		model3.addObject("listotp",this.getAllOTP());
+		model3.addObject("occ_apartment",this.allOccupiedApartment());
+		List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
+		leaseRequests=getLeaseRequest();
+		if(leaseRequests!=null){
+			System.out.println("lease requests size "+leaseRequests.size());
+			model3.addObject("leaseRequests",leaseRequests);
+		}
+		return model3;	 
 	}
 
 	public int checkOtp(String unit) throws Exception{
 		List<Otp> list = this.otpService.listOtp();
-		
+		if(list==null){
+			return -1;
+		}
 		for (Otp otp : list) {
 			if(otp.getUnit().equals(unit)){
 				System.out.println("OTP already exists");
@@ -232,6 +244,10 @@ public class UserController {
 		return this.occService.getLeasendDate(unit);
 	}
 
+	public List<Occupied_apartment> allOccupiedApartment(){
+		return this.occService.occupiedApartmentsList();
+	}
+	
 	public float getBill(String unit){
 		return this.occService.getBill(unit);
 	}
@@ -350,6 +366,7 @@ public class UserController {
 			model1.addObject("allocateBean",new AllocateBean());
 			model1.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
 			model1.addObject("listapartment",this.getUnAllocatedApartments());
+			model1.addObject("occ_apartment",this.allOccupiedApartment());
 			model1.addObject("listotp",this.getAllOTP());
 			model1.addObject("user",userinfo);
 			List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();

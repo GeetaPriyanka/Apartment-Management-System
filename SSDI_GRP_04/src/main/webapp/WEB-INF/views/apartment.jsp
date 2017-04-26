@@ -152,7 +152,10 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-family: verdana;
   opacity: 0.9;
 }
-
+.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a{
+text-shadow:0 0 0;
+font-weight:normal;
+}
 .navbar li a, .navbar .navbar-brand {
   color: #d5d5d5 !important;
 }
@@ -205,7 +208,7 @@ textarea {
 </style>
 <body>
 
-<body id="apartment" data-spy="scroll" data-target=".navbar"
+<body id="apartment" class="ui-bar-a" data-spy="scroll" data-target=".navbar"
   data-offset="50">
 
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -216,7 +219,7 @@ textarea {
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="../app">HOME</a></li>
+          <li><a href="../app/">HOME</a></li>
           <li><a href="#apartment">Available Apartments</a></li>
           <li><a href="login">Login</a></li>
           <li><a href="signup">Sign Up!</a></li>

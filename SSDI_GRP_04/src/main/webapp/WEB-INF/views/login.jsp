@@ -270,7 +270,7 @@ textarea {
 
 <br>
 <div class="col-md-12">
-    <div class="modal-dialog " style="margin-bottom:0">
+    <div class="modal-dialog " style="margin-top:80px">
         <div class="modal-content ">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>
