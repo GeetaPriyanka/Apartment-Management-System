@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,6 +23,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.app.UserController;
 import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.RenewLeaseBean;
