@@ -174,7 +174,6 @@ public class ComplaintServiceImpl implements ComplaintService {
 					complaintOut.add(c);
 				}
 		}
-		Collections.sort(complaintOut);
 		return complaintOut;
 	}
 }

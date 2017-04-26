@@ -327,9 +327,7 @@ textarea {
 								</div>
 								<div class="col-xs-10 col-sm-10 col-md-10">
 									<button type="submit" value="Register"
-										class="btn btn-info btn-block">Sign Up</button>
-									<button type="submit" id="submit"
-										class="btn btn-info btn-block">Sign Up</button>
+										class="btn btn-info btn-block">Sign 4 Up</button>
 								</div>
 							</form:form>
 						</div>

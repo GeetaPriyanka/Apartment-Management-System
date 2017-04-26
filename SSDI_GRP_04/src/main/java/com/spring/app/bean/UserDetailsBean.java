@@ -2,6 +2,9 @@ package com.spring.app.bean;
 
 import java.sql.Date;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("session")
 public class UserDetailsBean {
 	private String name;
 	private String unit;
@@ -44,6 +47,11 @@ public class UserDetailsBean {
 	}
 	public void setLease_end(Date lease_end) {
 		this.lease_end = lease_end;
+	}
+	@Override
+	public String toString() {
+		return "UserDetailsBean [name=" + name + ", unit=" + unit + ", type=" + type + ", email=" + email
+				+ ", lease_start=" + lease_start + ", lease_end=" + lease_end + "]";
 	}
 	
 	

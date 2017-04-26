@@ -41,8 +41,10 @@
 				<beans:value>com.spring.app.model.Available_apartment</beans:value>
 				<beans:value>com.spring.app.model.Otp</beans:value>
 				<beans:value>com.spring.app.model.Occupied_apartment</beans:value>
-					<beans:value>com.spring.app.model.Complaint</beans:value>
-					<beans:value>com.spring.app.model.Renew_lease</beans:value>
+				<beans:value>com.spring.app.model.Complaint</beans:value>
+				<beans:value>com.spring.app.model.Renew_lease</beans:value>
+				<beans:value>com.spring.app.bean.ContactBean</beans:value>
+					
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -70,7 +72,7 @@
 		</beans:property>
 	</beans:bean> 
 	
-	<beans:bean id="mailMail" class="com.spring.app.service.Mailer">
+	<beans:bean id="mailMail" class="com.spring.mailer.contactMail">
 	<beans:property name="mailSender" ref="mailSender" />
 </beans:bean>
 
@@ -122,6 +124,14 @@
 	
 	<beans:bean id="occService" class="com.spring.app.service.Occupied_apartmentServiceImpl">
 		<beans:property name="occupied_apartmentDAO" ref="occupied_apartmentDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="contactDAO" class="com.spring.app.dao.ContactDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="contactService" class="com.spring.app.service.ContactServiceImpl">
+		<beans:property name="contacttDAO" ref="contactDAO" />
 	</beans:bean>
 
 	<context:component-scan base-package="com.spring.app" />
