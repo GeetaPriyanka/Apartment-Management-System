@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,23 +36,28 @@ import com.spring.app.model.Otp;
 import com.spring.app.model.Renew_lease;
 import com.spring.app.service.ApartmentService;
 import com.spring.app.service.ComplaintService;
-import com.spring.app.service.Mailer;
 import com.spring.app.service.Occupied_apartmentService;
 import com.spring.app.service.OtpService;
 import com.spring.app.service.RenewLeaseService;
 import com.spring.app.service.UserService;
+import com.spring.mailer.contactMail;
+
 
 @Controller
 @SessionAttributes("user")
+@Scope("session")
 public class UserController {
 
 	public UserService userService;
+	
 	UserDetailsBean userinfo;
 
 	@Autowired
 	private Occupied_apartmentService occService;
 
-
+	@Autowired
+	contactMail mailer;
+	
 	@Autowired
 	@Qualifier(value = "renewService")
 	private RenewLeaseService renewlease;
@@ -64,8 +71,7 @@ public class UserController {
 	@Autowired
 	public OtpService otpService;
 	
-	//@Autowired
-	//public Mailer mailer;
+
 
 	@Autowired(required=true)
 	@Qualifier(value = "userService")
@@ -88,6 +94,7 @@ public class UserController {
 	{
 		ModelAndView model= null;
 			userinfo = userService.validate(loginBean);
+			request.getSession().setAttribute("user_session", userinfo);
 			if(userinfo!=null){
 				System.out.println("user name"+userinfo.getName() + userinfo.getType());
 				if(userinfo.getType()==2){
@@ -143,13 +150,16 @@ public class UserController {
 	@RequestMapping(value="/complaint.submit", method = RequestMethod.POST)
 	public ModelAndView executeComplaint(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("ComplaintBean")ComplaintBean ComplaintBean )
 	{	
-		
+		UserDetailsBean userinfo1 = (UserDetailsBean)request.getSession().getAttribute("user_session");
+		System.out.println("1 : "+userinfo1.toString());
+		System.out.println("2 : "+userinfo.toString());
 		System.out.println("user" + userinfo.getEmail());
 		System.out.println("user" + userinfo.getUnit());
 		ComplaintBean.setUnit(userinfo.getUnit());
 		ModelAndView model= null;
 		this.complaintService.addComplaint(ComplaintBean);
 		model=new ModelAndView("welcome");
+		model.addObject("user",userinfo);
 		return model;	
 	}
 
@@ -310,11 +320,11 @@ public class UserController {
 			renew.setExtenion_period(renewleasereq.getExtension_period());
 			renew.setUnit(userinfo.getUnit());
 			this.renewlease.addRenewLease(renew);
+			mailer.sendMailRequest_submitted(renew.getEmail());
 			model2 = new ModelAndView("welcome");
 			model2.addObject("result","Thank you for submitting request");
 			return model2;
 		}else{
-
 			model2 = new ModelAndView("welcome");
 			model2.addObject("result","Request is already submitted, it is currently being processed");
 			return model2;
@@ -341,8 +351,7 @@ public class UserController {
 		if(type.equals("accept")){
 			updateLeaseStatus(name);
 			Date leaseEnd=getLeaseEnd(unit);
-			updateLeaseEndDate(unit, leaseEnd, month);
-			
+			updateLeaseEndDate(unit, leaseEnd, month);			
 		}else if(type.equals("reject")){
 			deleteLeaseReq(name);
 		}

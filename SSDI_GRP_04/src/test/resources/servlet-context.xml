@@ -106,6 +106,10 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 	
+	<beans:bean id="apartDAO" class="com.spring.test.controller.ApartmentControllerTest">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
 	<beans:bean id="apartmentService" class="com.spring.app.service.ApartmentServiceImpl">
 		<beans:property name="apartmentDAO" ref="apartmentDAO"></beans:property>
 	</beans:bean>

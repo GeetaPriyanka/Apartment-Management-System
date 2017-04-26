@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.app.bean.ContactBean;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.UserBean;
 import com.spring.app.model.Complaint;
@@ -28,9 +29,11 @@ import com.spring.app.model.Otp;
 import com.spring.app.model.User;
 import com.spring.app.service.ApartmentService;
 import com.spring.app.service.ComplaintService;
+import com.spring.app.service.ContactService;
 import com.spring.app.service.Occupied_apartmentService;
 import com.spring.app.service.OtpService;
 import com.spring.app.service.UserService;
+import com.spring.mailer.contactMail;
 
 /**
  * Handles requests for the application home page.
@@ -51,15 +54,22 @@ public class HomeController {
 	
 	@Autowired
 	ComplaintService complainService;
+	
 	@Autowired
 	Occupied_apartmentService occService;
 
+	@Autowired
+	ContactService contactService;
+	
+	@Autowired
+	contactMail mailer;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
+		ContactBean contactBean = new ContactBean();
+		model.addAttribute("ContactBean", contactBean);
 		return "home";
 	}
 	
@@ -103,17 +113,33 @@ public class HomeController {
 		
 	}
 	
-protected void DeleteApartment(String unit){
-	apartmentService.deleteAvailableApartment(unit);
-}
-
-protected void OccupyApartment(String unit,String email){
-	occService.addOccupiedApartment(unit,email);
-}
-
-protected void deleteOTP(int otp){
-	this.otpService.deleteOtp(otp);
-}
+	@RequestMapping(value="/contactReq", method = RequestMethod.POST)
+	public ModelAndView saveContact(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("contactBean")ContactBean contanctBean)
+	{
+		ModelAndView model= null;
+		ContactBean c = new ContactBean();
+		c.setComment(contanctBean.getComment());
+		c.setEmail(contanctBean.getEmail());
+		c.setName(contanctBean.getName());
+		mailer.sendMailContact(c.getEmail());
+		contactService.addOtp(c);
+		model = new ModelAndView("home");
+		return model;
+	}
+	
+			
+	
+	protected void DeleteApartment(String unit){
+		apartmentService.deleteAvailableApartment(unit);
+	}
+	
+	protected void OccupyApartment(String unit,String email){
+		occService.addOccupiedApartment(unit,email);
+	}
+	
+	protected void deleteOTP(int otp){
+		this.otpService.deleteOtp(otp);
+	}
 
 	
 }

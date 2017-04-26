@@ -323,10 +323,16 @@ textarea {
 										</div>
 									</div>
 								</div>
+
 								<div class="col-xs-4 col-sm-4 col-md-10" style="margin-left:90px;">
 									
 									<button type="submit" id="submit"
 										class="btn btn-info ">Sign Up</button>
+
+								<div class="col-xs-10 col-sm-10 col-md-10">
+									<button type="submit" value="Register"
+										class="btn btn-info btn-block">Sign 4 Up</button>
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 								</div>
 							</form:form>
 						</div>
@@ -334,39 +340,7 @@ textarea {
 				</div>
 			</div>
 		</div>
-		<!-- SignUp form code -->
-<!-- <div class="container text-center">
-		<p id="test"> </p>
-		<div id="Signup" class="login-box animated fadeInUp">
-			<form:form name="SignupForm" method="post" onsubmit="return validate();" action="signup.submit" modelAttribute="signupBean">
-				<div class="box-header">
-					<h2>Sign In</h2>
-				</div>
-				<form:label for="firstname" path="firstname">First Name</form:label>
-				<br/>
-				<form:input type="text" id="firstname" name="firstname" path="firstname"/>
-				<br/>
-				<form:label for="lastname" path="lastname">Last Name</form:label>
-				<br/>
-				<form:input type="text" id="lastname" name="lastname" path="lastname"/>
-				<br/>
-				<form:label for="email" path="email">Email</form:label>
-				<br/>
-				<form:input type="email" id="email" name="email" path="email"/>
-				<br/>
-				<form:label for="password" path="password">Password</form:label>
-				<br/>
-				<form:input type="password" id="password" name="password" path="password"/>
-				<br/>
-				<form:label for="otp" path="otp">OTP</form:label>
-				<br/>
-				<form:input type="text" id="otp" name="otp" path="otp"/>
-				<br/>
-				<label id="ErrorMessage">${loginErrorMessage }</label><br/>
-				<button type="submit" id="submit" >Sign Up</button>
-				<br/>
-			</form:form>
-		</div>-->
+	
 		<script type="text/javascript">
 		  document.getElementById('test').innerHTML=" verifying!!";
 		</script>
@@ -423,6 +397,6 @@ textarea {
 	  }
 	  </script>
 </div>
-</div>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.app.HomeController;
 import com.spring.app.bean.UserBean;
 import com.spring.app.model.Otp;
 import com.spring.app.model.User;

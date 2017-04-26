@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.Model;
 
+import com.spring.app.ApartmentController;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.service.ApartmentService;
 

@@ -1,4 +1,4 @@
-package com.spring.app;
+package com.spring.test.DAO;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;

@@ -267,14 +267,6 @@ textarea {
 				src="<c:url value="/resources/images/23.png"/>"></a>
 
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../app">HOME</a></li>
-				<li><a href="#apartment">Available Apartments</a></li>
-				<li><a href="login">Login</a></li>
-				<li><a href="signup">Sign Up!</a></li>
-			</ul>
-		</div>
 	</div>
 	</nav>
 
@@ -283,7 +275,7 @@ textarea {
 
 
 	<h3>Past Complaints</h3>
-	<c:if test="${!empty listApartments}">
+	<c:if test="${!empty listcomplaints}">
 
 		<table class="table table-striped table-hover table-users">
 			<thead>

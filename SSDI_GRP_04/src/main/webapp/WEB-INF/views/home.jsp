@@ -1,5 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page session="false" %>
 <html>
 <head>
 <title>UNCC Apartments</title>
@@ -342,30 +346,86 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
           hhundiwala@gmail.com
         </p>
       </div>
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="name" name="name"
-              placeholder="Name" type="text" required>
-          </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email"
-              placeholder="Email" type="email" required>
-          </div>
-        </div>
-        <textarea class="form-control" id="comments" name="comments"
-          placeholder="Comment" rows="5"></textarea>
-        <br>
-        <div class="row">
-          <div class="col-md-12 form-group">
-            <button class="btn pull-right" type="submit">Send</button>
-          </div>
-        </div>
+       <div class="col-md-8">
+       
+       <form name="SignupForm" method="post" onsubmit="return validate();" action="contactReq" modelAttribute="contactBean">
+  Name:
+  <input input type="text" id="name" name="name" path="name" placeholder="Name">
+   &nbsp; &nbsp; Email:
+  <input input type="email" id="email" name="email" path="email" placeholder="Email">
+  <br><br>
+  Comment:
+  <input type="text" id="comment" row="4" name="comment" class="form-control input-sm" path="comment" placeholder="Comment">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+       
+      
+       </div>
+      
+      
       </div>
+     
+    <%--   <div class="col-md-8">
+      		 <div class="col-md-8">
+      		<div class="panel-body">
+							<form:form name="SignupForm" method="post"
+								onsubmit="return validate();" action="contactReq"
+								modelAttribute="contactBean">
+
+								<div class="row">
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="name" name="name"
+												path="name" class="form-control input-sm"
+												placeholder="Name" />
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="email" id="email" name="email"
+												path="email" class="form-control input-sm"
+												placeholder="Email" />
+										</div>
+									</div>
+									<div class="col-xs-10 col-sm-10 col-md-10">
+										<div class="form-group">
+											<form:input type="text" id="comment" name="comment" path="comment"
+												class="form-control input-sm" placeholder="Comment" />
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-10 col-sm-10 col-md-10">
+									<button type="submit" value="Register"
+										class="btn btn-info btn-block">Sign 4 Up</button>
+								</div>
+							</form:form>
+						</div>
+					</div>
+	  </div>
+    
     </div>
     <br>
-  </div>
+  </div> --%>
   
 
 </body>
 </html>
+<!--       <div class="row"> -->
+<!--           <div class="col-sm-6 form-group"> -->
+<!--             <input class="form-control" id="name" name="name" -->
+<!--               placeholder="Name" type="text" required> -->
+<!--           </div> -->
+<!--           <div class="col-sm-6 form-group"> -->
+<!--             <input class="form-control" id="email" name="email" -->
+<!--               placeholder="Email" type="email" required> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <textarea class="form-control" id="comments" name="comments" -->
+<!--           placeholder="Comment" rows="5"></textarea> -->
+<!--         <br> -->
+<!--         <div class="row"> -->
+<!--           <div class="col-md-12 form-group"> -->
+<!--             <button class="btn pull-right" type="submit">Send</button> -->
+<!--           </div> -->
+<!--         </div> -->
