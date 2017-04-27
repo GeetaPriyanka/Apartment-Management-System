@@ -53,10 +53,11 @@ public class UserController {
 	UserDetailsBean userinfo;
 
 	@Autowired
+	contactMail mailer;
+	
+	@Autowired
 	private Occupied_apartmentService occService;
 
-	@Autowired
-	contactMail mailer;
 	
 	@Autowired
 	@Qualifier(value = "renewService")
@@ -279,7 +280,7 @@ public class UserController {
 
 	public List<Available_apartment> getUnAllocatedApartments(){
 		List<Otp> otpList = this.getAllOTP();
-		System.out.println("you are here in the inportant method != ");
+		
 
 		int flag=0;
 		List<Available_apartment> list = this.apartmentService.listApartments();
@@ -315,7 +316,7 @@ public class UserController {
 			}
 		}
 		if(flag==0){
-			renew.setApproval_status(true);
+			renew.setApproval_status(false);
 			renew.setEmail(userinfo.getEmail());
 			renew.setExtenion_period(renewleasereq.getExtension_period());
 			renew.setUnit(userinfo.getUnit());
@@ -344,17 +345,34 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/leaseApproval",method = RequestMethod.POST)
-	public void leaseApproval(@RequestParam("name") String name, @RequestParam("type") String type
+	public ModelAndView leaseApproval(@RequestParam("name") String name, @RequestParam("type") String type
 			,@RequestParam("unit") String unit,@RequestParam("month") int month){
-
+		ModelAndView model;
 		System.out.println("type: "+type);
 		if(type.equals("accept")){
 			updateLeaseStatus(name);
 			Date leaseEnd=getLeaseEnd(unit);
-			updateLeaseEndDate(unit, leaseEnd, month);			
+			updateLeaseEndDate(unit, leaseEnd, month);	
+			mailer.sendMailRequest_approved(name);
+			deleteLeaseReq(name);
 		}else if(type.equals("reject")){
 			deleteLeaseReq(name);
+			mailer.sendMailRequest_rejected(name);
 		}
+		model = new ModelAndView("m_welcome");
+		model.addObject("allocateBean",new AllocateBean());
+		model.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
+		model.addObject("listapartment",this.getUnAllocatedApartments());
+		model.addObject("listotp",this.getAllOTP());
+		model.addObject("occ_apartment",this.allOccupiedApartment());
+		model.addObject("user",userinfo);
+		List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
+		leaseRequests=getLeaseRequest();
+		if(leaseRequests!=null){
+			System.out.println("lease requests size "+leaseRequests.size());
+			model.addObject("leaseRequests",leaseRequests);
+		}
+		return model;
 	
 	}
 

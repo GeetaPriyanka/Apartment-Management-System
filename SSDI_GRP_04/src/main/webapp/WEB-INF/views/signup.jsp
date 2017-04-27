@@ -324,15 +324,11 @@ textarea {
 									</div>
 								</div>
 
-								<div class="col-xs-4 col-sm-4 col-md-10" style="margin-left:90px;">
-									
-									<button type="submit" id="submit"
-										class="btn btn-info ">Sign Up</button>
-
+	
 								<div class="col-xs-10 col-sm-10 col-md-10">
 									<button type="submit" value="Register"
 										class="btn btn-info btn-block">Sign 4 Up</button>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
+
 								</div>
 							</form:form>
 						</div>

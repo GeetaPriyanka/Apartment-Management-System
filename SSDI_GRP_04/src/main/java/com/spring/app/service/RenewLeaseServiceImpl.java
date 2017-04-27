@@ -1,5 +1,6 @@
 package com.spring.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,14 @@ public class RenewLeaseServiceImpl implements RenewLeaseService {
 	@Override
 	@Transactional
 	public List<Renew_lease> listRenewLease() {
-		
-		return renewLeaseDAO.listRenewLease();
+		List<Renew_lease> outlist = new ArrayList<Renew_lease>();
+		List<Renew_lease> list =  renewLeaseDAO.listRenewLease();
+		for (Renew_lease renew_lease : list) {
+			if(!renew_lease.isApproval_status()){
+				outlist.add(renew_lease);
+			}
+		}
+		return outlist;
 	}
 
 	@Override

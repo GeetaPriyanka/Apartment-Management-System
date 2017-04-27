@@ -246,6 +246,8 @@ jQuery (document ).ready (function ($) { $(".clickable-row
 }
 );
 </style>
+
+
 <body>
 <body id="apartment" class="ui-bar-a" data-spy="scroll-spy"
 	data-target=".navbar" data-offset="50">
@@ -379,6 +381,29 @@ function refreshPage(){
 				<strong>Notifications</strong>
 			</p>
 			<br>
+			<table class="table table-striped table-hover table-users">
+				<tbody>
+					<c:forEach items="${leaseRequests}" var="leaseReq">
+						<tr>
+							<td>${leaseReq.unit}</td>
+							<td>${leaseReq.extension_period}</td>
+							<form name="LeaseRequestViewForm"
+								action="/app/leaseApproval?name=${leaseReq.email}&unit=${leaseReq.unit}&month=${leaseReq.extension_period}&type=accept"
+								method="POST">
+							<td><button class="btn mini blue-stripe" type="submit"
+									id="approve" value="${leaseReq.email}">Approve</button></td>
+							</form>
+							<form name="LeaseRequestViewForm"
+								action="/app/leaseApproval?name=${leaseReq.email}&unit=${leaseReq.unit}&month=${leaseReq.extension_period}&type=reject"
+								method="POST">
+								<td><button class="btn mini blue-stripe" type="submit"
+										id="reject" value="${leaseReq.email}">Reject</button></td>
+							</form>
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -414,66 +439,22 @@ function refreshPage(){
 				<div class="col-md-12 text-center">
 
 					<div class="col-md-offset-3 col-md-6 text-center">
-						<label for="type"> <font size="4" color="black">Select
-								the Apartment Number:</font></label> <select name="vacate">
-
-							<span class="label" id="description"> <font size="4"
-								color="black"> Enter the Unit number</font>
-						</span>
+						<label for="type"> <font size="4" color="black">Select the Apartment Number:</font></label> 
 					</div>
-					<div class="col-md-offset-3 col-md-6 text-center"
-						style="height: 75px;">
-						<input type="text" class="form-control" name="vacate">
-					</div>
-				</div>
-				<label for="type"> <font size="4" color="black">Select
-						the Apartment Number:</font></label> <select name="type">
-
-					<c:forEach items="${occ_apartment}" var="apt">
-						<option value="${apt.unit}">${apt.unit}</option>
-					</c:forEach>
-					</select></div>
-</form:form>
-				</select>
+					<select name="vacate">
+					    <c:forEach items="${occ_apartment}" var="apt">
+							<option value="${apt.unit}">${apt.unit}</option>
+						</c:forEach>
+				   </select>
 			</div>
+			</div>
+			<div class="col-md-offset-3 col-md-6 text-center"
+				style="height: 75px;">
+				<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+			</div>
+		</form:form>
+
 	</div>
-
-
-	<div class="col-md-offset-3 col-md-6 text-center" style="height: 75px;">
-		<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
-	</div>
-
-
-	
-
-	<div id="check">
-		<div class="col-sm-4">
-
-			<p>
-				<strong>Unused OTP</strong>
-			</p>
-			<br>
-			<table class="table table-striped table-hover table-users">
-				<thead>
-					<tr>
-						<th class="hidden-phone">OTP</th>
-						<th class="hidden-phone">Unit</th>
-					</tr>
-				</thead>
-		
-				<c:forEach items="${occ_apartment}" var="apt">
-					<option value="${apt.unit}">${apt.unit}</option>
-				</c:forEach>
-
-				</select>
-
-				<div class="col-md-offset-3 col-md-6 text-center"
-					style="height: 75px;">
-					<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
-				</div>
-
-			
-				</div>
 
 				<div id="check">
 					<div class="col-sm-4">
