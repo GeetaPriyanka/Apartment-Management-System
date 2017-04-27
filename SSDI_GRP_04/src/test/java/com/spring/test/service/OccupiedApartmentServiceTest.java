@@ -2,9 +2,12 @@ package com.spring.test.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,70 +20,61 @@ import com.spring.app.service.Occupied_apartmentServiceImpl;
 
 public class OccupiedApartmentServiceTest {
 
-	private static Occupied_apartmentServiceImpl occaptServiceMock;
+	private static Occupied_apartmentServiceImpl oaImpl;
 	private static Occupied_apartmentDAO occaptDAO;
-	private static Occupied_apartment occapt1;
-	private static Occupied_apartment occapt2;
+	private static Occupied_apartment occapt;
 	
+
+
 	@BeforeClass
-	 public static void setUp(){
-		occaptServiceMock=mock(Occupied_apartmentServiceImpl.class);
-		
-		Date d=new Date(0);
-		
-		occapt1=new Occupied_apartment();
-		occapt2=new Occupied_apartment();
-		occapt1.setBill(45);
-		occapt1.setEmail("sneha@g");
-		occapt1.setLeaseEnd(d);
-		occapt1.setLeaseStart(d);
-		occapt1.setUnit("9505J");
+	public static void setUp(){
+		oaImpl=new Occupied_apartmentServiceImpl();
+		occaptDAO=mock(Occupied_apartmentDAO.class);
+		occapt=mock(Occupied_apartment.class);
+		oaImpl.setOccupied_apartmentDAO(occaptDAO);
+		Date d=new Date(0);		
+		occapt=new Occupied_apartment();
+		occapt.setBill(45);
+		occapt.setEmail("sneha@g");
+		occapt.setLeaseEnd(d);
+		occapt.setLeaseStart(d);
+		occapt.setUnit("9505J");
 
-		occapt2.setBill(35);
-		occapt2.setEmail("snehaV@g");
-		occapt2.setLeaseEnd(d);
-		occapt2.setLeaseStart(d);
-		occapt2.setUnit("9450");
-
-		when(occaptServiceMock.occupiedApartmentsList()).thenReturn(Arrays.asList(occapt1,occapt2));
 	}
 
 	@Test
 	public void testGetAllOccApt() {
-		List<Occupied_apartment> occlist=occaptServiceMock.occupiedApartmentsList();
-		assertEquals(2, occlist.size());
-		Occupied_apartment o=occlist.get(0);
-		assertEquals("9505J",o.getUnit());
+		List<Occupied_apartment> occlist=new ArrayList<Occupied_apartment>();
+		occlist.add(occapt);
+		when(occaptDAO.occupiedApartmentsList()).thenReturn(occlist);
+		assertEquals(1, occlist.size());
+		assertEquals("9505J",occapt.getUnit());
 	}
 
 	@Test
 	public void testAddOccApt() {
+		Date d=new Date(0);
 		Occupied_apartment occuaptmnt = new Occupied_apartment();
 		occuaptmnt.setEmail("ex@ex.ex");
 		occuaptmnt.setBill(1);
 		occuaptmnt.setUnit("Example unit");
-		occaptServiceMock.addOccupiedApartment(occuaptmnt.getUnit(),occuaptmnt.getEmail());
-		List<Occupied_apartment> occlist = occaptServiceMock.occupiedApartmentsList();
-		for(Occupied_apartment o : occlist){
-			if("Example unit".equals(o.getUnit())){
-				assertEquals("Example unit", o.getUnit());
-				assertEquals("ex@ex.ex", o.getEmail());
-				
-			}
-		}
-	}
-
-	@Test 
-	public void testGetLeaseStartDate(){
-		when(occaptServiceMock.getLeaseStaetDate(occapt1.getUnit())).thenReturn(occapt1.getLeaseStart());
-		Date f=occaptServiceMock.getLeaseStaetDate(occapt1.getUnit());
-		assertEquals(f,occapt1.getLeaseStart());
+		occuaptmnt.setLeaseEnd(d);
+		occuaptmnt.setLeaseStart(d);
+		oaImpl.addOccupiedApartment("ex@ex.ex", "Example unit");
+		assertEquals(occuaptmnt.getBill(),1,0);
 	}
 	
 	@Test 
+	public void testGetLeaseStartDate(){
+		when(oaImpl.getLeaseStaetDate(occapt.getUnit())).thenReturn(occapt.getLeaseStart());
+		Date f=oaImpl.getLeaseStaetDate(occapt.getUnit());
+		assertEquals(f,occapt.getLeaseStart());
+	}
+
+	@Test 
 	public void testGetLeaseEndDate(){
-		when(occaptServiceMock.getLeasendDate(occapt1.getUnit())).thenReturn(occapt1.getLeaseEnd());
-		Date f=occaptServiceMock.getLeasendDate(occapt1.getUnit());
-		assertEquals(f,occapt1.getLeaseEnd());
+		when(oaImpl.getLeasendDate(occapt.getUnit())).thenReturn(occapt.getLeaseEnd());
+		Date f=oaImpl.getLeasendDate(occapt.getUnit());
+		assertEquals(f,occapt.getLeaseEnd());
 	}
 }

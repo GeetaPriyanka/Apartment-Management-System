@@ -28,15 +28,18 @@ import com.spring.app.bean.ComplaintBean;
 import com.spring.app.bean.Loginbean;
 import com.spring.app.bean.RenewLeaseBean;
 import com.spring.app.bean.UserDetailsBean;
+import com.spring.app.bean.deleteApartmentBean;
 import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
 import com.spring.app.model.Occupied_apartment;
 import com.spring.app.model.Otp;
+import com.spring.app.model.Renew_lease;
 import com.spring.app.service.ApartmentService;
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
 import com.spring.app.service.OtpService;
 import com.spring.app.service.RenewLeaseService;
+import com.spring.app.service.RenewLeaseServiceImpl;
 import com.spring.app.service.UserService;
 
 
@@ -65,6 +68,8 @@ public class UserControllerTest {
 	ComplaintBean complaint;
 	Loginbean loginBean1;
 	Complaint complain;
+	RenewLeaseBean renew;
+	deleteApartmentBean deleteapt;
 	Otp otp;
 	
 
@@ -245,5 +250,133 @@ public class UserControllerTest {
 		assertTrue("welcome".equals(modelAndView.getViewName()));
 	}
 	
+	@Test
+	public void testgetUnAllocatedApartments(){
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.util.Date utilDate = cal.getTime();
+		java.sql.Date sqlDate = new Date(utilDate.getTime());
+		List<Otp> otpList=new ArrayList<Otp>();
+		otp=new Otp();
+		otp.setEndDate(sqlDate);
+		otp.setOtp(123);
+		otp.setStartDate(sqlDate);
+		otp.setUnit("9525F");
+		otpList.add(otp);
+		userController.otpService=otpService;
+		when(otpService.listOtp()).thenReturn(otpList);
+		
+		List<Available_apartment> apt_list = new ArrayList<Available_apartment>();
+		Available_apartment a=new Available_apartment();
+		a.setUnit("9545F");
+		a.setRent(900);
+		a.setBhk(1200);
+		a.setArea(1500);
+		apt_list.add(a);
+		userController.apartmentService=apartmentService;
+
+		when(apartmentService.listApartments()).thenReturn(apt_list);
+
+		List<Available_apartment> Sendlist = userController.getUnAllocatedApartments();
+		assertEquals(1,Sendlist.size());
+	}
+	
+
+	
+	@Test
+	public void testleaseApproval()
+	{
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.util.Date utilDate = cal.getTime();
+		java.sql.Date sqlDate = new Date(utilDate.getTime());
+		Occupied_apartment o=new Occupied_apartment();
+		o.setEmail("geeta@gmail.com");
+		o.setUnit("9523F");
+		o.setLeaseEnd(sqlDate);
+		
+	   Renew_lease rlease1=new Renew_lease();
+
+		rlease1.setUnit("9523F");
+		rlease1.setExtenion_period(9);
+		rlease1.setEmail("geeta@gmail.com");
+		rlease1.setApproval_status(true);
+	
+	   assertTrue(rlease1.isApproval_status());
+	   assertEquals(o.getLeaseEnd(),sqlDate);
+	   
+	}
+	
+	@Test
+	public void testexecutevacate()
+	{
+		deleteapt=new deleteApartmentBean();
+		deleteapt.setVacate("9523F");
+		ModelAndView modelAndView 
+		= userController.executevacate(mock(HttpServletRequest.class), mock(HttpServletResponse.class) , deleteapt);
+
+		assertTrue(null != modelAndView.getViewName());
+		assertTrue("m_welcome".equals(modelAndView.getViewName()));
+	}
+	
+	@Test
+	public void testgotopastComplaint()
+	{
+		ModelAndView modelAndView 
+		= userController.gotopastComplaint(mock(Model.class));
+		assertTrue(null != modelAndView.getViewName());
+		assertTrue("pastReq".equals(modelAndView.getViewName()));
+	}
+	@Test
+	public void testgetLeaseRequest()
+	{
+		Renew_lease rlease1=new Renew_lease();
+		Renew_lease rlease2=new Renew_lease();
+
+		rlease1.setUnit("9527");
+		rlease1.setExtenion_period(9);
+		rlease1.setEmail("abc@gmail.com");
+		rlease1.setApproval_status(true);
+		
+		rlease2.setUnit("9530");
+		rlease2.setExtenion_period(9);
+		rlease2.setEmail("def@gmail.com");
+		rlease2.setApproval_status(true);
+		
+		List<Renew_lease> listRenew = new ArrayList<Renew_lease>();
+		listRenew.add(rlease1);
+		listRenew.add(rlease2);
+		
+		when(userController.getLeaseRequest()).thenReturn(listRenew);
+	
+		List<Renew_lease> Renewlist=userController.getLeaseRequest();
+		assertEquals(2,Renewlist.size());
+	}
+	
+	@Test
+	public void testupdateLeaseStatus()
+	{
+		userController.updateLeaseStatus("geeta@gmail.com");
+		
+		Renew_lease rlease1=new Renew_lease();
+		rlease1.setApproval_status(true);
+		
+		assertTrue(rlease1.isApproval_status());
+
+	}
+	@Test
+	public void testdeleteLeaseReq()
+	{
+		Renew_lease rlease1=new Renew_lease();
+
+		rlease1.setUnit("9527");
+		rlease1.setExtenion_period(9);
+		rlease1.setEmail("abc@gmail.com");
+		rlease1.setApproval_status(true);
+		
+		renewlease=new RenewLeaseServiceImpl();
+		renewlease.deleteRenewLease("abc@gmail.com");
+		
+		assertEquals(null,rlease1.getEmail());
+
+	}
 }
 
