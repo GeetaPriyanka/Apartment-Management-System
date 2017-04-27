@@ -443,8 +443,8 @@ function refreshPage(){
 		<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
 	</div>
 
-	</form:form>
-	</div>
+
+	
 
 	<div id="check">
 		<div class="col-sm-4">
