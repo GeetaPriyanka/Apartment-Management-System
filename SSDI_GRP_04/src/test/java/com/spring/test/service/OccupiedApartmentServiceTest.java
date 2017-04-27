@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.spring.app.dao.Occupied_apartmentDAO;
+import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Occupied_apartment;
 import com.spring.app.service.Occupied_apartmentServiceImpl;
 
@@ -28,7 +29,7 @@ public class OccupiedApartmentServiceTest {
 
 	@BeforeClass
 	public static void setUp(){
-		oaImpl=new Occupied_apartmentServiceImpl();
+		oaImpl=mock( Occupied_apartmentServiceImpl.class);
 		occaptDAO=mock(Occupied_apartmentDAO.class);
 		occapt=mock(Occupied_apartment.class);
 		oaImpl.setOccupied_apartmentDAO(occaptDAO);
@@ -76,5 +77,32 @@ public class OccupiedApartmentServiceTest {
 		when(oaImpl.getLeasendDate(occapt.getUnit())).thenReturn(occapt.getLeaseEnd());
 		Date f=oaImpl.getLeasendDate(occapt.getUnit());
 		assertEquals(f,occapt.getLeaseEnd());
+	}
+	
+	@Test
+	public void testdeleteOccupiedApartment()
+	{
+		oaImpl.deleteOccupiedApartment("Example unit");
+		verify(oaImpl,times(1)).deleteOccupiedApartment("Example unit");
+
+	}
+	
+	@Test
+	public void testupdateLeaseEndDate()
+	{
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		java.util.Date utilDate = cal.getTime();
+		java.sql.Date sqlDate = new Date(utilDate.getTime());
+		occaptDAO.updateOccupiedLeaseEndDate("Example unit",sqlDate);
+		verify(occaptDAO,times(1)).updateOccupiedLeaseEndDate("Example unit",sqlDate);
+
+	}
+	
+	@Test
+	public void testgetBill()
+	{
+		oaImpl.getBill(occapt.getUnit());
+		verify(oaImpl,times(1)).getBill(occapt.getUnit());
+
 	}
 }
