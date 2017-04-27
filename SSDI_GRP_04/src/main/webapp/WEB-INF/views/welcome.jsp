@@ -26,6 +26,7 @@
 body {
   font: 400 15px/1.8 Lato, sans-serif;
   color: #777;
+
 }
 
 h3, h4 {
@@ -252,6 +253,8 @@ font-size:18px;
       function hide1(){
     	  $("1").hide();
       }
+
+  
       </script>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
@@ -265,7 +268,7 @@ font-size:18px;
 						<li><a href="#">Javascript</a></li>
 					</ul>
 				</li>
-            <li><a href="../app">Sign Out</a></li>
+            <li><a href="../app/login">Sign Out</a></li>
         </ul>
       </div>
     </div>
@@ -292,7 +295,7 @@ font-size:18px;
  </div>
 <%--  <h5>Welcome ${user.name},${user.lease_start},${user.lease_end},${user.unit},${user.email} </h5> --%>
  <br>
-		<div class="container text-center">
+		<div class="container text-center" id="nter">
 			<div class="row">
 				<div class="col-sm-4">
 					<p>
@@ -349,6 +352,7 @@ font-size:18px;
 					<label for="renewlease" class="radio-inline"> <input
 						type="radio" name="extension_period" value="3"> <font size="4"
 						color="black"> 3 Months</font>
+						
 					</label> <label for="renewlease" class="radio-inline"> <input
 						type="radio" name="extension_period" value="9"> <font size="4"
 						color="black"> 9 Months </font>
@@ -357,8 +361,8 @@ font-size:18px;
 						color="black"> 12 Months </font>
 					</label>
 				</div>
-                        
-                         <button type="submit" name=" class="btn btn-hot text-uppercase text-center" >Request</a></button>
+                        <div style="padding:20px;" >
+                         <button type="submit" name=" class="btn btn-hot text-uppercase text-center" >Request</a></button></div>
   </div></form:form>
 <script>
 function submitForm() {

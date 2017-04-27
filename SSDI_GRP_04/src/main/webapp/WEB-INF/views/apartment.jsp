@@ -58,17 +58,15 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
 
 .carousel-inner img {
   -webkit-filter: grayscale(0%);
-  width: 120%; /* Set width to 100% */
+  width: 100%; /* Set width to 100% */
   margin: auto;
-  
-  }
-  
+}
 
 .carousel-caption h3 {
   color: #000000 !important;
 }
 
-@media ( max-width : 700px) {
+@media ( max-width : 600px) {
   .carousel-caption {
     display: none;
     /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -154,21 +152,18 @@ font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-family: verdana;
   opacity: 0.9;
 }
-
+.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a{
+text-shadow:0 0 0;
+font-weight:normal;
+}
 .navbar li a, .navbar .navbar-brand {
   color: #d5d5d5 !important;
 }
 
 .navbar-nav li a:hover {
   color: #fff !important;
-  background-color: black;
 }
-. navbar.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
-}
+
 .navbar-nav li.active a {
   color: #fff !important;
   background-color: #29292c !important;
@@ -210,35 +205,11 @@ textarea {
   margin-right: 40px;
   margin-left:40px;
 }
-.footer-bottom{
-    background-color: black;
- 
-    min-height: 50px;
-    width: 100%;
-}
-.copyright {
-    color: #fff;
-    line-height: 10px;
-    min-height: 30px;
-    padding: 3px 0;
-}
-.design {
-    color: #fff;
-    line-height: 10px;
-    min-height: 30px;
-    padding: 7px 0;
-    text-align: right;
-}
-.design a {
-    color: #fff;
-}
-.carousel-control {
-top: 40%;
-}
+
 </style>
 <body>
 
-<body id="apartment" data-spy="scroll" data-target=".navbar"
+<body id="apartment" class="ui-bar-a" data-spy="scroll" data-target=".navbar"
   data-offset="50">
 
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -249,10 +220,11 @@ top: 40%;
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="../app">HOME</a></li>
+          <li><a href="../app/">HOME</a></li>
           <li><a href="#apartment">Available Apartments</a></li>
-          <li><a href="login">Login</a></li>
+          <li><a href="/app/login">Login</a></li>
           <li><a href="signup">Sign Up!</a></li>
+          
         </ul>
       </div>
     </div>
