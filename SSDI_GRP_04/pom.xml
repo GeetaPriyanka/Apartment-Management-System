@@ -45,6 +45,12 @@
 		    <version>3.2.8.RELEASE</version>
 		</dependency>
 		
+		<dependency>
+  <groupId>org.aspectj</groupId>
+  <artifactId>aspectjweaver</artifactId>
+  <version>1.8.9</version>
+</dependency>
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -137,6 +143,11 @@
 				
 		<!-- Servlet -->
 		<dependency>
+     <groupId>javax.servlet</groupId>
+     <artifactId>javax.servlet-api</artifactId>
+     <version>3.0.1</version>
+</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
@@ -176,7 +187,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency> 
 		
