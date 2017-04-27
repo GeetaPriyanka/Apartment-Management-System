@@ -11,54 +11,78 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Repository;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.spring.app.dao.ApartmentDAOImpl;
 import com.spring.app.dao.ComplaintDAO;
 import com.spring.app.dao.ComplaintDAOImpl;
+import com.spring.app.model.Available_apartment;
 import com.spring.app.model.Complaint;
 
+
+@WebAppConfiguration
+@ContextConfiguration(locations = "classpath:servlet-apt-context.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@EnableAutoConfiguration
 public class ComplaintDAOImplTest {
 	
-	private static Complaint complaintMock,complaintMock2;
-
+	@Autowired
+	private ComplaintDAOImpl complaintDAO;
 	
-	private static SessionFactory sessionFactory;
-	private static Session session1,session2;
-	private static ComplaintDAOImpl cdaoMock,cdaoMock2;
+	@Autowired
+	private SessionFactory sessionFactory;
 	
+	@Test
+	@Rollback(true)
+	public void saveApartmentDAO() {
 	
-	public void setSessionFactory(SessionFactory sf){
-		ComplaintDAOImplTest.sessionFactory = sf;
-	}
-	
-
-	@BeforeClass
-	public static void setUp()
-	{
-		complaintMock = mock(Complaint.class);
-		complaintMock.setUnit("9527");
-		complaintMock.setType("Plumbing");
-		complaintMock.setSeverity(2);
-		complaintMock.setTime(System.currentTimeMillis());
-		complaintMock.setDescription("Desc of plumbing");
+		Complaint complaint=new Complaint();
+		complaint.setType("test");
+		complaint.setSeverity(1);
+		complaint.setDescription("test");
+		complaint.setTime(System.currentTimeMillis());
+		complaint.setUnit("111");
+		complaint.setResolved(0);
+		complaint.setResolved_by(null);
+		complaint.setResolved_time(0);
+		complaintDAO.addComplaint(complaint);
 		
-		cdaoMock=mock(ComplaintDAOImpl.class);
-		when(cdaoMock.listComplaint()).thenReturn(Arrays.asList(complaintMock));
+		
+		 Session session = sessionFactory.openSession();
+		 Complaint a1 = (Complaint) session.get(Complaint.class,10);
+		 assertEquals("pass",10,a1.getComplaint_number());
+	     assertEquals("pass","test",a1.getDescription());
+	     assertEquals("pass","test",a1.getType());
+	     session.close();
+         
 	}
-	
-	@Test
-	public void mockaddComplaint()
-	{
-		cdaoMock=mock(ComplaintDAOImpl.class);
-		cdaoMock.addComplaint(complaintMock);
-        assertNotNull(complaintMock.getComplaint_number());
 
-	}
-	
 	@Test
-	public void  listComplaintTest() {
-		// TODO Auto-generated method stub
-		List<Complaint> complaintlist=cdaoMock.listComplaint();
-		assertEquals(1,complaintlist.size());
-		}
+	@Rollback(true)
+	public void listDAO() {
+	
+		Complaint complaint=new Complaint();
+		complaint.setType("test");
+		complaint.setSeverity(1);
+		complaint.setDescription("test");
+		complaint.setTime(System.currentTimeMillis());
+		complaint.setUnit("111");
+		complaint.setResolved(0);
+		complaint.setResolved_by(null);
+		complaint.setResolved_time(0);
+		complaintDAO.addComplaint(complaint);
+		
+		List<Complaint> comp = complaintDAO.listComplaint();
+		 assertEquals("pass",111,comp.get(comp.size()-1).getUnit());
+	     assertEquals("pass","test",comp.get(comp.size()-1).getDescription());
+ 
+	}
+
 }

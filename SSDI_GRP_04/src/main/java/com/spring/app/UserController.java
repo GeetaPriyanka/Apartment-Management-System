@@ -63,7 +63,7 @@ public class UserController {
 	private RenewLeaseService renewlease;
 
 	@Autowired
-	private ApartmentService apartmentService;
+	public ApartmentService apartmentService;
 
 	@Autowired
 	private ComplaintService complaintService;
