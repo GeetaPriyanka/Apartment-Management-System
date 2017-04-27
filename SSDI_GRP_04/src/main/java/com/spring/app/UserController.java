@@ -344,7 +344,7 @@ public class UserController {
 	public void deleteLeaseReq(String email){
 		 this.renewlease.deleteRenewLease(email);
 	}
-
+//test
 	@RequestMapping(value = "/leaseApproval",method = RequestMethod.POST)
 	public ModelAndView leaseApproval(@RequestParam("name") String name, @RequestParam("type") String type
 			,@RequestParam("unit") String unit,@RequestParam("month") int month){
