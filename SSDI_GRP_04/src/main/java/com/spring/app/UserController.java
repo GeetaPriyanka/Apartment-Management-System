@@ -59,12 +59,13 @@ public class UserController {
 	private Occupied_apartmentService occService;
 
 	
+	
 	@Autowired
 	@Qualifier(value = "renewService")
 	private RenewLeaseService renewlease;
 
 	@Autowired
-	private ApartmentService apartmentService;
+	public ApartmentService apartmentService;
 
 	@Autowired
 	private ComplaintService complaintService;
@@ -280,7 +281,7 @@ public class UserController {
 
 	public List<Available_apartment> getUnAllocatedApartments(){
 		List<Otp> otpList = this.getAllOTP();
-		
+		System.out.println("you are here in the inportant method != ");
 
 		int flag=0;
 		List<Available_apartment> list = this.apartmentService.listApartments();
