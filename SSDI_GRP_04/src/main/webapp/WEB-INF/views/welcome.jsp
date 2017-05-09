@@ -297,7 +297,7 @@ font-size:18px;
  <br>
 		<div class="container text-center" id="nter">
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<p>
 						<strong><font  size="4">Maintenance Request</font></strong>
 					</p>
@@ -319,7 +319,7 @@ font-size:18px;
 					$(renew_lease).show();
 				}
 				</script>
-				<div class="col-sm-4" >
+				<div class="col-sm-6" >
 					<p>
 						<strong><font  size="4">Renew Lease</font></strong>
 					</p>
@@ -327,14 +327,6 @@ font-size:18px;
 					<input type="image"  src="<c:url value="/resources/images/ren.png"/>" width="60%" onclick="show();hide1()"/></a>
 						<br>
 							<p> Like our Apartments?<br><br> Extend your stay by lodging Lease renewal request. </p>
-				</div>
-				<div class="col-sm-4">
-					<p>
-						<strong><font  size="4">Billing</font></strong>
-					</p>
-					<br> <input type="image" src="<c:url value="/resources/images/billnew.png"/>" width="60%"  id="saveForm" />
-							<br>
-							<p> Your Billing!<br><br> Take a look at your Apartment's billing. </p>
 				</div>
 			</div>
 		</div>

@@ -30,15 +30,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-=======
-<link rel="stylesheet"
-	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script
-	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> 
+
 </head>
->>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 <style>
 body {
 	font: 400 15px/1.8 Lato, sans-serif;
@@ -377,7 +370,7 @@ function refreshPage(){
 		</div>
 		<div class="col-sm-4">
 			<p>
-				<strong>Notifications</strong>
+				<strong>Lease Aproval Request</strong>
 			</p>
 			<br>
 			<table class="table table-striped table-hover table-users">
