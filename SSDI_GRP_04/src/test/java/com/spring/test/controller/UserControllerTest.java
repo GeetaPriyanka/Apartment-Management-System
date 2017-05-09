@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
@@ -35,8 +37,10 @@ import com.spring.app.model.Occupied_apartment;
 import com.spring.app.model.Otp;
 import com.spring.app.model.Renew_lease;
 import com.spring.app.service.ApartmentService;
+import com.spring.app.service.ApartmentServiceImpl;
 import com.spring.app.service.ComplaintService;
 import com.spring.app.service.Occupied_apartmentService;
+import com.spring.app.service.Occupied_apartmentServiceImpl;
 import com.spring.app.service.OtpService;
 import com.spring.app.service.RenewLeaseService;
 import com.spring.app.service.RenewLeaseServiceImpl;
@@ -308,10 +312,27 @@ public class UserControllerTest {
 	@Test
 	public void testexecutevacate()
 	{
+		List<Available_apartment> apt_list = new ArrayList<Available_apartment>();
+		Available_apartment a=new Available_apartment();
+		a.setUnit("9523F");
+		a.setRent(900);
+		a.setBhk(1200);
+		a.setArea(1500);
+		apt_list.add(a);
+		String d=a.getUnit();
+		occService=mock( Occupied_apartmentService.class);
+		apartmentService=mock( ApartmentService.class);
 		deleteapt=new deleteApartmentBean();
 		deleteapt.setVacate("9523F");
 		ModelAndView modelAndView 
 		= userController.executevacate(mock(HttpServletRequest.class), mock(HttpServletResponse.class) , deleteapt);
+		
+		assertEquals(d,deleteapt.getVacate());
+		occService.deleteOccupiedApartment(d);
+		apartmentService.addAvailableApartment(d);
+		
+		verify(occService,times(1)).deleteOccupiedApartment(a.getUnit());
+		verify(apartmentService,times(1)).addAvailableApartment(a.getUnit());
 
 		assertTrue(null != modelAndView.getViewName());
 		assertTrue("m_welcome".equals(modelAndView.getViewName()));
