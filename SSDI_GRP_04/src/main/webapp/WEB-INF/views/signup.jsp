@@ -115,7 +115,10 @@ align:center;
   margin-top: 15px;
   color: #555;
 }
-
+p.error{
+color:red;
+font-size:18px;
+}
 .btn {
   padding: 10px 20px;
   background-color: #333;
@@ -279,6 +282,9 @@ textarea {
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Sign Up!</h3>
+							<c:if test="${!empty SignUpmessage}">
+							<p class="error">${SignUpmessage}</p>
+						</c:if>
 						</div>
 						<div class="panel-body">
 							<form:form name="SignupForm" method="post"

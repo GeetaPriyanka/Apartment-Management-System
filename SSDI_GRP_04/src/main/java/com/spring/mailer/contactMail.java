@@ -18,6 +18,13 @@ public class contactMail{
 		message.setSubject("Comment Submitted");
 		message.setText("Thank you for your interest in UNCC Apartments. \n Finding a new home is important and sometimes challenging decision. Please let us know if you have any particular querry! We will get in touch with you soon.\n Regards,\nThe team of UNCC Apartments");
 		mailSender.send(message);
+		
+		SimpleMailMessage message1 = new SimpleMailMessage();
+		message1.setFrom("uncc.apartments@gmail.com");
+		message1.setTo("uncc.apartments@gmail.com");
+		message1.setSubject("A new potential customer is here!");
+		message1.setText("Hello Manager,\n A new customer enquired about our apartment, lets get in touch with them!\n Email ID:"+to + "\n\nThanks");
+		mailSender.send(message1);
 	}
 	
 	public void sendMailRequest_submitted(String to) {
