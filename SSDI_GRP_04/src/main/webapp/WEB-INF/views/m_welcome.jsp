@@ -26,20 +26,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script
-	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>
 <style>
 body {
 	font: 400 15px/1.8 Lato, sans-serif;
@@ -318,27 +308,27 @@ function refreshPage(){
 							<td>${apartment.unit}</td>
 							<td>${apartment.bhk}BHK</td>
 							<td>
-								<div data-role="main" class="ui-content">
-									<a href="#myPopup" data-rel="popup"
-										class="ui-btn ui-btn-inline ui-corner-all">Book</a>
+<!-- 								<div data-role="main" class="ui-content"> -->
+<!-- 									<a href="#myPopup" data-rel="popup" -->
+<!-- 										class="ui-btn ui-btn-inline ui-corner-all">Book</a> -->
 
-									<div data-role="popup" id="myPopup" class="ui-content"
-										style="min-width: 250px;">
-										<div class="panel-body">
-											<h3>Allocate Apartment</h3>
+<!-- 									<div data-role="popup" id="myPopup" class="ui-content" -->
+<!-- 										style="min-width: 250px;"> -->
+<!-- 										<div class="panel-body"> -->
+<!-- 											<h3>Allocate Apartment</h3> -->
 
-											<form name="ComplaintForm" action="/app/allocates"
+											<form name="ComplaintForm" action="/app/book"
 												method="get">
-												<input type="date" name="start"> <input type="date"
-													name="end"> <input type="hidden" name="unit"
+												<%-- <input type="date" name="start"> <input type="date"
+													name="end"> --%><input type="hidden" name="unit"
 													value="${apartment.unit}">
-
+ 
 												<button class="btn mini blue-stripe" type="submit"
 													id="submit">Book</button>
 											</form>
-										</div>
-									</div>
-								</div>
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							</td>
 						</tr>
 					</c:forEach>

@@ -102,8 +102,7 @@ public class UserControllerTest {
 
 		List<Available_apartment> aList = new ArrayList<Available_apartment>(); 
 		when(apartmentService.listApartments()).thenReturn(aList);
-		ModelAndView modelAndView 
-		= userController.executeLogin(mock(HttpServletRequest.class), mock(HttpServletResponse.class), loginBean1);
+		ModelAndView modelAndView = userController.executeLogin(mock(HttpServletRequest.class), mock(HttpServletResponse.class), loginBean1);
 
 		assertTrue(null != modelAndView.getViewName());
 		assertTrue("welcome".equals(modelAndView.getViewName()));
@@ -378,5 +377,6 @@ public class UserControllerTest {
 		assertEquals(null,rlease1.getEmail());
 
 	}
+	
 }
 

@@ -198,7 +198,7 @@ public class UserController {
 		ModelAndView model3= null;
 		int flag=0;
 		System.out.println(" "+start+"  "+end+"  "+unit);
-		model3 = new ModelAndView("m_welcome");
+		model3 = new ModelAndView("otp");
 		flag = this.checkOtp(unit);
 		if(flag==-1){
 			Random r = new Random();
@@ -212,9 +212,32 @@ public class UserController {
 			this.otpService.addOtp(o);
 			String op = "OTP generated for apartment "+ unit + " is :"+ randNo;
 			model3.addObject("otp", randNo);
+			model3.addObject("start", start);
+			model3.addObject("end", end);
+			model3.addObject("apartment", unit);
+			
 		}else{
-			model3.addObject("otp", "OTP generated for apartment "+ unit + " is :"+ flag);
+			model3.addObject("otp", "OTP is already generated for apartment "+ unit + " is :"+ flag);
+			model3.addObject("apartment", unit);
 		}
+//		model3.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
+//		model3.addObject("listapartment",this.getUnAllocatedApartments());
+//		model3.addObject("listotp",this.getAllOTP());
+//		model3.addObject("occ_apartment",this.allOccupiedApartment());
+//		List<Renew_lease> leaseRequests=new ArrayList<Renew_lease>();
+//		leaseRequests=getLeaseRequest();
+//		if(leaseRequests!=null){
+//			System.out.println("lease requests size "+leaseRequests.size());
+//			model3.addObject("leaseRequests",leaseRequests);
+//		}
+		return model3;	 
+	}
+	
+	
+	@RequestMapping(value ="/manager_home", method = RequestMethod.GET)
+	public ModelAndView load_manager(HttpServletRequest request) throws Exception {
+		ModelAndView model3= null;
+		model3 = new ModelAndView("m_welcome");
 		model3.addObject("listcomplaints",this.complaintService.SLAbreachedComplaints());
 		model3.addObject("listapartment",this.getUnAllocatedApartments());
 		model3.addObject("listotp",this.getAllOTP());
@@ -225,6 +248,14 @@ public class UserController {
 			System.out.println("lease requests size "+leaseRequests.size());
 			model3.addObject("leaseRequests",leaseRequests);
 		}
+		return model3;	 
+	}
+	
+	@RequestMapping(value ="/book",params = {"unit"}, method = RequestMethod.GET)
+	public ModelAndView book(@RequestParam(value = "unit") String unit,HttpServletRequest request) throws Exception {
+		ModelAndView model3= null;
+		model3 = new ModelAndView("book");
+		model3.addObject("unit",unit);
 		return model3;	 
 	}
 

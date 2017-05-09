@@ -14,6 +14,19 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
+	
+	<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws</artifactId>
+            <version>1.2.0.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -39,6 +52,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- For AWS -->
+		 <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-aws</artifactId>
+    </dependency>
+  
+  
 	    <dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context-support</artifactId>

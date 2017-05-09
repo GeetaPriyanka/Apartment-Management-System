@@ -339,11 +339,11 @@ With such breathtaking views, Ashford Green is the ideal off-campus apartments n
         </p>
         <p>
           <span class="glyphicon glyphicon-phone"></span>Phone: +00
-          1515151515
+          15-APART
         </p>
         <p>
           <span class="glyphicon glyphicon-envelope"></span>Email:
-          hhundiwala@gmail.com
+          uncc.apartments@gmail.com
         </p>
       </div>
        <div class="col-md-8">
