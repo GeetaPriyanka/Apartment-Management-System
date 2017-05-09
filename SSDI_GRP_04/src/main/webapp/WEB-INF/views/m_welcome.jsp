@@ -30,6 +30,15 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
+=======
+<link rel="stylesheet"
+	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+ <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script
+	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> 
+</head>
+>>>>>>> branch 'master' of https://github.com/hhundiwala/SSDI-Project-sprint1.git
 <style>
 body {
 	font: 400 15px/1.8 Lato, sans-serif;
@@ -419,9 +428,14 @@ function refreshPage(){
 									$(check).show();
 									$('#check').get(0).scrollIntoView()
 								}
+								function checkIt() {
+									  if (confirm('Are you really sure you want to delete this apartment?')) {
+										  vacate.submit();
+									  }
+									}
 							</script>
 
-
+	
 	<div id="vacate_apt" class="container text-center">
 		<form:form name="vacate" method="post" action="vacate.submit"
 			modelAttribute="deleteApartmentBean">
@@ -440,7 +454,7 @@ function refreshPage(){
 			</div>
 			<div class="col-md-offset-3 col-md-6 text-center"
 				style="height: 75px;">
-				<button class="btn btn-sm btn-success" type="submit" id="submit">Submit</button>
+				<button class="btn btn-sm btn-success" type="submit" id="submit"  onclick="return checkIt()">Submit</button>
 			</div>
 		</form:form>
 
