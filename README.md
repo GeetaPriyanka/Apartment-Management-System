@@ -1,4 +1,4 @@
-# Apartment-Management-System
+# Grievance-Addresal-System
 
 Web application for housing community for tracking and managing grievances of tenants.
 
