@@ -9,4 +9,4 @@ Database: MySQL
 
 Object Relational Mapping: Hibernate
 
-Frontend: Bootstrap, Javascript, JQuerry, HTML, CSS
+Frontend: Bootstrap, Javascript, JQuery, HTML, CSS
